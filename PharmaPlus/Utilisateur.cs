@@ -17,7 +17,6 @@ namespace PharmaPlus
         public string Role { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        // Hacher le mot de passe avec SHA256
         public static string HashMotDePasse(string motDePasse)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -32,100 +31,107 @@ namespace PharmaPlus
             }
         }
 
-        // Inscrire un nouvel utilisateur
-        public void InscrireUtilisateur(SqlConnection conn)
+        public void InscrireUtilisateur()
         {
             string motDePasseHash = HashMotDePasse(MotDePasse);
 
-            string query = "INSERT INTO Utilisateurs (NomUtilisateur, MotDePasse, Nom, Prenom, Role) " +
+            using (SqlConnection conn = Connection.GetConnexion())
+            {
+                string query = "INSERT INTO Utilisateurs (NomUtilisateur, MotDePasse, Nom, Prenom, Role) " +
                            "VALUES (@NomUtilisateur, @MotDePasse, @Nom, @Prenom, @Role); " +
                            "SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.AddWithValue("@NomUtilisateur", NomUtilisateur);
-                cmd.Parameters.AddWithValue("@MotDePasse", motDePasseHash);
-                cmd.Parameters.AddWithValue("@Nom", Nom ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Prenom", Prenom ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Role", Role);
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@NomUtilisateur", NomUtilisateur);
+                    cmd.Parameters.AddWithValue("@MotDePasse", motDePasseHash);
+                    cmd.Parameters.AddWithValue("@Nom", Nom ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Prenom", Prenom ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Role", Role);
 
-                ID_Utilisateur = (int)cmd.ExecuteScalar();
+                    ID_Utilisateur = (int)cmd.ExecuteScalar();
+                }
             }
         }
 
-        // Se connecter
-        public static Utilisateur SeConnecter(SqlConnection conn, string nomUtilisateur, string motDePasse)
+        public static Utilisateur SeConnecter(string nomUtilisateur, string motDePasse)
         {
             string motDePasseHash = HashMotDePasse(motDePasse);
 
-            string query = "SELECT * FROM Utilisateurs WHERE NomUtilisateur = @NomUtilisateur AND MotDePasse = @MotDePasse";
-
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (SqlConnection conn = Connection.GetConnexion())
             {
-                cmd.Parameters.AddWithValue("@NomUtilisateur", nomUtilisateur);
-                cmd.Parameters.AddWithValue("@MotDePasse", motDePasseHash);
+                string query = "SELECT * FROM Utilisateurs WHERE NomUtilisateur = @NomUtilisateur AND MotDePasse = @MotDePasse";
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    if (reader.Read())
+                    cmd.Parameters.AddWithValue("@NomUtilisateur", nomUtilisateur);
+                    cmd.Parameters.AddWithValue("@MotDePasse", motDePasseHash);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        return new Utilisateur
+                        if (reader.Read())
                         {
-                            ID_Utilisateur = Convert.ToInt32(reader["ID_Utilisateur"]),
-                            NomUtilisateur = reader["NomUtilisateur"].ToString(),
-                            Nom = reader["Nom"].ToString(),
-                            Prenom = reader["Prenom"].ToString(),
-                            Role = reader["Role"].ToString(),
-                            CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
-                        };
+                            return new Utilisateur
+                            {
+                                ID_Utilisateur = Convert.ToInt32(reader["ID_Utilisateur"]),
+                                NomUtilisateur = reader["NomUtilisateur"].ToString(),
+                                Nom = reader["Nom"].ToString(),
+                                Prenom = reader["Prenom"].ToString(),
+                                Role = reader["Role"].ToString(),
+                                CreatedAt = Convert.ToDateTime(reader["CreatedAt"])
+                            };
+                        }
                     }
                 }
+                return null; // Échec de connexion
             }
-            return null; // Échec de connexion
         }
 
-        // Modifier le profil
-        public void ModifierProfil(SqlConnection conn)
+        public void ModifierProfil()
         {
-            string query = "UPDATE Utilisateurs SET " +
-                           "Nom = @Nom, " +
-                           "Prenom = @Prenom " +
-                           "WHERE ID_Utilisateur = @ID";
-
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (SqlConnection conn = Connection.GetConnexion())
             {
-                cmd.Parameters.AddWithValue("@Nom", Nom ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@Prenom", Prenom ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@ID", ID_Utilisateur);
-                cmd.ExecuteNonQuery();
+                string query = "UPDATE Utilisateurs SET Nom = @Nom, Prenom = @Prenom WHERE ID_Utilisateur = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Nom", Nom ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Prenom", Prenom ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ID", ID_Utilisateur);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
-        // Changer le mot de passe
-        public void ChangerMotDePasse(SqlConnection conn, string nouveauMotDePasse)
+        public void ChangerMotDePasse(string nouveauMotDePasse)
         {
             string motDePasseHash = HashMotDePasse(nouveauMotDePasse);
 
-            string query = "UPDATE Utilisateurs SET MotDePasse = @MotDePasse WHERE ID_Utilisateur = @ID";
-
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (SqlConnection conn = Connection.GetConnexion())
             {
-                cmd.Parameters.AddWithValue("@MotDePasse", motDePasseHash);
-                cmd.Parameters.AddWithValue("@ID", ID_Utilisateur);
-                cmd.ExecuteNonQuery();
+                string query = "UPDATE Utilisateurs SET MotDePasse = @MotDePasse WHERE ID_Utilisateur = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@MotDePasse", motDePasseHash);
+                    cmd.Parameters.AddWithValue("@ID", ID_Utilisateur);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
-        // Enregistrer une action dans l'historique
-        public void EnregistrerHistorique(SqlConnection conn, string action)
+        public void EnregistrerHistorique(string action)
         {
-            string query = "INSERT INTO Historique (ID_Utilisateur, Action) VALUES (@ID, @Action)";
-
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (SqlConnection conn = Connection.GetConnexion())
             {
-                cmd.Parameters.AddWithValue("@ID", ID_Utilisateur);
-                cmd.Parameters.AddWithValue("@Action", action);
-                cmd.ExecuteNonQuery();
+                string query = "INSERT INTO Historique (ID_Utilisateur, Action) VALUES (@ID, @Action)";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", ID_Utilisateur);
+                    cmd.Parameters.AddWithValue("@Action", action);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
     }

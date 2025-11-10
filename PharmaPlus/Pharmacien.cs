@@ -14,52 +14,45 @@ namespace PharmaPlus
             Role = "Pharmacien";
         }
 
-        // Ajouter un médicament
-        public void AjouterMedicament(SqlConnection conn, Medicament medicament)
+        public void AjouterMedicament(Medicament medicament)
         {
-            medicament.InsererMedicament(conn);
-            EnregistrerHistorique(conn, $"Ajout du médicament: {medicament.Nom} (Réf: {medicament.Reference})");
+            medicament.InsererMedicament();
+            EnregistrerHistorique($"Ajout du médicament: {medicament.Nom} (Réf: {medicament.Reference})");
         }
 
-        // Modifier un médicament
-        public void ModifierMedicament(SqlConnection conn, Medicament medicament)
+        public void ModifierMedicament(Medicament medicament)
         {
-            medicament.MettreAJourMedicament(conn);
-            EnregistrerHistorique(conn, $"Modification du médicament ID: {medicament.ID_Medicament}");
+            medicament.MettreAJourMedicament();
+            EnregistrerHistorique($"Modification du médicament ID: {medicament.ID_Medicament}");
         }
 
-        // Supprimer un médicament
-        public void SupprimerMedicament(SqlConnection conn, Medicament medicament)
+        public void SupprimerMedicament(Medicament medicament)
         {
-            medicament.SupprimerMedicament(conn);
-            EnregistrerHistorique(conn, $"Suppression du médicament ID: {medicament.ID_Medicament}");
+            medicament.SupprimerMedicament();
+            EnregistrerHistorique($"Suppression du médicament ID: {medicament.ID_Medicament}");
         }
 
-        // Ajouter un lot de médicament
-        public void AjouterLot(SqlConnection conn, LotMedicament lot)
+        public void AjouterLot(LotMedicament lot)
         {
-            lot.InsererLot(conn);
-            EnregistrerHistorique(conn, $"Ajout du lot: {lot.NumeroLot} pour médicament ID: {lot.ID_Medicament}");
+            lot.InsererLot();
+            EnregistrerHistorique($"Ajout du lot: {lot.NumeroLot} pour médicament ID: {lot.ID_Medicament}");
         }
 
-        // Modifier un lot
-        public void ModifierLot(SqlConnection conn, LotMedicament lot)
+        public void ModifierLot(LotMedicament lot)
         {
-            lot.MettreAJourLot(conn);
-            EnregistrerHistorique(conn, $"Modification du lot ID: {lot.ID_Lot}");
+            lot.MettreAJourLot();
+            EnregistrerHistorique($"Modification du lot ID: {lot.ID_Lot}");
         }
 
-        // Supprimer un lot
-        public void SupprimerLot(SqlConnection conn, LotMedicament lot)
+        public void SupprimerLot(LotMedicament lot)
         {
-            lot.SupprimerLot(conn);
-            EnregistrerHistorique(conn, $"Suppression du lot ID: {lot.ID_Lot}");
+            lot.SupprimerLot();
+            EnregistrerHistorique($"Suppression du lot ID: {lot.ID_Lot}");
         }
 
-        // Consulter les médicaments en alerte de stock
-        public List<Medicament> ConsulterStockAlerte(SqlConnection conn)
+        public List<Medicament> ConsulterStockAlerte()
         {
-            List<Medicament> medicaments = Medicament.ListerMedicaments(conn);
+            List<Medicament> medicaments = Medicament.ListerMedicaments();
             List<Medicament> alertes = new List<Medicament>();
 
             foreach (var med in medicaments)
@@ -73,68 +66,73 @@ namespace PharmaPlus
             return alertes;
         }
 
-        // Consulter les lots périmés ou proches de la péremption
-        public List<LotMedicament> ConsulterLotsPeremption(SqlConnection conn, int joursAvantAlerte = 30)
+        public List<LotMedicament> ConsulterLotsPeremption(int joursAvantAlerte = 30)
         {
             List<LotMedicament> lotsPerimes = new List<LotMedicament>();
             DateTime dateAlerte = DateTime.Now.AddDays(joursAvantAlerte);
 
-            string query = "SELECT * FROM LotsMedicaments WHERE DatePeremption <= @DateAlerte ORDER BY DatePeremption";
-
-            using (SqlCommand cmd = new SqlCommand(query, conn))
+            using (SqlConnection conn = Connection.GetConnexion())
             {
-                cmd.Parameters.AddWithValue("@DateAlerte", dateAlerte);
+                string query = "SELECT * FROM LotsMedicaments WHERE DatePeremption <= @DateAlerte ORDER BY DatePeremption";
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    while (reader.Read())
+                    cmd.Parameters.AddWithValue("@DateAlerte", dateAlerte);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        lotsPerimes.Add(new LotMedicament
+                        while (reader.Read())
                         {
-                            ID_Lot = Convert.ToInt32(reader["ID_Lot"]),
-                            ID_Medicament = Convert.ToInt32(reader["ID_Medicament"]),
-                            NumeroLot = reader["NumeroLot"].ToString(),
-                            DatePeremption = Convert.ToDateTime(reader["DatePeremption"]),
-                            Prix = Convert.ToDecimal(reader["Prix"]),
-                            QuantiteLot = Convert.ToInt32(reader["QuantiteLot"])
-                        });
+                            lotsPerimes.Add(new LotMedicament
+                            {
+                                ID_Lot = Convert.ToInt32(reader["ID_Lot"]),
+                                ID_Medicament = Convert.ToInt32(reader["ID_Medicament"]),
+                                NumeroLot = reader["NumeroLot"].ToString(),
+                                DatePeremption = Convert.ToDateTime(reader["DatePeremption"]),
+                                Prix = Convert.ToDecimal(reader["Prix"]),
+                                QuantiteLot = Convert.ToInt32(reader["QuantiteLot"])
+                            });
+                        }
                     }
                 }
-            }
 
-            return lotsPerimes;
+                return lotsPerimes;
+            }
         }
 
-        // Consulter l'historique des actions
-        public static List<string> ConsulterHistorique(SqlConnection conn, int? idUtilisateur = null)
+        public static List<string> ConsulterHistorique(int? idUtilisateur = null)
         {
             List<string> historique = new List<string>();
-            string query = idUtilisateur.HasValue
+
+            using (SqlConnection conn = Connection.GetConnexion())
+            {
+                string query = idUtilisateur.HasValue
                 ? "SELECT * FROM Historique WHERE ID_Utilisateur = @ID ORDER BY DateAction DESC"
                 : "SELECT h.*, u.NomUtilisateur FROM Historique h " +
                   "JOIN Utilisateurs u ON h.ID_Utilisateur = u.ID_Utilisateur " +
                   "ORDER BY h.DateAction DESC";
 
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                if (idUtilisateur.HasValue)
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID", idUtilisateur.Value);
-                }
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
+                    if (idUtilisateur.HasValue)
                     {
-                        string utilisateur = idUtilisateur.HasValue ? "" : $"[{reader["NomUtilisateur"]}] ";
-                        string action = reader["Action"].ToString();
-                        DateTime date = Convert.ToDateTime(reader["DateAction"]);
-                        historique.Add($"{date:dd/MM/yyyy HH:mm} - {utilisateur}{action}");
+                        cmd.Parameters.AddWithValue("@ID", idUtilisateur.Value);
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string utilisateur = idUtilisateur.HasValue ? "" : $"[{reader["NomUtilisateur"]}] ";
+                            string action = reader["Action"].ToString();
+                            DateTime date = Convert.ToDateTime(reader["DateAction"]);
+                            historique.Add($"{date:dd/MM/yyyy HH:mm} - {utilisateur}{action}");
+                        }
                     }
                 }
-            }
 
-            return historique;
+                return historique;
+            }
         }
     }
 }

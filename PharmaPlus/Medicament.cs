@@ -1,9 +1,10 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using PharmaPlus;
 
 namespace PharmaPlus
 {
@@ -18,95 +19,141 @@ namespace PharmaPlus
         public int SeuilAlerteStock { get; set; }
         public List<LotMedicament> Lots { get; set; } = new List<LotMedicament>();
 
-        public void InsererMedicament(SqlConnection conn)
+        public void InsererMedicament()
         {
-            string query = $"INSERT INTO Medicaments (Nom, Reference, Categorie, Fabricant, QuantiteTotale, SeuilAlerteStock) " +
-                           $"VALUES ('{Nom}', '{Reference}', '{Categorie}', '{Fabricant}', {QuantiteTotale}, {SeuilAlerteStock})";
+            using (SqlConnection conn = Connection.GetConnexion())
+            {
+                string query = "INSERT INTO Medicaments (Nom, Reference, Categorie, Fabricant, QuantiteTotale, SeuilAlerteStock) " +
+                               "VALUES (@Nom, @Reference, @Categorie, @Fabricant, @QuantiteTotale, @SeuilAlerteStock)";
 
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Nom", Nom ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Reference", Reference ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Categorie", Categorie ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Fabricant", Fabricant ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@QuantiteTotale", QuantiteTotale);
+                    cmd.Parameters.AddWithValue("@SeuilAlerteStock", SeuilAlerteStock);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public void MettreAJourMedicament(SqlConnection conn)
+        public void MettreAJourMedicament()
         {
-            string query = $"UPDATE Medicaments SET " +
-                           $"Nom = '{Nom}', " +
-                           $"Reference = '{Reference}', " +
-                           $"Categorie = '{Categorie}', " +
-                           $"Fabricant = '{Fabricant}', " +
-                           $"QuantiteTotale = {QuantiteTotale}, " +
-                           $"SeuilAlerteStock = {SeuilAlerteStock} " +
-                           $"WHERE ID_Medicament = {ID_Medicament}";
+            using (SqlConnection conn = Connection.GetConnexion())
+            {
+                string query = "UPDATE Medicaments SET " +
+                               "Nom = @Nom, " +
+                               "Reference = @Reference, " +
+                               "Categorie = @Categorie, " +
+                               "Fabricant = @Fabricant, " +
+                               "QuantiteTotale = @QuantiteTotale, " +
+                               "SeuilAlerteStock = @SeuilAlerteStock " +
+                               "WHERE ID_Medicament = @ID_Medicament";
 
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Nom", Nom ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Reference", Reference ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Categorie", Categorie ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@Fabricant", Fabricant ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@QuantiteTotale", QuantiteTotale);
+                    cmd.Parameters.AddWithValue("@SeuilAlerteStock", SeuilAlerteStock);
+                    cmd.Parameters.AddWithValue("@ID_Medicament", ID_Medicament);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public void SupprimerMedicament(SqlConnection conn)
+        public void SupprimerMedicament()
         {
-            string query = $"DELETE FROM Medicaments WHERE ID_Medicament = {ID_Medicament}";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.ExecuteNonQuery();
+            using (SqlConnection conn = Connection.GetConnexion())
+            {
+                string query = "DELETE FROM Medicaments WHERE ID_Medicament = @ID_Medicament";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID_Medicament", ID_Medicament);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
-        public static List<Medicament> ListerMedicaments(SqlConnection conn)
+        public static List<Medicament> ListerMedicaments()
         {
             List<Medicament> liste = new List<Medicament>();
-            string query = "SELECT * FROM Medicaments";
 
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            using (SqlConnection conn = Connection.GetConnexion())
             {
-                Medicament m = new Medicament
+                string query = "SELECT * FROM Medicaments";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    ID_Medicament = Convert.ToInt32(reader["ID_Medicament"]),
-                    Nom = reader["Nom"].ToString(),
-                    Reference = reader["Reference"].ToString(),
-                    Categorie = reader["Categorie"].ToString(),
-                    Fabricant = reader["Fabricant"].ToString(),
-                    QuantiteTotale = Convert.ToInt32(reader["QuantiteTotale"]),
-                    SeuilAlerteStock = Convert.ToInt32(reader["SeuilAlerteStock"])
-                };
-                liste.Add(m);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Medicament m = new Medicament
+                        {
+                            ID_Medicament = Convert.ToInt32(reader["ID_Medicament"]),
+                            Nom = reader["Nom"].ToString(),
+                            Reference = reader["Reference"].ToString(),
+                            Categorie = reader["Categorie"].ToString(),
+                            Fabricant = reader["Fabricant"].ToString(),
+                            QuantiteTotale = Convert.ToInt32(reader["QuantiteTotale"]),
+                            SeuilAlerteStock = Convert.ToInt32(reader["SeuilAlerteStock"])
+                        };
+                        liste.Add(m);
+                    }
+                }
             }
 
-            reader.Close();
             return liste;
         }
+
 
         public bool VerifierStockAlerte()
         {
             return QuantiteTotale <= SeuilAlerteStock;
         }
 
-        public void AjouterLot(SqlConnection conn, LotMedicament lot)
+        public void AjouterLot(LotMedicament lot)
         {
-            string query = $"INSERT INTO LotsMedicaments (ID_Medicament, NumeroLot, DatePeremption, Prix, QuantiteLot) " +
-                           $"VALUES ({ID_Medicament}, '{lot.NumeroLot}', '{lot.DatePeremption:yyyy-MM-dd}', {lot.Prix}, {lot.QuantiteLot})";
-
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.ExecuteNonQuery();
-
-            QuantiteTotale += lot.QuantiteLot;
-            MettreAJourMedicament(conn);
+            lot.ID_Medicament = this.ID_Medicament;
+            lot.InsererLot();
+            MettreAJourQuantiteTotale();
         }
 
-        public static void MettreAJourQuantiteTotale(SqlConnection conn, int idMedicament)
+        public void MettreAJourQuantiteTotale()
         {
-            // Calculer la somme des quantités de tous les lots pour ce médicament
-            string queryTotal = $"SELECT SUM(QuantiteLot) FROM LotsMedicaments WHERE ID_Medicament = {idMedicament}";
-            SqlCommand cmdTotal = new SqlCommand(queryTotal, conn);
+            using (SqlConnection conn = Connection.GetConnexion())
+            {
+                string queryTotal = "SELECT ISNULL(SUM(QuantiteLot), 0) FROM LotsMedicaments WHERE ID_Medicament = @ID_Medicament";
 
-            object result = cmdTotal.ExecuteScalar();
-            int nouvelleQuantite = (result != DBNull.Value) ? Convert.ToInt32(result) : 0;
+                using (SqlCommand cmdTotal = new SqlCommand(queryTotal, conn))
+                {
+                    cmdTotal.Parameters.AddWithValue("@ID_Medicament", ID_Medicament);
+                    int nouvelleQuantite = Convert.ToInt32(cmdTotal.ExecuteScalar());
 
-            // Mettre à jour la quantité totale dans la table Medicaments
-            string queryUpdate = $"UPDATE Medicaments SET QuantiteTotale = {nouvelleQuantite} WHERE ID_Medicament = {idMedicament}";
-            SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn);
-            cmdUpdate.ExecuteNonQuery();
+                    string queryUpdate = "UPDATE Medicaments SET QuantiteTotale = @QuantiteTotale WHERE ID_Medicament = @ID_Medicament";
+
+                    using (SqlCommand cmdUpdate = new SqlCommand(queryUpdate, conn))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("@QuantiteTotale", nouvelleQuantite);
+                        cmdUpdate.Parameters.AddWithValue("@ID_Medicament", ID_Medicament);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+
+                    this.QuantiteTotale = nouvelleQuantite;
+                }
+            }
         }
 
+        public void ChargerLots()
+        {
+            Lots = LotMedicament.ListerLotsParMedicament(ID_Medicament);
+        }
     }
 }
