@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnReinitialiserNumeroLot = new Button();
             btnRafraichirReference = new Button();
@@ -63,6 +63,7 @@
             lblDatePeremption = new Label();
             txtID_Medicament = new TextBox();
             lblID_Medicament = new Label();
+            btnRetour = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
             panel2.SuspendLayout();
@@ -73,6 +74,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnRetour);
             panel1.Controls.Add(btnReinitialiserNumeroLot);
             panel1.Controls.Add(btnRafraichirReference);
             panel1.Controls.Add(lblRechercherNumeroLot);
@@ -109,7 +111,7 @@
             btnRafraichirReference.FlatStyle = FlatStyle.Popup;
             btnRafraichirReference.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRafraichirReference.ForeColor = SystemColors.HighlightText;
-            btnRafraichirReference.Location = new Point(624, 49);
+            btnRafraichirReference.Location = new Point(624, 65);
             btnRafraichirReference.Name = "btnRafraichirReference";
             btnRafraichirReference.Size = new Size(131, 32);
             btnRafraichirReference.TabIndex = 41;
@@ -151,7 +153,7 @@
             // 
             lblSelectionnerMedicament.AutoSize = true;
             lblSelectionnerMedicament.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSelectionnerMedicament.Location = new Point(25, 104);
+            lblSelectionnerMedicament.Location = new Point(25, 120);
             lblSelectionnerMedicament.Name = "lblSelectionnerMedicament";
             lblSelectionnerMedicament.Size = new Size(230, 23);
             lblSelectionnerMedicament.TabIndex = 37;
@@ -161,7 +163,7 @@
             // 
             cmbMedicaments.Font = new Font("Segoe UI", 10F);
             cmbMedicaments.FormattingEnabled = true;
-            cmbMedicaments.Location = new Point(261, 101);
+            cmbMedicaments.Location = new Point(261, 117);
             cmbMedicaments.Name = "cmbMedicaments";
             cmbMedicaments.Size = new Size(636, 31);
             cmbMedicaments.TabIndex = 36;
@@ -170,7 +172,7 @@
             // 
             lblRechercherReference.AutoSize = true;
             lblRechercherReference.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRechercherReference.Location = new Point(25, 54);
+            lblRechercherReference.Location = new Point(25, 70);
             lblRechercherReference.Name = "lblRechercherReference";
             lblRechercherReference.Size = new Size(208, 23);
             lblRechercherReference.TabIndex = 35;
@@ -182,7 +184,7 @@
             btnReinitialiserReference.FlatStyle = FlatStyle.Popup;
             btnReinitialiserReference.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReinitialiserReference.ForeColor = SystemColors.HighlightText;
-            btnReinitialiserReference.Location = new Point(766, 49);
+            btnReinitialiserReference.Location = new Point(766, 65);
             btnReinitialiserReference.Name = "btnReinitialiserReference";
             btnReinitialiserReference.Size = new Size(131, 32);
             btnReinitialiserReference.TabIndex = 34;
@@ -192,7 +194,7 @@
             // txtRechercherReference
             // 
             txtRechercherReference.Font = new Font("Segoe UI", 10F);
-            txtRechercherReference.Location = new Point(261, 50);
+            txtRechercherReference.Location = new Point(261, 66);
             txtRechercherReference.Name = "txtRechercherReference";
             txtRechercherReference.Size = new Size(338, 30);
             txtRechercherReference.TabIndex = 30;
@@ -200,14 +202,14 @@
             // dgvMedicaments
             // 
             dgvMedicaments.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, ID_Lot, NumeroLot, DatePeremption, Prix, QuantiteLot });
             dgvMedicaments.EnableHeadersVisualStyles = false;
@@ -437,6 +439,19 @@
             lblID_Medicament.TabIndex = 17;
             lblID_Medicament.Text = "ID Médicament";
             // 
+            // btnRetour
+            // 
+            btnRetour.BackColor = Color.FromArgb(0, 85, 70);
+            btnRetour.FlatStyle = FlatStyle.Popup;
+            btnRetour.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRetour.ForeColor = SystemColors.HighlightText;
+            btnRetour.Location = new Point(5, 5);
+            btnRetour.Name = "btnRetour";
+            btnRetour.Size = new Size(105, 29);
+            btnRetour.TabIndex = 43;
+            btnRetour.Text = "< Retour";
+            btnRetour.UseVisualStyleBackColor = false;
+            // 
             // FormGestionLots
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -496,5 +511,6 @@
         private Button btnRafraichirReference;
         private Button btnReinitialiserNumeroLot;
         private Label lblGestionLots;
+        private Button btnRetour;
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnRafraichir = new Button();
             textBox2 = new TextBox();
@@ -57,6 +57,7 @@
             label2 = new Label();
             txtNom = new TextBox();
             label1 = new Label();
+            btnRetour = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
             panel2.SuspendLayout();
@@ -66,6 +67,7 @@
             // panel1
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(btnRetour);
             panel1.Controls.Add(btnRafraichir);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label6);
@@ -82,7 +84,7 @@
             btnRafraichir.FlatStyle = FlatStyle.Popup;
             btnRafraichir.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRafraichir.ForeColor = SystemColors.HighlightText;
-            btnRafraichir.Location = new Point(687, 52);
+            btnRafraichir.Location = new Point(722, 52);
             btnRafraichir.Name = "btnRafraichir";
             btnRafraichir.Size = new Size(120, 29);
             btnRafraichir.TabIndex = 25;
@@ -92,7 +94,7 @@
             // textBox2
             // 
             textBox2.Font = new Font("Segoe UI", 10F);
-            textBox2.Location = new Point(231, 51);
+            textBox2.Location = new Point(266, 51);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(412, 30);
             textBox2.TabIndex = 24;
@@ -101,7 +103,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(105, 55);
+            label6.Location = new Point(140, 55);
             label6.Name = "label6";
             label6.Size = new Size(96, 23);
             label6.TabIndex = 23;
@@ -110,14 +112,14 @@
             // dgvMedicaments
             // 
             dgvMedicaments.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, Nom, Reference, Categorie, Fabricant, QuantiteTotale, SeuilAlerteStock });
             dgvMedicaments.EnableHeadersVisualStyles = false;
@@ -354,6 +356,19 @@
             label1.TabIndex = 9;
             label1.Text = "Nom *";
             // 
+            // btnRetour
+            // 
+            btnRetour.BackColor = Color.FromArgb(0, 85, 70);
+            btnRetour.FlatStyle = FlatStyle.Popup;
+            btnRetour.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRetour.ForeColor = SystemColors.HighlightText;
+            btnRetour.Location = new Point(5, 5);
+            btnRetour.Name = "btnRetour";
+            btnRetour.Size = new Size(105, 29);
+            btnRetour.TabIndex = 26;
+            btnRetour.Text = "< Retour";
+            btnRetour.UseVisualStyleBackColor = false;
+            // 
             // FormGestionMedicaments
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -404,5 +419,6 @@
         private TextBox textBox2;
         private Button btnRafraichir;
         private Label lblGestionMedicaments;
+        private Button btnRetour;
     }
 }
