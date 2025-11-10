@@ -81,13 +81,13 @@
             // 
             // lblDescription
             // 
-            lblDescription.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDescription.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblDescription.ForeColor = SystemColors.HighlightText;
             lblDescription.Location = new Point(75, 432);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(540, 151);
             lblDescription.TabIndex = 1;
-            lblDescription.Text = "Parcourez Notre Catalogue\nCommandez Facilement Vos Médicaments en Ligne\nProfitez d’une Livraison Sécurisée";
+            lblDescription.Text = "Parcourez Notre Catalogue,\nCommandez Facilement Vos Médicaments en Ligne\net Profitez d’une Livraison Sécurisée";
             lblDescription.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblBienvenue
