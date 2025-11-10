@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnRafraichir = new Button();
             textBox2 = new TextBox();
@@ -41,6 +42,7 @@
             QuantiteTotale = new DataGridViewTextBoxColumn();
             SeuilAlerteStock = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
+            lblGestionMedicaments = new Label();
             btnEffacer = new Button();
             btnSupprimer = new Button();
             btnModifier = new Button();
@@ -76,34 +78,49 @@
             // 
             // btnRafraichir
             // 
-            btnRafraichir.Location = new Point(694, 50);
+            btnRafraichir.BackColor = Color.FromArgb(0, 85, 70);
+            btnRafraichir.FlatStyle = FlatStyle.Popup;
+            btnRafraichir.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRafraichir.ForeColor = SystemColors.HighlightText;
+            btnRafraichir.Location = new Point(687, 52);
             btnRafraichir.Name = "btnRafraichir";
             btnRafraichir.Size = new Size(120, 29);
             btnRafraichir.TabIndex = 25;
             btnRafraichir.Text = "Rafraîchir";
-            btnRafraichir.UseVisualStyleBackColor = true;
+            btnRafraichir.UseVisualStyleBackColor = false;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(211, 51);
+            textBox2.Font = new Font("Segoe UI", 10F);
+            textBox2.Location = new Point(231, 51);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(429, 27);
+            textBox2.Size = new Size(412, 30);
             textBox2.TabIndex = 24;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(94, 54);
+            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(105, 55);
             label6.Name = "label6";
-            label6.Size = new Size(82, 20);
+            label6.Size = new Size(96, 23);
             label6.TabIndex = 23;
             label6.Text = "Rechercher";
             // 
             // dgvMedicaments
             // 
             dgvMedicaments.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, Nom, Reference, Categorie, Fabricant, QuantiteTotale, SeuilAlerteStock });
+            dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(3, 111);
             dgvMedicaments.Name = "dgvMedicaments";
             dgvMedicaments.RowHeadersWidth = 51;
@@ -162,6 +179,7 @@
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(lblGestionMedicaments);
             panel2.Controls.Add(btnEffacer);
             panel2.Controls.Add(btnSupprimer);
             panel2.Controls.Add(btnModifier);
@@ -182,121 +200,159 @@
             panel2.Size = new Size(324, 673);
             panel2.TabIndex = 1;
             // 
+            // lblGestionMedicaments
+            // 
+            lblGestionMedicaments.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGestionMedicaments.ForeColor = Color.FromArgb(0, 85, 70);
+            lblGestionMedicaments.Location = new Point(24, 19);
+            lblGestionMedicaments.Name = "lblGestionMedicaments";
+            lblGestionMedicaments.Size = new Size(273, 78);
+            lblGestionMedicaments.TabIndex = 35;
+            lblGestionMedicaments.Text = "Gestion des Médicaments";
+            lblGestionMedicaments.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // btnEffacer
             // 
-            btnEffacer.Location = new Point(166, 570);
+            btnEffacer.BackColor = Color.FromArgb(0, 85, 70);
+            btnEffacer.FlatStyle = FlatStyle.Popup;
+            btnEffacer.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEffacer.ForeColor = SystemColors.HighlightText;
+            btnEffacer.Location = new Point(166, 597);
             btnEffacer.Name = "btnEffacer";
-            btnEffacer.Size = new Size(131, 29);
+            btnEffacer.Size = new Size(131, 35);
             btnEffacer.TabIndex = 22;
             btnEffacer.Text = "Effacer";
-            btnEffacer.UseVisualStyleBackColor = true;
+            btnEffacer.UseVisualStyleBackColor = false;
             // 
             // btnSupprimer
             // 
-            btnSupprimer.Location = new Point(24, 570);
+            btnSupprimer.BackColor = Color.FromArgb(0, 85, 70);
+            btnSupprimer.FlatStyle = FlatStyle.Popup;
+            btnSupprimer.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSupprimer.ForeColor = SystemColors.HighlightText;
+            btnSupprimer.Location = new Point(24, 597);
             btnSupprimer.Name = "btnSupprimer";
-            btnSupprimer.Size = new Size(131, 29);
+            btnSupprimer.Size = new Size(131, 35);
             btnSupprimer.TabIndex = 21;
             btnSupprimer.Text = "Supprimer";
-            btnSupprimer.UseVisualStyleBackColor = true;
+            btnSupprimer.UseVisualStyleBackColor = false;
             // 
             // btnModifier
             // 
-            btnModifier.Location = new Point(166, 521);
+            btnModifier.BackColor = Color.FromArgb(0, 85, 70);
+            btnModifier.FlatStyle = FlatStyle.Popup;
+            btnModifier.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModifier.ForeColor = SystemColors.HighlightText;
+            btnModifier.Location = new Point(166, 548);
             btnModifier.Name = "btnModifier";
-            btnModifier.Size = new Size(131, 29);
+            btnModifier.Size = new Size(131, 35);
             btnModifier.TabIndex = 20;
             btnModifier.Text = "Modifier";
-            btnModifier.UseVisualStyleBackColor = true;
+            btnModifier.UseVisualStyleBackColor = false;
             // 
             // btnAjouter
             // 
-            btnAjouter.Location = new Point(24, 521);
+            btnAjouter.BackColor = Color.FromArgb(0, 85, 70);
+            btnAjouter.FlatStyle = FlatStyle.Popup;
+            btnAjouter.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAjouter.ForeColor = SystemColors.HighlightText;
+            btnAjouter.Location = new Point(24, 548);
             btnAjouter.Name = "btnAjouter";
-            btnAjouter.Size = new Size(131, 29);
+            btnAjouter.Size = new Size(131, 35);
             btnAjouter.TabIndex = 2;
             btnAjouter.Text = "Ajouter";
-            btnAjouter.UseVisualStyleBackColor = true;
+            btnAjouter.UseVisualStyleBackColor = false;
             // 
             // nudSeuil
             // 
-            nudSeuil.Location = new Point(24, 452);
+            nudSeuil.Font = new Font("Segoe UI", 11F);
+            nudSeuil.Location = new Point(24, 477);
             nudSeuil.Name = "nudSeuil";
-            nudSeuil.Size = new Size(273, 27);
+            nudSeuil.Size = new Size(273, 32);
             nudSeuil.TabIndex = 19;
+            nudSeuil.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(24, 424);
+            label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(24, 449);
             label5.Name = "label5";
-            label5.Size = new Size(137, 20);
+            label5.Size = new Size(157, 23);
             label5.TabIndex = 17;
             label5.Text = "Seuil d'Alerte Stock";
             // 
             // txtFabricant
             // 
-            txtFabricant.Location = new Point(24, 373);
+            txtFabricant.Font = new Font("Segoe UI", 11F);
+            txtFabricant.Location = new Point(24, 396);
             txtFabricant.Name = "txtFabricant";
-            txtFabricant.Size = new Size(273, 27);
+            txtFabricant.Size = new Size(273, 32);
             txtFabricant.TabIndex = 16;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(24, 345);
+            label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(24, 368);
             label4.Name = "label4";
-            label4.Size = new Size(69, 20);
+            label4.Size = new Size(80, 23);
             label4.TabIndex = 15;
             label4.Text = "Fabricant";
             // 
             // txtCategorie
             // 
-            txtCategorie.Location = new Point(24, 299);
+            txtCategorie.Font = new Font("Segoe UI", 11F);
+            txtCategorie.Location = new Point(24, 320);
             txtCategorie.Name = "txtCategorie";
-            txtCategorie.Size = new Size(273, 27);
+            txtCategorie.Size = new Size(273, 32);
             txtCategorie.TabIndex = 14;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(24, 271);
+            label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(24, 292);
             label3.Name = "label3";
-            label3.Size = new Size(74, 20);
+            label3.Size = new Size(84, 23);
             label3.TabIndex = 13;
             label3.Text = "Catégorie";
             // 
             // txtReference
             // 
-            txtReference.Location = new Point(24, 218);
+            txtReference.Font = new Font("Segoe UI", 11F);
+            txtReference.Location = new Point(24, 237);
             txtReference.Name = "txtReference";
-            txtReference.Size = new Size(273, 27);
+            txtReference.Size = new Size(273, 32);
             txtReference.TabIndex = 12;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(24, 190);
+            label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(24, 209);
             label2.Name = "label2";
-            label2.Size = new Size(75, 20);
+            label2.Size = new Size(99, 23);
             label2.TabIndex = 11;
-            label2.Text = "Référence";
+            label2.Text = "Référence *";
             // 
             // txtNom
             // 
-            txtNom.Location = new Point(24, 144);
+            txtNom.Font = new Font("Segoe UI", 11F);
+            txtNom.Location = new Point(24, 161);
             txtNom.Name = "txtNom";
-            txtNom.Size = new Size(273, 27);
+            txtNom.Size = new Size(273, 32);
             txtNom.TabIndex = 10;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(24, 116);
+            label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(24, 133);
             label1.Name = "label1";
-            label1.Size = new Size(42, 20);
+            label1.Size = new Size(60, 23);
             label1.TabIndex = 9;
-            label1.Text = "Nom";
+            label1.Text = "Nom *";
             // 
             // FormGestionMedicaments
             // 
@@ -347,5 +403,6 @@
         private Label label6;
         private TextBox textBox2;
         private Button btnRafraichir;
+        private Label lblGestionMedicaments;
     }
 }

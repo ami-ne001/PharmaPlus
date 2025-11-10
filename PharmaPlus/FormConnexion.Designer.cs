@@ -63,9 +63,9 @@
             // 
             lblLogo.Font = new Font("Segoe UI Black", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLogo.ForeColor = SystemColors.HighlightText;
-            lblLogo.Location = new Point(186, 321);
+            lblLogo.Location = new Point(75, 321);
             lblLogo.Name = "lblLogo";
-            lblLogo.Size = new Size(319, 51);
+            lblLogo.Size = new Size(540, 51);
             lblLogo.TabIndex = 4;
             lblLogo.Text = "PharmaPlus\r\n";
             lblLogo.TextAlign = ContentAlignment.MiddleCenter;
@@ -81,7 +81,7 @@
             // 
             // lblDescription
             // 
-            lblDescription.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDescription.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDescription.ForeColor = SystemColors.HighlightText;
             lblDescription.Location = new Point(75, 432);
             lblDescription.Name = "lblDescription";
@@ -94,9 +94,9 @@
             // 
             lblBienvenue.Font = new Font("Segoe UI Semibold", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblBienvenue.ForeColor = SystemColors.HighlightText;
-            lblBienvenue.Location = new Point(170, 97);
+            lblBienvenue.Location = new Point(75, 97);
             lblBienvenue.Name = "lblBienvenue";
-            lblBienvenue.Size = new Size(350, 51);
+            lblBienvenue.Size = new Size(540, 51);
             lblBienvenue.TabIndex = 0;
             lblBienvenue.Text = "Bienvenue sur";
             lblBienvenue.TextAlign = ContentAlignment.MiddleCenter;
@@ -120,20 +120,19 @@
             // lblMDPOublie
             // 
             lblMDPOublie.AutoSize = true;
-            lblMDPOublie.Location = new Point(304, 489);
+            lblMDPOublie.Location = new Point(304, 488);
             lblMDPOublie.Name = "lblMDPOublie";
             lblMDPOublie.Size = new Size(151, 20);
             lblMDPOublie.TabIndex = 19;
             lblMDPOublie.Text = "Mot de passe oublié?";
-            lblMDPOublie.Click += label5_Click;
             // 
             // lblConnexion
             // 
             lblConnexion.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblConnexion.ForeColor = Color.FromArgb(0, 85, 70);
-            lblConnexion.Location = new Point(189, 100);
+            lblConnexion.Location = new Point(145, 92);
             lblConnexion.Name = "lblConnexion";
-            lblConnexion.Size = new Size(222, 51);
+            lblConnexion.Size = new Size(310, 51);
             lblConnexion.TabIndex = 18;
             lblConnexion.Text = "Connexion";
             lblConnexion.TextAlign = ContentAlignment.MiddleCenter;
@@ -142,7 +141,7 @@
             // 
             btnAjouter.BackColor = Color.FromArgb(0, 85, 70);
             btnAjouter.FlatStyle = FlatStyle.Flat;
-            btnAjouter.Font = new Font("Segoe UI", 13F);
+            btnAjouter.Font = new Font("Segoe UI", 12F);
             btnAjouter.ForeColor = SystemColors.HighlightText;
             btnAjouter.Location = new Point(145, 443);
             btnAjouter.Name = "btnAjouter";
@@ -150,41 +149,40 @@
             btnAjouter.TabIndex = 13;
             btnAjouter.Text = "Se connecter";
             btnAjouter.UseVisualStyleBackColor = false;
-            btnAjouter.Click += btnAjouter_Click;
             // 
             // txtReference
             // 
-            txtReference.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtReference.Font = new Font("Segoe UI", 11F);
             txtReference.Location = new Point(145, 352);
             txtReference.Name = "txtReference";
-            txtReference.Size = new Size(310, 34);
+            txtReference.Size = new Size(310, 32);
             txtReference.TabIndex = 17;
             // 
             // lblMotDePasse
             // 
             lblMotDePasse.AutoSize = true;
-            lblMotDePasse.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblMotDePasse.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMotDePasse.Location = new Point(145, 321);
             lblMotDePasse.Name = "lblMotDePasse";
-            lblMotDePasse.Size = new Size(129, 28);
+            lblMotDePasse.Size = new Size(124, 25);
             lblMotDePasse.TabIndex = 16;
             lblMotDePasse.Text = "Mot de passe";
             // 
             // txtNom
             // 
-            txtNom.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNom.Font = new Font("Segoe UI", 11F);
             txtNom.Location = new Point(145, 254);
             txtNom.Name = "txtNom";
-            txtNom.Size = new Size(310, 34);
+            txtNom.Size = new Size(310, 32);
             txtNom.TabIndex = 15;
             // 
             // lblNomUtilisateur
             // 
             lblNomUtilisateur.AutoSize = true;
-            lblNomUtilisateur.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNomUtilisateur.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNomUtilisateur.Location = new Point(145, 223);
             lblNomUtilisateur.Name = "lblNomUtilisateur";
-            lblNomUtilisateur.Size = new Size(164, 28);
+            lblNomUtilisateur.Size = new Size(159, 25);
             lblNomUtilisateur.TabIndex = 14;
             lblNomUtilisateur.Text = "Nom d'utilisateur";
             // 
