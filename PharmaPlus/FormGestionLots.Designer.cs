@@ -374,8 +374,9 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormGestionLots";
-            Text = "FormGestionLots";
+            Text = "PharmaPlus - Gestion des Médicaments";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).EndInit();

@@ -184,9 +184,9 @@
             // 
             // btnEffacer
             // 
-            btnEffacer.Location = new Point(177, 570);
+            btnEffacer.Location = new Point(166, 570);
             btnEffacer.Name = "btnEffacer";
-            btnEffacer.Size = new Size(120, 29);
+            btnEffacer.Size = new Size(131, 29);
             btnEffacer.TabIndex = 22;
             btnEffacer.Text = "Effacer";
             btnEffacer.UseVisualStyleBackColor = true;
@@ -195,16 +195,16 @@
             // 
             btnSupprimer.Location = new Point(24, 570);
             btnSupprimer.Name = "btnSupprimer";
-            btnSupprimer.Size = new Size(120, 29);
+            btnSupprimer.Size = new Size(131, 29);
             btnSupprimer.TabIndex = 21;
             btnSupprimer.Text = "Supprimer";
             btnSupprimer.UseVisualStyleBackColor = true;
             // 
             // btnModifier
             // 
-            btnModifier.Location = new Point(177, 521);
+            btnModifier.Location = new Point(166, 521);
             btnModifier.Name = "btnModifier";
-            btnModifier.Size = new Size(120, 29);
+            btnModifier.Size = new Size(131, 29);
             btnModifier.TabIndex = 20;
             btnModifier.Text = "Modifier";
             btnModifier.UseVisualStyleBackColor = true;
@@ -213,7 +213,7 @@
             // 
             btnAjouter.Location = new Point(24, 521);
             btnAjouter.Name = "btnAjouter";
-            btnAjouter.Size = new Size(120, 29);
+            btnAjouter.Size = new Size(131, 29);
             btnAjouter.TabIndex = 2;
             btnAjouter.Text = "Ajouter";
             btnAjouter.UseVisualStyleBackColor = true;
@@ -306,8 +306,9 @@
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "FormGestionMedicaments";
-            Text = "FormGestionMedicaments";
+            Text = "PharmaPlus - Gestion des Lots de Médicaments";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).EndInit();
