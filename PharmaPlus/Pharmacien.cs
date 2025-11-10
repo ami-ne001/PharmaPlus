@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace trials
+namespace PharmaPlus
 {
     // Classe Pharmacien héritant d'Utilisateur
     internal class Pharmacien : Utilisateur
