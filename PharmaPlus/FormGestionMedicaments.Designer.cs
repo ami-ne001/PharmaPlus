@@ -53,7 +53,7 @@
             label3 = new Label();
             txtReference = new TextBox();
             label2 = new Label();
-            textBox1 = new TextBox();
+            txtNom = new TextBox();
             label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
@@ -174,7 +174,7 @@
             panel2.Controls.Add(label3);
             panel2.Controls.Add(txtReference);
             panel2.Controls.Add(label2);
-            panel2.Controls.Add(textBox1);
+            panel2.Controls.Add(txtNom);
             panel2.Controls.Add(label1);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(938, 0);
@@ -282,12 +282,12 @@
             label2.TabIndex = 11;
             label2.Text = "Référence";
             // 
-            // textBox1
+            // txtNom
             // 
-            textBox1.Location = new Point(24, 144);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(273, 27);
-            textBox1.TabIndex = 10;
+            txtNom.Location = new Point(24, 144);
+            txtNom.Name = "txtNom";
+            txtNom.Size = new Size(273, 27);
+            txtNom.TabIndex = 10;
             // 
             // label1
             // 
@@ -329,7 +329,7 @@
         private Label label3;
         private TextBox txtReference;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txtNom;
         private Label label1;
         private Button btnEffacer;
         private Button btnSupprimer;
