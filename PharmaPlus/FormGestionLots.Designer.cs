@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            btnRetour = new Button();
             btnReinitialiserNumeroLot = new Button();
             btnRafraichirReference = new Button();
             lblRechercherNumeroLot = new Label();
@@ -63,7 +64,6 @@
             lblDatePeremption = new Label();
             txtID_Medicament = new TextBox();
             lblID_Medicament = new Label();
-            btnRetour = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
             panel2.SuspendLayout();
@@ -91,6 +91,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(936, 673);
             panel1.TabIndex = 0;
+            // 
+            // btnRetour
+            // 
+            btnRetour.BackColor = Color.FromArgb(0, 85, 70);
+            btnRetour.FlatStyle = FlatStyle.Popup;
+            btnRetour.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRetour.ForeColor = SystemColors.HighlightText;
+            btnRetour.Location = new Point(5, 5);
+            btnRetour.Name = "btnRetour";
+            btnRetour.Size = new Size(105, 29);
+            btnRetour.TabIndex = 43;
+            btnRetour.Text = "< Retour";
+            btnRetour.UseVisualStyleBackColor = false;
             // 
             // btnReinitialiserNumeroLot
             // 
@@ -202,14 +215,14 @@
             // dgvMedicaments
             // 
             dgvMedicaments.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, ID_Lot, NumeroLot, DatePeremption, Prix, QuantiteLot });
             dgvMedicaments.EnableHeadersVisualStyles = false;
@@ -438,19 +451,6 @@
             lblID_Medicament.Size = new Size(128, 23);
             lblID_Medicament.TabIndex = 17;
             lblID_Medicament.Text = "ID Médicament";
-            // 
-            // btnRetour
-            // 
-            btnRetour.BackColor = Color.FromArgb(0, 85, 70);
-            btnRetour.FlatStyle = FlatStyle.Popup;
-            btnRetour.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRetour.ForeColor = SystemColors.HighlightText;
-            btnRetour.Location = new Point(5, 5);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(105, 29);
-            btnRetour.TabIndex = 43;
-            btnRetour.Text = "< Retour";
-            btnRetour.UseVisualStyleBackColor = false;
             // 
             // FormGestionLots
             // 

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
-            button1 = new Button();
+            btnDeconnexion = new Button();
             lblBienvenue = new Label();
             lblEspace = new Label();
             lblLogo = new Label();
@@ -59,7 +59,7 @@
             // 
             panel1.BackColor = Color.FromArgb(0, 85, 70);
             panel1.BorderStyle = BorderStyle.FixedSingle;
-            panel1.Controls.Add(button1);
+            panel1.Controls.Add(btnDeconnexion);
             panel1.Controls.Add(lblBienvenue);
             panel1.Controls.Add(lblEspace);
             panel1.Controls.Add(lblLogo);
@@ -71,17 +71,17 @@
             panel1.Size = new Size(590, 673);
             panel1.TabIndex = 1;
             // 
-            // button1
+            // btnDeconnexion
             // 
-            button1.BackColor = SystemColors.Control;
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(195, 608);
-            button1.Name = "button1";
-            button1.Size = new Size(194, 39);
-            button1.TabIndex = 20;
-            button1.Text = "Déconnexion";
-            button1.UseVisualStyleBackColor = false;
+            btnDeconnexion.BackColor = SystemColors.Control;
+            btnDeconnexion.FlatStyle = FlatStyle.Popup;
+            btnDeconnexion.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDeconnexion.Location = new Point(195, 608);
+            btnDeconnexion.Name = "btnDeconnexion";
+            btnDeconnexion.Size = new Size(194, 39);
+            btnDeconnexion.TabIndex = 20;
+            btnDeconnexion.Text = "Déconnexion";
+            btnDeconnexion.UseVisualStyleBackColor = false;
             // 
             // lblBienvenue
             // 
@@ -291,9 +291,9 @@
             // 
             lblConnexion.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblConnexion.ForeColor = Color.FromArgb(0, 85, 70);
-            lblConnexion.Location = new Point(601, 25);
+            lblConnexion.Location = new Point(601, 21);
             lblConnexion.Name = "lblConnexion";
-            lblConnexion.Size = new Size(310, 51);
+            lblConnexion.Size = new Size(650, 51);
             lblConnexion.TabIndex = 19;
             lblConnexion.Text = "Tableu de Bord";
             lblConnexion.TextAlign = ContentAlignment.MiddleCenter;
@@ -311,7 +311,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "FormMenuPharmacien";
-            Text = "FormMenuPharmacien";
+            Text = "PharmaPlus - Tableau de Bord Pharmacien";
             panel1.ResumeLayout(false);
             grpGestion.ResumeLayout(false);
             grpAlertes.ResumeLayout(false);
@@ -340,7 +340,7 @@
         private Label label4;
         private Label label3;
         private Label label5;
-        private Button button1;
+        private Button btnDeconnexion;
         private Label lblConnexion;
     }
 }

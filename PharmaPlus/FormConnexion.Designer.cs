@@ -87,7 +87,7 @@
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(540, 151);
             lblDescription.TabIndex = 1;
-            lblDescription.Text = "Parcourez Notre Catalogue,\nCommandez Facilement Vos Médicaments en Ligne\net Profitez d’une Livraison Sécurisée";
+            lblDescription.Text = "\" Parcourez Notre Catalogue,\nCommandez Facilement Vos Médicaments en Ligne\net Profitez d’une Livraison Sécurisée \"";
             lblDescription.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblBienvenue
