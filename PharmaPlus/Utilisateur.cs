@@ -6,7 +6,6 @@ using System.Text;
 
 namespace PharmaPlus
 {
-    // Classe de base Utilisateur
     internal class Utilisateur
     {
         public int ID_Utilisateur { get; set; }

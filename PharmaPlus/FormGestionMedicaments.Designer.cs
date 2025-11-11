@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            btnRetour = new Button();
             btnRafraichir = new Button();
             textBox2 = new TextBox();
             label6 = new Label();
@@ -57,7 +58,6 @@
             label2 = new Label();
             txtNom = new TextBox();
             label1 = new Label();
-            btnRetour = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
             panel2.SuspendLayout();
@@ -78,6 +78,20 @@
             panel1.Size = new Size(936, 673);
             panel1.TabIndex = 0;
             // 
+            // btnRetour
+            // 
+            btnRetour.BackColor = Color.FromArgb(0, 85, 70);
+            btnRetour.FlatStyle = FlatStyle.Popup;
+            btnRetour.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRetour.ForeColor = SystemColors.HighlightText;
+            btnRetour.Location = new Point(5, 5);
+            btnRetour.Name = "btnRetour";
+            btnRetour.Size = new Size(105, 29);
+            btnRetour.TabIndex = 26;
+            btnRetour.Text = "< Retour";
+            btnRetour.UseVisualStyleBackColor = false;
+            btnRetour.Click += btnRetour_Click;
+            // 
             // btnRafraichir
             // 
             btnRafraichir.BackColor = Color.FromArgb(0, 85, 70);
@@ -90,6 +104,7 @@
             btnRafraichir.TabIndex = 25;
             btnRafraichir.Text = "Rafraîchir";
             btnRafraichir.UseVisualStyleBackColor = false;
+            btnRafraichir.Click += btnRafraichir_Click;
             // 
             // textBox2
             // 
@@ -111,29 +126,35 @@
             // 
             // dgvMedicaments
             // 
+            dgvMedicaments.AllowUserToAddRows = false;
             dgvMedicaments.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, Nom, Reference, Categorie, Fabricant, QuantiteTotale, SeuilAlerteStock });
             dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(3, 111);
+            dgvMedicaments.MultiSelect = false;
             dgvMedicaments.Name = "dgvMedicaments";
+            dgvMedicaments.ReadOnly = true;
             dgvMedicaments.RowHeadersWidth = 51;
+            dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMedicaments.Size = new Size(928, 557);
             dgvMedicaments.TabIndex = 23;
+            dgvMedicaments.SelectionChanged += dgvMedicaments_SelectionChanged;
             // 
             // ID_Medicament
             // 
             ID_Medicament.HeaderText = "ID";
             ID_Medicament.MinimumWidth = 6;
             ID_Medicament.Name = "ID_Medicament";
+            ID_Medicament.ReadOnly = true;
             ID_Medicament.Width = 125;
             // 
             // Nom
@@ -141,6 +162,7 @@
             Nom.HeaderText = "Nom";
             Nom.MinimumWidth = 6;
             Nom.Name = "Nom";
+            Nom.ReadOnly = true;
             Nom.Width = 125;
             // 
             // Reference
@@ -148,6 +170,7 @@
             Reference.HeaderText = "Référence";
             Reference.MinimumWidth = 6;
             Reference.Name = "Reference";
+            Reference.ReadOnly = true;
             Reference.Width = 125;
             // 
             // Categorie
@@ -155,6 +178,7 @@
             Categorie.HeaderText = "Catégorie";
             Categorie.MinimumWidth = 6;
             Categorie.Name = "Categorie";
+            Categorie.ReadOnly = true;
             Categorie.Width = 125;
             // 
             // Fabricant
@@ -162,6 +186,7 @@
             Fabricant.HeaderText = "Fabricant";
             Fabricant.MinimumWidth = 6;
             Fabricant.Name = "Fabricant";
+            Fabricant.ReadOnly = true;
             Fabricant.Width = 125;
             // 
             // QuantiteTotale
@@ -169,6 +194,7 @@
             QuantiteTotale.HeaderText = "Quantité";
             QuantiteTotale.MinimumWidth = 6;
             QuantiteTotale.Name = "QuantiteTotale";
+            QuantiteTotale.ReadOnly = true;
             QuantiteTotale.Width = 125;
             // 
             // SeuilAlerteStock
@@ -176,6 +202,7 @@
             SeuilAlerteStock.HeaderText = "Seuil";
             SeuilAlerteStock.MinimumWidth = 6;
             SeuilAlerteStock.Name = "SeuilAlerteStock";
+            SeuilAlerteStock.ReadOnly = true;
             SeuilAlerteStock.Width = 125;
             // 
             // panel2
@@ -225,6 +252,7 @@
             btnEffacer.TabIndex = 22;
             btnEffacer.Text = "Effacer";
             btnEffacer.UseVisualStyleBackColor = false;
+            btnEffacer.Click += btnEffacer_Click;
             // 
             // btnSupprimer
             // 
@@ -238,6 +266,7 @@
             btnSupprimer.TabIndex = 21;
             btnSupprimer.Text = "Supprimer";
             btnSupprimer.UseVisualStyleBackColor = false;
+            btnSupprimer.Click += btnSupprimer_Click;
             // 
             // btnModifier
             // 
@@ -251,6 +280,7 @@
             btnModifier.TabIndex = 20;
             btnModifier.Text = "Modifier";
             btnModifier.UseVisualStyleBackColor = false;
+            btnModifier.Click += btnModifier_Click;
             // 
             // btnAjouter
             // 
@@ -264,6 +294,7 @@
             btnAjouter.TabIndex = 2;
             btnAjouter.Text = "Ajouter";
             btnAjouter.UseVisualStyleBackColor = false;
+            btnAjouter.Click += btnAjouter_Click;
             // 
             // nudSeuil
             // 
@@ -356,19 +387,6 @@
             label1.TabIndex = 9;
             label1.Text = "Nom *";
             // 
-            // btnRetour
-            // 
-            btnRetour.BackColor = Color.FromArgb(0, 85, 70);
-            btnRetour.FlatStyle = FlatStyle.Popup;
-            btnRetour.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnRetour.ForeColor = SystemColors.HighlightText;
-            btnRetour.Location = new Point(5, 5);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(105, 29);
-            btnRetour.TabIndex = 26;
-            btnRetour.Text = "< Retour";
-            btnRetour.UseVisualStyleBackColor = false;
-            // 
             // FormGestionMedicaments
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -380,6 +398,7 @@
             MaximizeBox = false;
             Name = "FormGestionMedicaments";
             Text = "PharmaPlus - Gestion des Lots de Médicaments";
+            Load += FormGestionMedicaments_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).EndInit();

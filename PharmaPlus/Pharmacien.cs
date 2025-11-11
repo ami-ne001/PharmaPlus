@@ -6,7 +6,6 @@ using System.Text;
 
 namespace PharmaPlus
 {
-    // Classe Pharmacien héritant d'Utilisateur
     internal class Pharmacien : Utilisateur
     {
         public Pharmacien()
@@ -17,37 +16,47 @@ namespace PharmaPlus
         public void AjouterMedicament(Medicament medicament)
         {
             medicament.InsererMedicament();
-            EnregistrerHistorique($"Ajout du médicament: {medicament.Nom} (Réf: {medicament.Reference})");
+            // Only log if user is identified
+            if (ID_Utilisateur > 0)
+            {
+                EnregistrerHistorique($"Ajout du médicament: {medicament.Nom} (Réf: {medicament.Reference})");
+            }
         }
 
         public void ModifierMedicament(Medicament medicament)
         {
             medicament.MettreAJourMedicament();
-            EnregistrerHistorique($"Modification du médicament ID: {medicament.ID_Medicament}");
+            if (ID_Utilisateur > 0)
+            {
+                EnregistrerHistorique($"Modification du médicament ID: {medicament.ID_Medicament}");
+            }
         }
 
         public void SupprimerMedicament(Medicament medicament)
         {
             medicament.SupprimerMedicament();
-            EnregistrerHistorique($"Suppression du médicament ID: {medicament.ID_Medicament}");
+            if (ID_Utilisateur > 0)
+            {
+                EnregistrerHistorique($"Suppression du médicament ID: {medicament.ID_Medicament}");
+            }
         }
 
         public void AjouterLot(LotMedicament lot)
         {
             lot.InsererLot();
-            EnregistrerHistorique($"Ajout du lot: {lot.NumeroLot} pour médicament ID: {lot.ID_Medicament}");
+            if (ID_Utilisateur > 0)
+            {
+                EnregistrerHistorique($"Ajout du lot: {lot.NumeroLot} pour médicament ID: {lot.ID_Medicament}");
+            }
         }
 
         public void ModifierLot(LotMedicament lot)
         {
             lot.MettreAJourLot();
-            EnregistrerHistorique($"Modification du lot ID: {lot.ID_Lot}");
-        }
-
-        public void SupprimerLot(LotMedicament lot)
-        {
-            lot.SupprimerLot();
-            EnregistrerHistorique($"Suppression du lot ID: {lot.ID_Lot}");
+            if (ID_Utilisateur > 0)
+            {
+                EnregistrerHistorique($"Modification du lot ID: {lot.ID_Lot}");
+            }
         }
 
         public List<Medicament> ConsulterStockAlerte()
