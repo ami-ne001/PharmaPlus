@@ -220,6 +220,7 @@
             // 
             // dgvMedicaments
             // 
+            dgvMedicaments.AllowUserToAddRows = false;
             dgvMedicaments.BackgroundColor = SystemColors.Control;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
@@ -233,8 +234,11 @@
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, ID_Lot, NumeroLot, DatePeremption, Prix, QuantiteLot });
             dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(3, 269);
+            dgvMedicaments.MultiSelect = false;
             dgvMedicaments.Name = "dgvMedicaments";
+            dgvMedicaments.ReadOnly = true;
             dgvMedicaments.RowHeadersWidth = 51;
+            dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMedicaments.Size = new Size(928, 399);
             dgvMedicaments.TabIndex = 24;
             dgvMedicaments.CellContentClick += dgvMedicaments_CellContentClick;
@@ -244,6 +248,7 @@
             ID_Medicament.HeaderText = "ID Médicament";
             ID_Medicament.MinimumWidth = 6;
             ID_Medicament.Name = "ID_Medicament";
+            ID_Medicament.ReadOnly = true;
             ID_Medicament.Width = 140;
             // 
             // ID_Lot
@@ -251,6 +256,7 @@
             ID_Lot.HeaderText = "ID Lot";
             ID_Lot.MinimumWidth = 6;
             ID_Lot.Name = "ID_Lot";
+            ID_Lot.ReadOnly = true;
             ID_Lot.Width = 140;
             // 
             // NumeroLot
@@ -258,6 +264,7 @@
             NumeroLot.HeaderText = "Numéro de Lot";
             NumeroLot.MinimumWidth = 6;
             NumeroLot.Name = "NumeroLot";
+            NumeroLot.ReadOnly = true;
             NumeroLot.Width = 140;
             // 
             // DatePeremption
@@ -265,6 +272,7 @@
             DatePeremption.HeaderText = "Date de Péremption";
             DatePeremption.MinimumWidth = 6;
             DatePeremption.Name = "DatePeremption";
+            DatePeremption.ReadOnly = true;
             DatePeremption.Width = 175;
             // 
             // Prix
@@ -272,6 +280,7 @@
             Prix.HeaderText = "Prix Unitaire";
             Prix.MinimumWidth = 6;
             Prix.Name = "Prix";
+            Prix.ReadOnly = true;
             Prix.Width = 140;
             // 
             // QuantiteLot
@@ -279,6 +288,7 @@
             QuantiteLot.HeaderText = "Quantité";
             QuantiteLot.MinimumWidth = 6;
             QuantiteLot.Name = "QuantiteLot";
+            QuantiteLot.ReadOnly = true;
             QuantiteLot.Width = 140;
             // 
             // panel2
@@ -324,7 +334,6 @@
             txtNumeroLot.Name = "txtNumeroLot";
             txtNumeroLot.Size = new Size(289, 32);
             txtNumeroLot.TabIndex = 33;
-            txtNumeroLot.TextChanged += txtNumeroLot_TextChanged;
             // 
             // lblNumeroLot
             // 
@@ -402,7 +411,6 @@
             nudQuantiteLot.Size = new Size(289, 32);
             nudQuantiteLot.TabIndex = 27;
             nudQuantiteLot.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            nudQuantiteLot.ValueChanged += nudQuantiteLot_ValueChanged;
             // 
             // dtpDatePeremption
             // 
@@ -415,7 +423,6 @@
             dtpDatePeremption.Name = "dtpDatePeremption";
             dtpDatePeremption.Size = new Size(289, 32);
             dtpDatePeremption.TabIndex = 26;
-            dtpDatePeremption.ValueChanged += dtpDatePeremption_ValueChanged;
             // 
             // nudPrix
             // 
@@ -426,7 +433,6 @@
             nudPrix.Name = "nudPrix";
             nudPrix.Size = new Size(289, 32);
             nudPrix.TabIndex = 25;
-            nudPrix.ValueChanged += nudPrix_ValueChanged;
             // 
             // lblQuantiteLot
             // 
@@ -465,7 +471,6 @@
             txtID_Medicament.Name = "txtID_Medicament";
             txtID_Medicament.Size = new Size(289, 32);
             txtID_Medicament.TabIndex = 18;
-            txtID_Medicament.TextChanged += txtID_Medicament_TextChanged;
             // 
             // lblID_Medicament
             // 
