@@ -104,6 +104,7 @@
             btnRetour.TabIndex = 43;
             btnRetour.Text = "< Retour";
             btnRetour.UseVisualStyleBackColor = false;
+            btnRetour.Click += btnRetour_Click;
             // 
             // btnReinitialiserNumeroLot
             // 
@@ -117,6 +118,7 @@
             btnReinitialiserNumeroLot.TabIndex = 42;
             btnReinitialiserNumeroLot.Text = "Réinitialiser";
             btnReinitialiserNumeroLot.UseVisualStyleBackColor = false;
+            btnReinitialiserNumeroLot.Click += btnReinitialiserNumeroLot_Click;
             // 
             // btnRafraichirReference
             // 
@@ -130,6 +132,7 @@
             btnRafraichirReference.TabIndex = 41;
             btnRafraichirReference.Text = "Rafaîchir";
             btnRafraichirReference.UseVisualStyleBackColor = false;
+            btnRafraichirReference.Click += btnRafraichirReference_Click;
             // 
             // lblRechercherNumeroLot
             // 
@@ -153,6 +156,7 @@
             btnRafraichirNumeroLot.TabIndex = 39;
             btnRafraichirNumeroLot.Text = "Rafaîchir";
             btnRafraichirNumeroLot.UseVisualStyleBackColor = false;
+            btnRafraichirNumeroLot.Click += btnRafraichirNumeroLot_Click;
             // 
             // txtRechercherNumeroLot
             // 
@@ -180,6 +184,7 @@
             cmbMedicaments.Name = "cmbMedicaments";
             cmbMedicaments.Size = new Size(636, 31);
             cmbMedicaments.TabIndex = 36;
+            cmbMedicaments.SelectedIndexChanged += cmbMedicaments_SelectedIndexChanged;
             // 
             // lblRechercherReference
             // 
@@ -203,6 +208,7 @@
             btnReinitialiserReference.TabIndex = 34;
             btnReinitialiserReference.Text = "Réinitialiser";
             btnReinitialiserReference.UseVisualStyleBackColor = false;
+            btnReinitialiserReference.Click += btnReinitialiserReference_Click;
             // 
             // txtRechercherReference
             // 
@@ -231,6 +237,7 @@
             dgvMedicaments.RowHeadersWidth = 51;
             dgvMedicaments.Size = new Size(928, 399);
             dgvMedicaments.TabIndex = 24;
+            dgvMedicaments.CellContentClick += dgvMedicaments_CellContentClick;
             // 
             // ID_Medicament
             // 
@@ -317,6 +324,7 @@
             txtNumeroLot.Name = "txtNumeroLot";
             txtNumeroLot.Size = new Size(289, 32);
             txtNumeroLot.TabIndex = 33;
+            txtNumeroLot.TextChanged += txtNumeroLot_TextChanged;
             // 
             // lblNumeroLot
             // 
@@ -340,6 +348,7 @@
             btnEffacer.TabIndex = 31;
             btnEffacer.Text = "Effacer";
             btnEffacer.UseVisualStyleBackColor = false;
+            btnEffacer.Click += btnEffacer_Click;
             // 
             // btnSupprimer
             // 
@@ -353,6 +362,7 @@
             btnSupprimer.TabIndex = 30;
             btnSupprimer.Text = "Supprimer Lot";
             btnSupprimer.UseVisualStyleBackColor = false;
+            btnSupprimer.Click += btnSupprimer_Click;
             // 
             // btnModifier
             // 
@@ -366,6 +376,7 @@
             btnModifier.TabIndex = 29;
             btnModifier.Text = "Modifier Lot";
             btnModifier.UseVisualStyleBackColor = false;
+            btnModifier.Click += btnModifier_Click;
             // 
             // btnAjouter
             // 
@@ -379,30 +390,43 @@
             btnAjouter.TabIndex = 28;
             btnAjouter.Text = "Ajouter Lot";
             btnAjouter.UseVisualStyleBackColor = false;
+            btnAjouter.Click += btnAjouter_Click;
             // 
             // nudQuantiteLot
             // 
             nudQuantiteLot.Font = new Font("Segoe UI", 11F);
             nudQuantiteLot.Location = new Point(18, 490);
+            nudQuantiteLot.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            nudQuantiteLot.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudQuantiteLot.Name = "nudQuantiteLot";
             nudQuantiteLot.Size = new Size(289, 32);
             nudQuantiteLot.TabIndex = 27;
+            nudQuantiteLot.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudQuantiteLot.ValueChanged += nudQuantiteLot_ValueChanged;
             // 
             // dtpDatePeremption
             // 
+            dtpDatePeremption.CustomFormat = "dd/MM/yyyy";
             dtpDatePeremption.Font = new Font("Segoe UI", 11F);
+            dtpDatePeremption.Format = DateTimePickerFormat.Custom;
             dtpDatePeremption.Location = new Point(18, 322);
+            dtpDatePeremption.MaxDate = new DateTime(2999, 12, 31, 0, 0, 0, 0);
+            dtpDatePeremption.MinDate = new DateTime(2025, 11, 1, 0, 0, 0, 0);
             dtpDatePeremption.Name = "dtpDatePeremption";
             dtpDatePeremption.Size = new Size(289, 32);
             dtpDatePeremption.TabIndex = 26;
+            dtpDatePeremption.ValueChanged += dtpDatePeremption_ValueChanged;
             // 
             // nudPrix
             // 
+            nudPrix.DecimalPlaces = 2;
             nudPrix.Font = new Font("Segoe UI", 11F);
             nudPrix.Location = new Point(18, 406);
+            nudPrix.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
             nudPrix.Name = "nudPrix";
             nudPrix.Size = new Size(289, 32);
             nudPrix.TabIndex = 25;
+            nudPrix.ValueChanged += nudPrix_ValueChanged;
             // 
             // lblQuantiteLot
             // 
@@ -441,6 +465,7 @@
             txtID_Medicament.Name = "txtID_Medicament";
             txtID_Medicament.Size = new Size(289, 32);
             txtID_Medicament.TabIndex = 18;
+            txtID_Medicament.TextChanged += txtID_Medicament_TextChanged;
             // 
             // lblID_Medicament
             // 
@@ -463,6 +488,7 @@
             MaximizeBox = false;
             Name = "FormGestionLots";
             Text = "PharmaPlus - Gestion des Médicaments";
+            Load += FormGestionLots_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).EndInit();
