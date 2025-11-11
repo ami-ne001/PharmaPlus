@@ -233,8 +233,8 @@ namespace PharmaPlus
         private void btnRetour_Click(object sender, EventArgs e)
         {
             FormMenuPharmacien form = new FormMenuPharmacien();
-            this.Hide();
             form.Show();
+            this.Hide();
         }
     }
 }

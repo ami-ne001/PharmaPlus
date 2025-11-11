@@ -30,14 +30,6 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dgvMedicaments = new DataGridView();
-            Nom = new DataGridViewTextBoxColumn();
-            Reference = new DataGridViewTextBoxColumn();
-            ID_Lot = new DataGridViewTextBoxColumn();
-            NumeroLot = new DataGridViewTextBoxColumn();
-            DatePeremption = new DataGridViewTextBoxColumn();
-            QuantiteLot = new DataGridViewTextBoxColumn();
-            JoursRestants = new DataGridViewTextBoxColumn();
-            Status = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             lblNombreAlertes = new Label();
             panel2 = new Panel();
@@ -46,6 +38,14 @@
             nudJoursAvance = new NumericUpDown();
             btnRechercher = new Button();
             lblJoursAvance = new Label();
+            Nom = new DataGridViewTextBoxColumn();
+            Reference = new DataGridViewTextBoxColumn();
+            ID_Lot = new DataGridViewTextBoxColumn();
+            NumeroLot = new DataGridViewTextBoxColumn();
+            DatePeremption = new DataGridViewTextBoxColumn();
+            QuantiteLot = new DataGridViewTextBoxColumn();
+            JoursRestants = new DataGridViewTextBoxColumn();
+            Statut = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -64,69 +64,13 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Nom, Reference, ID_Lot, NumeroLot, DatePeremption, QuantiteLot, JoursRestants, Status });
+            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Nom, Reference, ID_Lot, NumeroLot, DatePeremption, QuantiteLot, JoursRestants, Statut });
             dgvMedicaments.EnableHeadersVisualStyles = false;
-            dgvMedicaments.Location = new Point(47, 66);
+            dgvMedicaments.Location = new Point(21, 66);
             dgvMedicaments.Name = "dgvMedicaments";
             dgvMedicaments.RowHeadersWidth = 51;
-            dgvMedicaments.Size = new Size(1168, 407);
+            dgvMedicaments.Size = new Size(1220, 407);
             dgvMedicaments.TabIndex = 25;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom Médicament";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.Width = 160;
-            // 
-            // Reference
-            // 
-            Reference.HeaderText = "Réference";
-            Reference.MinimumWidth = 6;
-            Reference.Name = "Reference";
-            Reference.Width = 130;
-            // 
-            // ID_Lot
-            // 
-            ID_Lot.HeaderText = "ID Lot";
-            ID_Lot.MinimumWidth = 6;
-            ID_Lot.Name = "ID_Lot";
-            ID_Lot.Width = 125;
-            // 
-            // NumeroLot
-            // 
-            NumeroLot.HeaderText = "Numéro de Lot";
-            NumeroLot.MinimumWidth = 6;
-            NumeroLot.Name = "NumeroLot";
-            NumeroLot.Width = 140;
-            // 
-            // DatePeremption
-            // 
-            DatePeremption.HeaderText = "Date de Péremption";
-            DatePeremption.MinimumWidth = 6;
-            DatePeremption.Name = "DatePeremption";
-            DatePeremption.Width = 175;
-            // 
-            // QuantiteLot
-            // 
-            QuantiteLot.HeaderText = "Quantité";
-            QuantiteLot.MinimumWidth = 6;
-            QuantiteLot.Name = "QuantiteLot";
-            QuantiteLot.Width = 130;
-            // 
-            // JoursRestants
-            // 
-            JoursRestants.HeaderText = "Jours Restants";
-            JoursRestants.MinimumWidth = 6;
-            JoursRestants.Name = "JoursRestants";
-            JoursRestants.Width = 130;
-            // 
-            // Status
-            // 
-            Status.HeaderText = "Status";
-            Status.MinimumWidth = 6;
-            Status.Name = "Status";
-            Status.Width = 125;
             // 
             // panel1
             // 
@@ -185,11 +129,14 @@
             btnRetour.TabIndex = 46;
             btnRetour.Text = "< Retour";
             btnRetour.UseVisualStyleBackColor = false;
+            btnRetour.Click += btnRetour_Click;
             // 
             // nudJoursAvance
             // 
             nudJoursAvance.Font = new Font("Segoe UI", 11F);
             nudJoursAvance.Location = new Point(505, 61);
+            nudJoursAvance.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudJoursAvance.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudJoursAvance.Name = "nudJoursAvance";
             nudJoursAvance.Size = new Size(215, 32);
             nudJoursAvance.TabIndex = 45;
@@ -207,6 +154,7 @@
             btnRechercher.TabIndex = 44;
             btnRechercher.Text = "Rechercher";
             btnRechercher.UseVisualStyleBackColor = false;
+            btnRechercher.Click += btnRechercher_Click;
             // 
             // lblJoursAvance
             // 
@@ -217,6 +165,62 @@
             lblJoursAvance.Size = new Size(226, 25);
             lblJoursAvance.TabIndex = 43;
             lblJoursAvance.Text = "Alerter X jours à l'avance";
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom Médicament";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.Width = 160;
+            // 
+            // Reference
+            // 
+            Reference.HeaderText = "Réference";
+            Reference.MinimumWidth = 6;
+            Reference.Name = "Reference";
+            Reference.Width = 152;
+            // 
+            // ID_Lot
+            // 
+            ID_Lot.HeaderText = "ID Lot";
+            ID_Lot.MinimumWidth = 6;
+            ID_Lot.Name = "ID_Lot";
+            ID_Lot.Width = 80;
+            // 
+            // NumeroLot
+            // 
+            NumeroLot.HeaderText = "Numéro de Lot";
+            NumeroLot.MinimumWidth = 6;
+            NumeroLot.Name = "NumeroLot";
+            NumeroLot.Width = 140;
+            // 
+            // DatePeremption
+            // 
+            DatePeremption.HeaderText = "Date de Péremption";
+            DatePeremption.MinimumWidth = 6;
+            DatePeremption.Name = "DatePeremption";
+            DatePeremption.Width = 175;
+            // 
+            // QuantiteLot
+            // 
+            QuantiteLot.HeaderText = "Quantité";
+            QuantiteLot.MinimumWidth = 6;
+            QuantiteLot.Name = "QuantiteLot";
+            QuantiteLot.Width = 110;
+            // 
+            // JoursRestants
+            // 
+            JoursRestants.HeaderText = "Jours Restants";
+            JoursRestants.MinimumWidth = 6;
+            JoursRestants.Name = "JoursRestants";
+            JoursRestants.Width = 130;
+            // 
+            // Statut
+            // 
+            Statut.HeaderText = "Statut";
+            Statut.MinimumWidth = 6;
+            Statut.Name = "Statut";
+            Statut.Width = 220;
             // 
             // FormAlertePeremption
             // 
@@ -229,6 +233,7 @@
             MaximizeBox = false;
             Name = "FormAlertePeremption";
             Text = "PharmaPlus - Alertes Péremptions";
+            Load += FormAlertePeremption_Load;
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -241,13 +246,6 @@
         #endregion
 
         private DataGridView dgvMedicaments;
-        private DataGridViewTextBoxColumn Nom;
-        private DataGridViewTextBoxColumn Reference;
-        private DataGridViewTextBoxColumn ID_Lot;
-        private DataGridViewTextBoxColumn NumeroLot;
-        private DataGridViewTextBoxColumn DatePeremption;
-        private DataGridViewTextBoxColumn QuantiteLot;
-        private DataGridViewTextBoxColumn JoursRestants;
         private DataGridViewTextBoxColumn Status;
         private Panel panel1;
         private Panel panel2;
@@ -257,5 +255,13 @@
         private Button btnRetour;
         private Label label1;
         private Label lblNombreAlertes;
+        private DataGridViewTextBoxColumn Nom;
+        private DataGridViewTextBoxColumn Reference;
+        private DataGridViewTextBoxColumn ID_Lot;
+        private DataGridViewTextBoxColumn NumeroLot;
+        private DataGridViewTextBoxColumn DatePeremption;
+        private DataGridViewTextBoxColumn QuantiteLot;
+        private DataGridViewTextBoxColumn JoursRestants;
+        private DataGridViewTextBoxColumn Statut;
     }
 }

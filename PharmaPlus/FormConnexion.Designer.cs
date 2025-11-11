@@ -158,6 +158,7 @@
             txtMotDePasse.Name = "txtMotDePasse";
             txtMotDePasse.Size = new Size(310, 32);
             txtMotDePasse.TabIndex = 17;
+            txtMotDePasse.UseSystemPasswordChar = true;
             // 
             // lblMotDePasse
             // 
