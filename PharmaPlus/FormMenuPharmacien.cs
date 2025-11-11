@@ -17,5 +17,32 @@ namespace PharmaPlus
             InitializeComponent();
         }
 
+        private void btnDeconnexion_Click(object sender, EventArgs e)
+        {
+            FormConnexion formConnexion = new FormConnexion();
+            formConnexion.Show();
+            this.Hide();
+        }
+
+        private void btnGererMedicaments_Click(object sender, EventArgs e)
+        {
+            FormGestionMedicaments formGestionMedicaments = new FormGestionMedicaments();
+            formGestionMedicaments.Show();
+            this.Hide();
+        }
+
+        private void btnGererLots_Click(object sender, EventArgs e)
+        {
+            FormGestionLots formGestionLots = new FormGestionLots();
+            formGestionLots.Show();
+            this.Hide();
+        }
+
+        private void btnAlertesPeremption_Click(object sender, EventArgs e)
+        {
+            FormAlertePeremption formAlertePeremption = new FormAlertePeremption();
+            formAlertePeremption.Show();
+            this.Hide();
+        }
     }
 }

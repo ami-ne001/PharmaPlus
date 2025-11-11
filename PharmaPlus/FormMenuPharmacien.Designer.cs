@@ -82,6 +82,7 @@
             btnDeconnexion.TabIndex = 20;
             btnDeconnexion.Text = "Déconnexion";
             btnDeconnexion.UseVisualStyleBackColor = false;
+            btnDeconnexion.Click += btnDeconnexion_Click;
             // 
             // lblBienvenue
             // 
@@ -149,6 +150,7 @@
             btnGererMedicaments.TabIndex = 2;
             btnGererMedicaments.Text = "Gérer les Médicaments";
             btnGererMedicaments.UseVisualStyleBackColor = false;
+            btnGererMedicaments.Click += btnGererMedicaments_Click;
             // 
             // btnGererLots
             // 
@@ -162,6 +164,7 @@
             btnGererLots.TabIndex = 3;
             btnGererLots.Text = "Gérer les Lots";
             btnGererLots.UseVisualStyleBackColor = false;
+            btnGererLots.Click += btnGererLots_Click;
             // 
             // btnAlertesPeremption
             // 
@@ -175,6 +178,7 @@
             btnAlertesPeremption.TabIndex = 5;
             btnAlertesPeremption.Text = "Alertes Péremption";
             btnAlertesPeremption.UseVisualStyleBackColor = false;
+            btnAlertesPeremption.Click += btnAlertesPeremption_Click;
             // 
             // btnAlertesStockes
             // 
