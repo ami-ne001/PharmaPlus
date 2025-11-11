@@ -56,7 +56,7 @@ namespace PharmaPlus
 
         public static Utilisateur SeConnecter(string nomUtilisateur, string motDePasse)
         {
-            string motDePasseHash = HashMotDePasse(motDePasse);
+            // string motDePasseHash = HashMotDePasse(motDePasse);
 
             using (SqlConnection conn = Connection.GetConnexion())
             {
@@ -65,7 +65,7 @@ namespace PharmaPlus
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@NomUtilisateur", nomUtilisateur);
-                    cmd.Parameters.AddWithValue("@MotDePasse", motDePasseHash);
+                    cmd.Parameters.AddWithValue("@MotDePasse", motDePasse);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {

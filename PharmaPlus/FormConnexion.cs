@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
 
 namespace PharmaPlus
 {
@@ -17,5 +18,30 @@ namespace PharmaPlus
             InitializeComponent();
         }
 
+        private void btnConnecter_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtNom.Text) || string.IsNullOrWhiteSpace(txtMotDePasse.Text))
+            {
+                return;
+            }
+
+            Utilisateur utilisateur = Utilisateur.SeConnecter(txtNom.Text, txtMotDePasse.Text);
+
+            if (utilisateur == null)
+            {
+                return;
+            }
+            
+            if (utilisateur.Role == "Pharmacien")
+            {
+                FormMenuPharmacien menuPharmacien = new FormMenuPharmacien();
+                menuPharmacien.Show();
+                this.Hide();
+            }
+            else
+            {
+                //Form utilisateur normal
+            }
+        }
     }
 }

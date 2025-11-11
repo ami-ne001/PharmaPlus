@@ -36,8 +36,8 @@
             panel2 = new Panel();
             lblMDPOublie = new Label();
             lblConnexion = new Label();
-            btnAjouter = new Button();
-            txtReference = new TextBox();
+            btnConnecter = new Button();
+            txtMotDePasse = new TextBox();
             lblMotDePasse = new Label();
             txtNom = new TextBox();
             lblNomUtilisateur = new Label();
@@ -106,8 +106,8 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(lblMDPOublie);
             panel2.Controls.Add(lblConnexion);
-            panel2.Controls.Add(btnAjouter);
-            panel2.Controls.Add(txtReference);
+            panel2.Controls.Add(btnConnecter);
+            panel2.Controls.Add(txtMotDePasse);
             panel2.Controls.Add(lblMotDePasse);
             panel2.Controls.Add(txtNom);
             panel2.Controls.Add(lblNomUtilisateur);
@@ -137,26 +137,27 @@
             lblConnexion.Text = "Connexion";
             lblConnexion.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btnAjouter
+            // btnConnecter
             // 
-            btnAjouter.BackColor = Color.FromArgb(0, 85, 70);
-            btnAjouter.FlatStyle = FlatStyle.Flat;
-            btnAjouter.Font = new Font("Segoe UI", 12F);
-            btnAjouter.ForeColor = SystemColors.HighlightText;
-            btnAjouter.Location = new Point(145, 443);
-            btnAjouter.Name = "btnAjouter";
-            btnAjouter.Size = new Size(310, 42);
-            btnAjouter.TabIndex = 13;
-            btnAjouter.Text = "Se connecter";
-            btnAjouter.UseVisualStyleBackColor = false;
+            btnConnecter.BackColor = Color.FromArgb(0, 85, 70);
+            btnConnecter.FlatStyle = FlatStyle.Flat;
+            btnConnecter.Font = new Font("Segoe UI", 12F);
+            btnConnecter.ForeColor = SystemColors.HighlightText;
+            btnConnecter.Location = new Point(145, 443);
+            btnConnecter.Name = "btnConnecter";
+            btnConnecter.Size = new Size(310, 42);
+            btnConnecter.TabIndex = 13;
+            btnConnecter.Text = "Se connecter";
+            btnConnecter.UseVisualStyleBackColor = false;
+            btnConnecter.Click += btnConnecter_Click;
             // 
-            // txtReference
+            // txtMotDePasse
             // 
-            txtReference.Font = new Font("Segoe UI", 11F);
-            txtReference.Location = new Point(145, 352);
-            txtReference.Name = "txtReference";
-            txtReference.Size = new Size(310, 32);
-            txtReference.TabIndex = 17;
+            txtMotDePasse.Font = new Font("Segoe UI", 11F);
+            txtMotDePasse.Location = new Point(145, 352);
+            txtMotDePasse.Name = "txtMotDePasse";
+            txtMotDePasse.Size = new Size(310, 32);
+            txtMotDePasse.TabIndex = 17;
             // 
             // lblMotDePasse
             // 
@@ -207,8 +208,8 @@
 
         private Panel panel1;
         private Panel panel2;
-        private Button btnAjouter;
-        private TextBox txtReference;
+        private Button btnConnecter;
+        private TextBox txtMotDePasse;
         private Label lblMotDePasse;
         private TextBox txtNom;
         private Label lblNomUtilisateur;
