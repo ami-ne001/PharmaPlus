@@ -42,8 +42,7 @@
             btnReinitialiserReference = new Button();
             txtRechercherReference = new TextBox();
             dgvMedicaments = new DataGridView();
-            ID_Medicament = new DataGridViewTextBoxColumn();
-            ID_Lot = new DataGridViewTextBoxColumn();
+            Reference = new DataGridViewTextBoxColumn();
             NumeroLot = new DataGridViewTextBoxColumn();
             DatePeremption = new DataGridViewTextBoxColumn();
             Prix = new DataGridViewTextBoxColumn();
@@ -228,10 +227,10 @@
             dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, ID_Lot, NumeroLot, DatePeremption, Prix, QuantiteLot });
+            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Reference, NumeroLot, DatePeremption, Prix, QuantiteLot });
             dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(3, 269);
             dgvMedicaments.MultiSelect = false;
@@ -241,23 +240,18 @@
             dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMedicaments.Size = new Size(928, 399);
             dgvMedicaments.TabIndex = 24;
+            dgvMedicaments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            dgvMedicaments.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dgvMedicaments.CellContentClick += dgvMedicaments_CellContentClick;
+            dgvMedicaments.SelectionChanged += dgvMedicaments_SelectionChanged;
             // 
-            // ID_Medicament
+            // Reference
             // 
-            ID_Medicament.HeaderText = "ID Médicament";
-            ID_Medicament.MinimumWidth = 6;
-            ID_Medicament.Name = "ID_Medicament";
-            ID_Medicament.ReadOnly = true;
-            ID_Medicament.Width = 140;
-            // 
-            // ID_Lot
-            // 
-            ID_Lot.HeaderText = "ID Lot";
-            ID_Lot.MinimumWidth = 6;
-            ID_Lot.Name = "ID_Lot";
-            ID_Lot.ReadOnly = true;
-            ID_Lot.Width = 140;
+            Reference.HeaderText = "Référence";
+            Reference.MinimumWidth = 6;
+            Reference.Name = "Reference";
+            Reference.ReadOnly = true;
+            Reference.Width = 150;
             // 
             // NumeroLot
             // 
@@ -524,8 +518,7 @@
         private DataGridView dgvMedicaments;
         private TextBox txtNumeroLot;
         private Label lblNumeroLot;
-        private DataGridViewTextBoxColumn ID_Medicament;
-        private DataGridViewTextBoxColumn ID_Lot;
+        private DataGridViewTextBoxColumn Reference;
         private DataGridViewTextBoxColumn NumeroLot;
         private DataGridViewTextBoxColumn DatePeremption;
         private DataGridViewTextBoxColumn Prix;

@@ -31,6 +31,7 @@
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnRetour = new Button();
+            btnReinitialiserRecherche = new Button();
             btnRafraichir = new Button();
             textBox2 = new TextBox();
             label6 = new Label();
@@ -68,6 +69,7 @@
             // 
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(btnRetour);
+            panel1.Controls.Add(btnReinitialiserRecherche);
             panel1.Controls.Add(btnRafraichir);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label6);
@@ -91,6 +93,20 @@
             btnRetour.Text = "< Retour";
             btnRetour.UseVisualStyleBackColor = false;
             btnRetour.Click += btnRetour_Click;
+            // 
+            // btnReinitialiserRecherche
+            // 
+            btnReinitialiserRecherche.BackColor = Color.FromArgb(0, 85, 70);
+            btnReinitialiserRecherche.FlatStyle = FlatStyle.Popup;
+            btnReinitialiserRecherche.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReinitialiserRecherche.ForeColor = SystemColors.HighlightText;
+            btnReinitialiserRecherche.Location = new Point(848, 52);
+            btnReinitialiserRecherche.Name = "btnReinitialiserRecherche";
+            btnReinitialiserRecherche.Size = new Size(120, 29);
+            btnReinitialiserRecherche.TabIndex = 27;
+            btnReinitialiserRecherche.Text = "Réinitialiser";
+            btnReinitialiserRecherche.UseVisualStyleBackColor = false;
+            btnReinitialiserRecherche.Click += btnReinitialiserRecherche_Click;
             // 
             // btnRafraichir
             // 
@@ -437,6 +453,7 @@
         private Label label6;
         private TextBox textBox2;
         private Button btnRafraichir;
+        private Button btnReinitialiserRecherche;
         private Label lblGestionMedicaments;
         private Button btnRetour;
     }

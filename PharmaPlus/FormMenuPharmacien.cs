@@ -19,6 +19,7 @@ namespace PharmaPlus
 
         private void btnDeconnexion_Click(object sender, EventArgs e)
         {
+            Utilisateur.UtilisateurConnecte = null;
             FormConnexion formConnexion = new FormConnexion();
             formConnexion.Show();
             this.Hide();
@@ -42,6 +43,20 @@ namespace PharmaPlus
         {
             FormAlertePeremption formAlertePeremption = new FormAlertePeremption();
             formAlertePeremption.Show();
+            this.Hide();
+        }
+
+        private void btnAlertesStockes_Click(object sender, EventArgs e)
+        {
+            FormAlerteStockes formAlerteStockes = new FormAlerteStockes();
+            formAlerteStockes.Show();
+            this.Hide();
+        }
+
+        private void btnHistorique_Click(object sender, EventArgs e)
+        {
+            FormHistorique formHistorique = new FormHistorique();
+            formHistorique.Show();
             this.Hide();
         }
     }

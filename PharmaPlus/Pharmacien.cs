@@ -16,7 +16,6 @@ namespace PharmaPlus
         public void AjouterMedicament(Medicament medicament)
         {
             medicament.InsererMedicament();
-            // Only log if user is identified
             if (ID_Utilisateur > 0)
             {
                 EnregistrerHistorique($"Ajout du médicament: {medicament.Nom} (Réf: {medicament.Reference})");

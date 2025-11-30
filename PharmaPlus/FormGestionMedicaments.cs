@@ -24,6 +24,10 @@ namespace PharmaPlus
         private void FormGestionMedicaments_Load(object sender, EventArgs e)
         {
             pharmacien = new Pharmacien();
+            if (Utilisateur.UtilisateurConnecte != null)
+            {
+                pharmacien.ID_Utilisateur = Utilisateur.UtilisateurConnecte.ID_Utilisateur;
+            }
             ChargerMedicaments();
             ConfigurerDataGridView();
             ViderChamps();
@@ -31,9 +35,17 @@ namespace PharmaPlus
 
         private void ChargerMedicaments()
         {
-            medicamentsList = Medicament.ListerMedicaments();
-            dgvMedicaments.DataSource = null;
-            dgvMedicaments.DataSource = medicamentsList;
+            try
+            {
+                medicamentsList = Medicament.ListerMedicaments();
+                dgvMedicaments.DataSource = null;
+                dgvMedicaments.DataSource = medicamentsList;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors du chargement des médicaments : {ex.Message}", 
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnRafraichir_Click(object sender, EventArgs e)
@@ -43,21 +55,42 @@ namespace PharmaPlus
 
         private void FiltrerMedicaments()
         {
-            string recherche = textBox2.Text.Trim().ToLower();
-
-            if (string.IsNullOrEmpty(recherche))
+            try
             {
-                ChargerMedicaments();
-                return;
+                string recherche = textBox2.Text.Trim().ToLower();
+
+                if (string.IsNullOrEmpty(recherche))
+                {
+                    ChargerMedicaments();
+                    return;
+                }
+
+                if (medicamentsList == null || medicamentsList.Count == 0)
+                {
+                    MessageBox.Show("Aucun médicament à rechercher.", 
+                        "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var medicamentsFiltres = medicamentsList.Where(m =>
+                    m.Nom.ToLower().Contains(recherche) || m.Reference.ToLower().Contains(recherche) ||
+                    m.Categorie.ToLower().Contains(recherche) || m.Fabricant.ToLower().Contains(recherche)
+                ).ToList();
+
+                if (medicamentsFiltres.Count == 0)
+                {
+                    MessageBox.Show($"Aucun médicament trouvé avec '{textBox2.Text}'.", 
+                        "Recherche", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                dgvMedicaments.DataSource = null;
+                dgvMedicaments.DataSource = medicamentsFiltres;
             }
-
-            var medicamentsFiltres = medicamentsList.Where(m =>
-                m.Nom.ToLower().Contains(recherche) || m.Reference.ToLower().Contains(recherche) ||
-                m.Categorie.ToLower().Contains(recherche) || m.Fabricant.ToLower().Contains(recherche)
-            ).ToList();
-
-            dgvMedicaments.DataSource = null;
-            dgvMedicaments.DataSource = medicamentsFiltres;
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la recherche : {ex.Message}", 
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvMedicaments_SelectionChanged(object sender, EventArgs e)
@@ -127,14 +160,6 @@ namespace PharmaPlus
 
             dgvMedicaments.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "ID",
-                HeaderText = "ID",
-                DataPropertyName = "ID_Medicament",
-                Width = 80
-            });
-
-            dgvMedicaments.Columns.Add(new DataGridViewTextBoxColumn
-            {
                 Name = "Nom",
                 HeaderText = "Nom",
                 DataPropertyName = "Nom",
@@ -175,7 +200,7 @@ namespace PharmaPlus
 
             dgvMedicaments.Columns.Add(new DataGridViewTextBoxColumn
             {
-                Name = "Seuili",
+                Name = "Seuil",
                 HeaderText = "Seuil",
                 DataPropertyName = "SeuilAlerteStock",
                 Width = 105
@@ -184,50 +209,132 @@ namespace PharmaPlus
 
         private void btnAjouter_Click(object sender, EventArgs e)
         {
-            if (!ValiderChamps())
-                return;
+            try
+            {
+                if (!ValiderChamps())
+                {
+                    MessageBox.Show("Veuillez remplir au moins le nom et la référence du médicament.", 
+                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            Medicament nouveauMedicament = RecupererMedicament();
-            pharmacien.AjouterMedicament(nouveauMedicament);
-            ChargerMedicaments();
-            ViderChamps();
+                Medicament nouveauMedicament = RecupererMedicament();
+                pharmacien.AjouterMedicament(nouveauMedicament);
+                ChargerMedicaments();
+                ViderChamps();
+                MessageBox.Show("Médicament ajouté avec succès.", 
+                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Microsoft.Data.SqlClient.SqlException sqlEx)
+            {
+                // Check for unique constraint violation (duplicate reference)
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show($"Un médicament avec la référence '{txtReference.Text}' existe déjà dans la base de données.\nVeuillez utiliser une référence unique.", 
+                        "Référence dupliquée", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtReference.Focus();
+                    txtReference.SelectAll();
+                }
+                else
+                {
+                    MessageBox.Show($"Erreur lors de l'ajout : {sqlEx.Message}", 
+                        "Erreur base de données", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de l'ajout : {ex.Message}", 
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            if (!selectedMedicamentId.HasValue)
-                return;
-            MessageBox.Show(Convert.ToString(selectedMedicamentId.Value));
+            try
+            {
+                if (!selectedMedicamentId.HasValue)
+                {
+                    MessageBox.Show("Veuillez sélectionner un médicament à modifier.", 
+                        "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            if (!ValiderChamps())
-                return;
+                if (!ValiderChamps())
+                {
+                    MessageBox.Show("Veuillez remplir au moins le nom et la référence du médicament.", 
+                        "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            Medicament medicamentModifie = RecupererMedicament();
-            medicamentModifie.ID_Medicament = selectedMedicamentId.Value;
+                Medicament medicamentModifie = RecupererMedicament();
+                medicamentModifie.ID_Medicament = selectedMedicamentId.Value;
 
-            pharmacien.ModifierMedicament(medicamentModifie);
-            ChargerMedicaments();
-            ViderChamps();
+                pharmacien.ModifierMedicament(medicamentModifie);
+                ChargerMedicaments();
+                ViderChamps();
+                MessageBox.Show("Médicament modifié avec succès.", 
+                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la modification : {ex.Message}", 
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSupprimer_Click(object sender, EventArgs e)
         {
-            if (!selectedMedicamentId.HasValue)
-                return;
-
-            Medicament medicamentASupprimer = new Medicament
+            try
             {
-                ID_Medicament = selectedMedicamentId.Value
-            };
+                if (!selectedMedicamentId.HasValue)
+                {
+                    MessageBox.Show("Veuillez sélectionner un médicament à supprimer.", 
+                        "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-            pharmacien.SupprimerMedicament(medicamentASupprimer);
-            ChargerMedicaments();
-            ViderChamps();
+                DialogResult result = MessageBox.Show(
+                    "Êtes-vous sûr de vouloir supprimer ce médicament ?", 
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                    return;
+
+                Medicament medicamentASupprimer = new Medicament
+                {
+                    ID_Medicament = selectedMedicamentId.Value
+                };
+
+                pharmacien.SupprimerMedicament(medicamentASupprimer);
+                ChargerMedicaments();
+                ViderChamps();
+                MessageBox.Show("Médicament supprimé avec succès.", 
+                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la suppression : {ex.Message}", 
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEffacer_Click(object sender, EventArgs e)
         {
             ViderChamps();
+        }
+
+        private void btnReinitialiserRecherche_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox2.Clear();
+                ChargerMedicaments();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la réinitialisation : {ex.Message}", 
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnRetour_Click(object sender, EventArgs e)

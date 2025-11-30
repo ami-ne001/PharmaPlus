@@ -24,7 +24,31 @@ namespace PharmaPlus
         private void FormAlertePeremption_Load(object sender, EventArgs e)
         {
             pharmacien = new Pharmacien();
+            ConfigurerDataGridView();
             RechercherLotsPeremption();
+        }
+
+        private void ConfigurerDataGridView()
+        {
+            try
+            {
+                // Configure column widths to ensure all columns are visible
+                if (dgvMedicaments.Columns.Count >= 7)
+                {
+                    dgvMedicaments.Columns["Nom"].Width = 180;
+                    dgvMedicaments.Columns["Reference"].Width = 150;
+                    dgvMedicaments.Columns["NumeroLot"].Width = 150;
+                    dgvMedicaments.Columns["DatePeremption"].Width = 160;
+                    dgvMedicaments.Columns["QuantiteLot"].Width = 110;
+                    dgvMedicaments.Columns["JoursRestants"].Width = 130;
+                    // Make sure Statut column is fully visible
+                    dgvMedicaments.Columns["Statut"].Width = 220;
+                    dgvMedicaments.Columns["Statut"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                }
+            }
+            catch
+            {
+            }
         }
 
         private void btnRechercher_Click(object sender, EventArgs e)
@@ -88,7 +112,6 @@ namespace PharmaPlus
                 int rowIndex = dgvMedicaments.Rows.Add(
                     nomMedicament,
                     reference,
-                    lot.ID_Lot,
                     lot.NumeroLot,
                     lot.DatePeremption.ToString("dd/MM/yyyy"),
                     lot.QuantiteLot,
@@ -100,6 +123,8 @@ namespace PharmaPlus
             }
 
             dgvMedicaments.Sort(dgvMedicaments.Columns["JoursRestants"], ListSortDirection.Ascending);
+            // Ensure columns are properly configured after adding data
+            ConfigurerDataGridView();
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -107,6 +132,11 @@ namespace PharmaPlus
             FormMenuPharmacien formMenuPhamacien = new FormMenuPharmacien();
             formMenuPhamacien.Show();
             this.Hide();
+        }
+
+        private void dgvMedicaments_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -192,6 +192,7 @@
             btnAlertesStockes.TabIndex = 4;
             btnAlertesStockes.Text = "Alertes Stockes";
             btnAlertesStockes.UseVisualStyleBackColor = false;
+            btnAlertesStockes.Click += btnAlertesStockes_Click;
             // 
             // btnHistorique
             // 
@@ -205,6 +206,7 @@
             btnHistorique.TabIndex = 6;
             btnHistorique.Text = "Consulter l'Historique";
             btnHistorique.UseVisualStyleBackColor = false;
+            btnHistorique.Click += btnHistorique_Click;
             // 
             // grpGestion
             // 

@@ -25,6 +25,28 @@ namespace PharmaPlus
         {
             ChargerMedicaments();
             ChargerTousLesLots();
+            ConfigurerDataGridView();
+        }
+
+        private void ConfigurerDataGridView()
+        {
+            try
+            {
+                // Configure column widths to ensure all columns are visible
+                if (dgvMedicaments.Columns.Count >= 5)
+                {
+                    dgvMedicaments.Columns["Reference"].Width = 150;
+                    dgvMedicaments.Columns["NumeroLot"].Width = 150;
+                    dgvMedicaments.Columns["DatePeremption"].Width = 160;
+                    dgvMedicaments.Columns["Prix"].Width = 120;
+                    // Make sure Quantite column is fully visible
+                    dgvMedicaments.Columns["QuantiteLot"].Width = 120;
+                    dgvMedicaments.Columns["QuantiteLot"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                }
+            }
+            catch
+            {
+            }
         }
 
         private void ChargerMedicaments()
@@ -81,42 +103,65 @@ namespace PharmaPlus
         {
             dgvMedicaments.Rows.Clear();
 
+            // Load all medications to get references
+            List<Medicament> medicaments = Medicament.ListerMedicaments();
+
             foreach (var lot in lots)
             {
+                var medicament = medicaments.FirstOrDefault(m => m.ID_Medicament == lot.ID_Medicament);
+                string reference = medicament != null ? medicament.Reference : "N/A";
+
                 dgvMedicaments.Rows.Add(
-                    lot.ID_Medicament,
-                    lot.ID_Lot,
+                    reference,
                     lot.NumeroLot,
                     lot.DatePeremption.ToString("dd/MM/yyyy"),
                     lot.Prix.ToString("0.00"),
                     lot.QuantiteLot
                 );
             }
+
+            // Ensure columns are properly configured after adding data
+            ConfigurerDataGridView();
         }
 
         private void btnRafraichirReference_Click(object sender, EventArgs e)
         {
-            string reference = txtRechercherReference.Text.Trim();
-
-            if (string.IsNullOrEmpty(reference))
+            try
             {
-                return;
-            }
+                string reference = txtRechercherReference.Text.Trim();
 
-            var medicamentTrouve = listeMedicaments.FirstOrDefault(m =>
-                m.Reference.Equals(reference, StringComparison.OrdinalIgnoreCase));
-
-            if (medicamentTrouve != null)
-            {
-                for (int i = 0; i < cmbMedicaments.Items.Count; i++)
+                if (string.IsNullOrEmpty(reference))
                 {
-                    string item = cmbMedicaments.Items[i].ToString();
-                    if (item.Contains($"[ID: {medicamentTrouve.ID_Medicament}]"))
+                    MessageBox.Show("Veuillez entrer une référence à rechercher.", 
+                        "Recherche", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var medicamentTrouve = listeMedicaments.FirstOrDefault(m =>
+                    m.Reference.Equals(reference, StringComparison.OrdinalIgnoreCase));
+
+                if (medicamentTrouve != null)
+                {
+                    for (int i = 0; i < cmbMedicaments.Items.Count; i++)
                     {
-                        cmbMedicaments.SelectedIndex = i;
-                        break;
+                        string item = cmbMedicaments.Items[i].ToString();
+                        if (item.Contains($"[ID: {medicamentTrouve.ID_Medicament}]"))
+                        {
+                            cmbMedicaments.SelectedIndex = i;
+                            break;
+                        }
                     }
                 }
+                else
+                {
+                    MessageBox.Show($"Aucun médicament trouvé avec la référence '{reference}'.", 
+                        "Recherche", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la recherche : {ex.Message}", 
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -145,16 +190,33 @@ namespace PharmaPlus
 
         private void btnRafraichirNumeroLot_Click(object sender, EventArgs e)
         {
-            string numeroLot = txtRechercherNumeroLot.Text.Trim();
-
-            if (string.IsNullOrEmpty(numeroLot))
+            try
             {
-                return;
+                string numeroLot = txtRechercherNumeroLot.Text.Trim();
+
+                if (string.IsNullOrEmpty(numeroLot))
+                {
+                    MessageBox.Show("Veuillez entrer un numéro de lot à rechercher.", 
+                        "Recherche", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                var lotsFiltres = listeLots.Where(l =>
+                    l.NumeroLot.Contains(numeroLot, StringComparison.OrdinalIgnoreCase)).ToList();
+
+                if (lotsFiltres.Count == 0)
+                {
+                    MessageBox.Show($"Aucun lot trouvé avec le numéro contenant '{numeroLot}'.", 
+                        "Recherche", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                AfficherLots(lotsFiltres);
             }
-
-            var lotsFiltres = listeLots.Where(l =>
-                l.NumeroLot.Contains(numeroLot, StringComparison.OrdinalIgnoreCase)).ToList();
-
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la recherche : {ex.Message}", 
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnReinitialiserNumeroLot_Click(object sender, EventArgs e)
@@ -167,18 +229,68 @@ namespace PharmaPlus
         {
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = dgvMedicaments.Rows[e.RowIndex];
+                SelectionnerLot(e.RowIndex);
+            }
+        }
 
-                lotSelectionneID = Convert.ToInt32(row.Cells["ID_Lot"].Value);
-                txtID_Medicament.Text = row.Cells["ID_Medicament"].Value.ToString();
-                txtNumeroLot.Text = row.Cells["NumeroLot"].Value.ToString();
+        private void dgvMedicaments_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvMedicaments.SelectedRows.Count > 0)
+            {
+                SelectionnerLot(dgvMedicaments.SelectedRows[0].Index);
+            }
+        }
 
-                DateTime datePeremption = DateTime.ParseExact(row.Cells["DatePeremption"].Value.ToString(),
-                        "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                dtpDatePeremption.Value = datePeremption;
+        private void SelectionnerLot(int rowIndex)
+        {
+            try
+            {
+                if (rowIndex >= 0 && rowIndex < dgvMedicaments.Rows.Count)
+                {
+                    DataGridViewRow row = dgvMedicaments.Rows[rowIndex];
 
-                nudPrix.Value = Convert.ToDecimal(row.Cells["Prix"].Value);
-                nudQuantiteLot.Value = Convert.ToInt32(row.Cells["QuantiteLot"].Value);
+                if (row.Cells["NumeroLot"].Value != null)
+                {
+                    // Find the lot by numero and reference to get the ID
+                    string reference = row.Cells["Reference"].Value?.ToString() ?? "";
+                    string numeroLot = row.Cells["NumeroLot"].Value?.ToString() ?? "";
+                    
+                    var medicament = listeMedicaments.FirstOrDefault(m => m.Reference == reference);
+                    if (medicament != null)
+                    {
+                        var lot = listeLots.FirstOrDefault(l => l.ID_Medicament == medicament.ID_Medicament && l.NumeroLot == numeroLot);
+                        if (lot != null)
+                        {
+                            lotSelectionneID = lot.ID_Lot;
+                            txtID_Medicament.Text = medicament.ID_Medicament.ToString();
+                        }
+                    }
+                    
+                    txtNumeroLot.Text = numeroLot;
+
+                        if (row.Cells["DatePeremption"].Value != null)
+                        {
+                            DateTime datePeremption = DateTime.ParseExact(row.Cells["DatePeremption"].Value.ToString(),
+                                    "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                            dtpDatePeremption.Value = datePeremption;
+                        }
+
+                        if (row.Cells["Prix"].Value != null)
+                        {
+                            nudPrix.Value = Convert.ToDecimal(row.Cells["Prix"].Value);
+                        }
+
+                        if (row.Cells["QuantiteLot"].Value != null)
+                        {
+                            nudQuantiteLot.Value = Convert.ToInt32(row.Cells["QuantiteLot"].Value);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur lors de la sélection du lot : {ex.Message}",
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -239,10 +351,28 @@ namespace PharmaPlus
 
                 ChargerTousLesLots();
                 EffacerChamps();
+                MessageBox.Show("Lot ajouté avec succès.", 
+                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Microsoft.Data.SqlClient.SqlException sqlEx)
+            {
+                // Check for unique constraint violation (duplicate lot number for same medication)
+                if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
+                {
+                    MessageBox.Show($"Un lot avec le numéro '{txtNumeroLot.Text}' existe déjà pour ce médicament.\nVeuillez utiliser un numéro de lot unique.", 
+                        "Numéro de lot dupliqué", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNumeroLot.Focus();
+                    txtNumeroLot.SelectAll();
+                }
+                else
+                {
+                    MessageBox.Show($"Erreur lors de l'ajout du lot : {sqlEx.Message}", 
+                        "Erreur base de données", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de l'ajout du lot : {ex.Message}",
+                MessageBox.Show($"Erreur lors de l'ajout du lot : {ex.Message}", 
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -289,6 +419,8 @@ namespace PharmaPlus
 
                 ChargerTousLesLots();
                 EffacerChamps();
+                MessageBox.Show("Lot modifié avec succès.", 
+                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -303,10 +435,17 @@ namespace PharmaPlus
             {
                 if (lotSelectionneID == -1)
                 {
-                    MessageBox.Show("Veuillez sélectionner un lot à supprimer.",
+                    MessageBox.Show("Veuillez sélectionner un lot à supprimer.", 
                         "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                DialogResult result = MessageBox.Show(
+                    "Êtes-vous sûr de vouloir supprimer ce lot ?", 
+                    "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.No)
+                    return;
 
                 LotMedicament lotASupprimer = new LotMedicament
                 {
@@ -318,10 +457,12 @@ namespace PharmaPlus
 
                 ChargerTousLesLots();
                 EffacerChamps();
+                MessageBox.Show("Lot supprimé avec succès.", 
+                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de la suppression du lot : {ex.Message}",
+                MessageBox.Show($"Erreur lors de la suppression du lot : {ex.Message}", 
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

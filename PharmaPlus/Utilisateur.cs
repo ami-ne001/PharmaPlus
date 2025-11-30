@@ -8,6 +8,8 @@ namespace PharmaPlus
 {
     internal class Utilisateur
     {
+        public static Utilisateur UtilisateurConnecte { get; set; }
+
         public int ID_Utilisateur { get; set; }
         public string NomUtilisateur { get; set; }
         public string MotDePasse { get; set; }
@@ -55,8 +57,6 @@ namespace PharmaPlus
 
         public static Utilisateur SeConnecter(string nomUtilisateur, string motDePasse)
         {
-            // string motDePasseHash = HashMotDePasse(motDePasse);
-
             using (SqlConnection conn = Connection.GetConnexion())
             {
                 string query = "SELECT * FROM Utilisateurs WHERE NomUtilisateur = @NomUtilisateur AND MotDePasse = @MotDePasse";
