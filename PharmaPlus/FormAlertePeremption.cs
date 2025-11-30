@@ -86,9 +86,9 @@ namespace PharmaPlus
                 }
 
                 int rowIndex = dgvMedicaments.Rows.Add(
-                    lot.ID_Lot,
                     nomMedicament,
                     reference,
+                    lot.ID_Lot,
                     lot.NumeroLot,
                     lot.DatePeremption.ToString("dd/MM/yyyy"),
                     lot.QuantiteLot,
