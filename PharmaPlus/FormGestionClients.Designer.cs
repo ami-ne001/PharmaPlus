@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnRetour = new Button();
             btnReinitialiserRecherche = new Button();
@@ -36,12 +36,6 @@
             textBox2 = new TextBox();
             label6 = new Label();
             dgvClients = new DataGridView();
-            ID_Medicament = new DataGridViewTextBoxColumn();
-            CodeClient = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Prenom = new DataGridViewTextBoxColumn();
-            Telephone = new DataGridViewTextBoxColumn();
-            Adresse = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             textCodeClient = new TextBox();
             label0 = new Label();
@@ -58,6 +52,12 @@
             label2 = new Label();
             txtNom = new TextBox();
             label1 = new Label();
+            ID_Client = new DataGridViewTextBoxColumn();
+            CodeClient = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Prenom = new DataGridViewTextBoxColumn();
+            Telephone = new DataGridViewTextBoxColumn();
+            Adresse = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             panel2.SuspendLayout();
@@ -90,6 +90,7 @@
             btnRetour.TabIndex = 26;
             btnRetour.Text = "< Retour";
             btnRetour.UseVisualStyleBackColor = false;
+            btnRetour.Click += btnRetour_Click;
             // 
             // btnReinitialiserRecherche
             // 
@@ -103,6 +104,7 @@
             btnReinitialiserRecherche.TabIndex = 27;
             btnReinitialiserRecherche.Text = "Réinitialiser";
             btnReinitialiserRecherche.UseVisualStyleBackColor = false;
+            btnReinitialiserRecherche.Click += btnReinitialiserRecherche_Click;
             // 
             // btnRafraichir
             // 
@@ -116,6 +118,7 @@
             btnRafraichir.TabIndex = 25;
             btnRafraichir.Text = "Rafraîchir";
             btnRafraichir.UseVisualStyleBackColor = false;
+            btnRafraichir.Click += btnRafraichir_Click;
             // 
             // textBox2
             // 
@@ -124,6 +127,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(412, 30);
             textBox2.TabIndex = 24;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label6
             // 
@@ -139,16 +143,16 @@
             // 
             dgvClients.AllowUserToAddRows = false;
             dgvClients.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClients.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, CodeClient, Nom, Prenom, Telephone, Adresse });
+            dgvClients.Columns.AddRange(new DataGridViewColumn[] { ID_Client, CodeClient, Nom, Prenom, Telephone, Adresse });
             dgvClients.EnableHeadersVisualStyles = false;
             dgvClients.Location = new Point(37, 103);
             dgvClients.MultiSelect = false;
@@ -158,14 +162,200 @@
             dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvClients.Size = new Size(873, 557);
             dgvClients.TabIndex = 23;
+            dgvClients.CellContentClick += dgvClients_CellContentClick;
             // 
-            // ID_Medicament
+            // panel2
             // 
-            ID_Medicament.HeaderText = "ID";
-            ID_Medicament.MinimumWidth = 6;
-            ID_Medicament.Name = "ID_Medicament";
-            ID_Medicament.ReadOnly = true;
-            ID_Medicament.Width = 125;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(textCodeClient);
+            panel2.Controls.Add(label0);
+            panel2.Controls.Add(lblGestionMedicaments);
+            panel2.Controls.Add(btnEffacer);
+            panel2.Controls.Add(btnSupprimer);
+            panel2.Controls.Add(btnModifier);
+            panel2.Controls.Add(btnAjouter);
+            panel2.Controls.Add(txtAdresse);
+            panel2.Controls.Add(label4);
+            panel2.Controls.Add(txtTelephone);
+            panel2.Controls.Add(label3);
+            panel2.Controls.Add(txtPrenom);
+            panel2.Controls.Add(label2);
+            panel2.Controls.Add(txtNom);
+            panel2.Controls.Add(label1);
+            panel2.Dock = DockStyle.Right;
+            panel2.Location = new Point(938, 0);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(324, 673);
+            panel2.TabIndex = 2;
+            // 
+            // textCodeClient
+            // 
+            textCodeClient.Font = new Font("Segoe UI", 11F);
+            textCodeClient.Location = new Point(24, 157);
+            textCodeClient.Name = "textCodeClient";
+            textCodeClient.Size = new Size(273, 32);
+            textCodeClient.TabIndex = 37;
+            textCodeClient.TextChanged += textCodeClient_TextChanged;
+            // 
+            // label0
+            // 
+            label0.AutoSize = true;
+            label0.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label0.Location = new Point(24, 129);
+            label0.Name = "label0";
+            label0.Size = new Size(99, 23);
+            label0.TabIndex = 36;
+            label0.Text = "Code Client";
+            // 
+            // lblGestionMedicaments
+            // 
+            lblGestionMedicaments.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGestionMedicaments.ForeColor = Color.FromArgb(0, 85, 70);
+            lblGestionMedicaments.Location = new Point(24, 19);
+            lblGestionMedicaments.Name = "lblGestionMedicaments";
+            lblGestionMedicaments.Size = new Size(273, 78);
+            lblGestionMedicaments.TabIndex = 35;
+            lblGestionMedicaments.Text = "Gestion des Clients";
+            lblGestionMedicaments.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // btnEffacer
+            // 
+            btnEffacer.BackColor = Color.FromArgb(0, 85, 70);
+            btnEffacer.FlatStyle = FlatStyle.Popup;
+            btnEffacer.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEffacer.ForeColor = SystemColors.HighlightText;
+            btnEffacer.Location = new Point(166, 597);
+            btnEffacer.Name = "btnEffacer";
+            btnEffacer.Size = new Size(131, 35);
+            btnEffacer.TabIndex = 22;
+            btnEffacer.Text = "Effacer";
+            btnEffacer.UseVisualStyleBackColor = false;
+            btnEffacer.Click += btnEffacer_Click;
+            // 
+            // btnSupprimer
+            // 
+            btnSupprimer.BackColor = Color.FromArgb(0, 85, 70);
+            btnSupprimer.FlatStyle = FlatStyle.Popup;
+            btnSupprimer.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSupprimer.ForeColor = SystemColors.HighlightText;
+            btnSupprimer.Location = new Point(24, 597);
+            btnSupprimer.Name = "btnSupprimer";
+            btnSupprimer.Size = new Size(131, 35);
+            btnSupprimer.TabIndex = 21;
+            btnSupprimer.Text = "Supprimer";
+            btnSupprimer.UseVisualStyleBackColor = false;
+            btnSupprimer.Click += btnSupprimer_Click;
+            // 
+            // btnModifier
+            // 
+            btnModifier.BackColor = Color.FromArgb(0, 85, 70);
+            btnModifier.FlatStyle = FlatStyle.Popup;
+            btnModifier.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnModifier.ForeColor = SystemColors.HighlightText;
+            btnModifier.Location = new Point(166, 548);
+            btnModifier.Name = "btnModifier";
+            btnModifier.Size = new Size(131, 35);
+            btnModifier.TabIndex = 20;
+            btnModifier.Text = "Modifier";
+            btnModifier.UseVisualStyleBackColor = false;
+            btnModifier.Click += btnModifier_Click;
+            // 
+            // btnAjouter
+            // 
+            btnAjouter.BackColor = Color.FromArgb(0, 85, 70);
+            btnAjouter.FlatStyle = FlatStyle.Popup;
+            btnAjouter.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAjouter.ForeColor = SystemColors.HighlightText;
+            btnAjouter.Location = new Point(24, 548);
+            btnAjouter.Name = "btnAjouter";
+            btnAjouter.Size = new Size(131, 35);
+            btnAjouter.TabIndex = 2;
+            btnAjouter.Text = "Ajouter";
+            btnAjouter.UseVisualStyleBackColor = false;
+            btnAjouter.Click += btnAjouter_Click;
+            // 
+            // txtAdresse
+            // 
+            txtAdresse.Font = new Font("Segoe UI", 11F);
+            txtAdresse.Location = new Point(24, 468);
+            txtAdresse.Name = "txtAdresse";
+            txtAdresse.Size = new Size(273, 32);
+            txtAdresse.TabIndex = 16;
+            txtAdresse.TextChanged += txtAdresse_TextChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(24, 440);
+            label4.Name = "label4";
+            label4.Size = new Size(69, 23);
+            label4.TabIndex = 15;
+            label4.Text = "Adresse";
+            // 
+            // txtTelephone
+            // 
+            txtTelephone.Font = new Font("Segoe UI", 11F);
+            txtTelephone.Location = new Point(24, 392);
+            txtTelephone.Name = "txtTelephone";
+            txtTelephone.Size = new Size(273, 32);
+            txtTelephone.TabIndex = 14;
+            txtTelephone.TextChanged += txtTelephone_TextChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(24, 364);
+            label3.Name = "label3";
+            label3.Size = new Size(88, 23);
+            label3.TabIndex = 13;
+            label3.Text = "Téléphone";
+            // 
+            // txtPrenom
+            // 
+            txtPrenom.Font = new Font("Segoe UI", 11F);
+            txtPrenom.Location = new Point(24, 309);
+            txtPrenom.Name = "txtPrenom";
+            txtPrenom.Size = new Size(273, 32);
+            txtPrenom.TabIndex = 12;
+            txtPrenom.TextChanged += txtPrenom_TextChanged;
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(24, 281);
+            label2.Name = "label2";
+            label2.Size = new Size(70, 23);
+            label2.TabIndex = 11;
+            label2.Text = "Prénom";
+            // 
+            // txtNom
+            // 
+            txtNom.Font = new Font("Segoe UI", 11F);
+            txtNom.Location = new Point(24, 233);
+            txtNom.Name = "txtNom";
+            txtNom.Size = new Size(273, 32);
+            txtNom.TabIndex = 10;
+            txtNom.TextChanged += txtNom_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(24, 205);
+            label1.Name = "label1";
+            label1.Size = new Size(48, 23);
+            label1.TabIndex = 9;
+            label1.Text = "Nom";
+            // 
+            // ID_Client
+            // 
+            ID_Client.HeaderText = "ID";
+            ID_Client.MinimumWidth = 6;
+            ID_Client.Name = "ID_Client";
+            ID_Client.ReadOnly = true;
+            ID_Client.Width = 125;
             // 
             // CodeClient
             // 
@@ -207,182 +397,6 @@
             Adresse.ReadOnly = true;
             Adresse.Width = 125;
             // 
-            // panel2
-            // 
-            panel2.BorderStyle = BorderStyle.FixedSingle;
-            panel2.Controls.Add(textCodeClient);
-            panel2.Controls.Add(label0);
-            panel2.Controls.Add(lblGestionMedicaments);
-            panel2.Controls.Add(btnEffacer);
-            panel2.Controls.Add(btnSupprimer);
-            panel2.Controls.Add(btnModifier);
-            panel2.Controls.Add(btnAjouter);
-            panel2.Controls.Add(txtAdresse);
-            panel2.Controls.Add(label4);
-            panel2.Controls.Add(txtTelephone);
-            panel2.Controls.Add(label3);
-            panel2.Controls.Add(txtPrenom);
-            panel2.Controls.Add(label2);
-            panel2.Controls.Add(txtNom);
-            panel2.Controls.Add(label1);
-            panel2.Dock = DockStyle.Right;
-            panel2.Location = new Point(938, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(324, 673);
-            panel2.TabIndex = 2;
-            // 
-            // textCodeClient
-            // 
-            textCodeClient.Font = new Font("Segoe UI", 11F);
-            textCodeClient.Location = new Point(24, 157);
-            textCodeClient.Name = "textCodeClient";
-            textCodeClient.Size = new Size(273, 32);
-            textCodeClient.TabIndex = 37;
-            // 
-            // label0
-            // 
-            label0.AutoSize = true;
-            label0.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label0.Location = new Point(24, 129);
-            label0.Name = "label0";
-            label0.Size = new Size(99, 23);
-            label0.TabIndex = 36;
-            label0.Text = "Code Client";
-            // 
-            // lblGestionMedicaments
-            // 
-            lblGestionMedicaments.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGestionMedicaments.ForeColor = Color.FromArgb(0, 85, 70);
-            lblGestionMedicaments.Location = new Point(24, 19);
-            lblGestionMedicaments.Name = "lblGestionMedicaments";
-            lblGestionMedicaments.Size = new Size(273, 78);
-            lblGestionMedicaments.TabIndex = 35;
-            lblGestionMedicaments.Text = "Gestion des Clients";
-            lblGestionMedicaments.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // btnEffacer
-            // 
-            btnEffacer.BackColor = Color.FromArgb(0, 85, 70);
-            btnEffacer.FlatStyle = FlatStyle.Popup;
-            btnEffacer.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEffacer.ForeColor = SystemColors.HighlightText;
-            btnEffacer.Location = new Point(166, 597);
-            btnEffacer.Name = "btnEffacer";
-            btnEffacer.Size = new Size(131, 35);
-            btnEffacer.TabIndex = 22;
-            btnEffacer.Text = "Effacer";
-            btnEffacer.UseVisualStyleBackColor = false;
-            // 
-            // btnSupprimer
-            // 
-            btnSupprimer.BackColor = Color.FromArgb(0, 85, 70);
-            btnSupprimer.FlatStyle = FlatStyle.Popup;
-            btnSupprimer.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSupprimer.ForeColor = SystemColors.HighlightText;
-            btnSupprimer.Location = new Point(24, 597);
-            btnSupprimer.Name = "btnSupprimer";
-            btnSupprimer.Size = new Size(131, 35);
-            btnSupprimer.TabIndex = 21;
-            btnSupprimer.Text = "Supprimer";
-            btnSupprimer.UseVisualStyleBackColor = false;
-            // 
-            // btnModifier
-            // 
-            btnModifier.BackColor = Color.FromArgb(0, 85, 70);
-            btnModifier.FlatStyle = FlatStyle.Popup;
-            btnModifier.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnModifier.ForeColor = SystemColors.HighlightText;
-            btnModifier.Location = new Point(166, 548);
-            btnModifier.Name = "btnModifier";
-            btnModifier.Size = new Size(131, 35);
-            btnModifier.TabIndex = 20;
-            btnModifier.Text = "Modifier";
-            btnModifier.UseVisualStyleBackColor = false;
-            // 
-            // btnAjouter
-            // 
-            btnAjouter.BackColor = Color.FromArgb(0, 85, 70);
-            btnAjouter.FlatStyle = FlatStyle.Popup;
-            btnAjouter.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnAjouter.ForeColor = SystemColors.HighlightText;
-            btnAjouter.Location = new Point(24, 548);
-            btnAjouter.Name = "btnAjouter";
-            btnAjouter.Size = new Size(131, 35);
-            btnAjouter.TabIndex = 2;
-            btnAjouter.Text = "Ajouter";
-            btnAjouter.UseVisualStyleBackColor = false;
-            // 
-            // txtAdresse
-            // 
-            txtAdresse.Font = new Font("Segoe UI", 11F);
-            txtAdresse.Location = new Point(24, 468);
-            txtAdresse.Name = "txtAdresse";
-            txtAdresse.Size = new Size(273, 32);
-            txtAdresse.TabIndex = 16;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(24, 440);
-            label4.Name = "label4";
-            label4.Size = new Size(69, 23);
-            label4.TabIndex = 15;
-            label4.Text = "Adresse";
-            // 
-            // txtTelephone
-            // 
-            txtTelephone.Font = new Font("Segoe UI", 11F);
-            txtTelephone.Location = new Point(24, 392);
-            txtTelephone.Name = "txtTelephone";
-            txtTelephone.Size = new Size(273, 32);
-            txtTelephone.TabIndex = 14;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(24, 364);
-            label3.Name = "label3";
-            label3.Size = new Size(88, 23);
-            label3.TabIndex = 13;
-            label3.Text = "Téléphone";
-            // 
-            // txtPrenom
-            // 
-            txtPrenom.Font = new Font("Segoe UI", 11F);
-            txtPrenom.Location = new Point(24, 309);
-            txtPrenom.Name = "txtPrenom";
-            txtPrenom.Size = new Size(273, 32);
-            txtPrenom.TabIndex = 12;
-            // 
-            // label2
-            // 
-            label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(24, 281);
-            label2.Name = "label2";
-            label2.Size = new Size(70, 23);
-            label2.TabIndex = 11;
-            label2.Text = "Prénom";
-            // 
-            // txtNom
-            // 
-            txtNom.Font = new Font("Segoe UI", 11F);
-            txtNom.Location = new Point(24, 233);
-            txtNom.Name = "txtNom";
-            txtNom.Size = new Size(273, 32);
-            txtNom.TabIndex = 10;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(24, 205);
-            label1.Name = "label1";
-            label1.Size = new Size(48, 23);
-            label1.TabIndex = 9;
-            label1.Text = "Nom";
-            // 
             // FormGestionClients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -394,6 +408,7 @@
             MaximizeBox = false;
             Name = "FormGestionClients";
             Text = "PharmaPlus - Gestion des Clients";
+            Load += FormGestionClients_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClients).EndInit();
@@ -425,13 +440,13 @@
         private Label label2;
         private TextBox txtNom;
         private Label label1;
-        private DataGridViewTextBoxColumn ID_Medicament;
+        private TextBox textCodeClient;
+        private Label label0;
+        private DataGridViewTextBoxColumn ID_Client;
         private DataGridViewTextBoxColumn CodeClient;
         private DataGridViewTextBoxColumn Nom;
         private DataGridViewTextBoxColumn Prenom;
         private DataGridViewTextBoxColumn Telephone;
         private DataGridViewTextBoxColumn Adresse;
-        private TextBox textCodeClient;
-        private Label label0;
     }
 }
