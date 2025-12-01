@@ -49,10 +49,16 @@
             grpHistorique = new GroupBox();
             label5 = new Label();
             lblConnexion = new Label();
+            grpClients = new GroupBox();
+            label6 = new Label();
+            label7 = new Label();
+            btnClients = new Button();
+            btnCommandes = new Button();
             panel1.SuspendLayout();
             grpGestion.SuspendLayout();
             grpAlertes.SuspendLayout();
             grpHistorique.SuspendLayout();
+            grpClients.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -215,9 +221,9 @@
             grpGestion.Controls.Add(btnGererLots);
             grpGestion.Controls.Add(btnGererMedicaments);
             grpGestion.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpGestion.Location = new Point(601, 105);
+            grpGestion.Location = new Point(601, 55);
             grpGestion.Name = "grpGestion";
-            grpGestion.Size = new Size(650, 180);
+            grpGestion.Size = new Size(650, 150);
             grpGestion.TabIndex = 7;
             grpGestion.TabStop = false;
             grpGestion.Text = "Gestion des Médicaments";
@@ -247,9 +253,9 @@
             grpAlertes.Controls.Add(btnAlertesStockes);
             grpAlertes.Controls.Add(btnAlertesPeremption);
             grpAlertes.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpAlertes.Location = new Point(601, 291);
+            grpAlertes.Location = new Point(601, 210);
             grpAlertes.Name = "grpAlertes";
-            grpAlertes.Size = new Size(650, 180);
+            grpAlertes.Size = new Size(650, 150);
             grpAlertes.TabIndex = 8;
             grpAlertes.TabStop = false;
             grpAlertes.Text = "Alertes et Notifications";
@@ -277,9 +283,9 @@
             grpHistorique.Controls.Add(label5);
             grpHistorique.Controls.Add(btnHistorique);
             grpHistorique.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpHistorique.Location = new Point(601, 477);
+            grpHistorique.Location = new Point(601, 520);
             grpHistorique.Name = "grpHistorique";
-            grpHistorique.Size = new Size(650, 180);
+            grpHistorique.Size = new Size(650, 150);
             grpHistorique.TabIndex = 9;
             grpHistorique.TabStop = false;
             grpHistorique.Text = "Suivi et Historique";
@@ -297,18 +303,78 @@
             // 
             lblConnexion.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblConnexion.ForeColor = Color.FromArgb(0, 85, 70);
-            lblConnexion.Location = new Point(601, 21);
+            lblConnexion.Location = new Point(601, 6);
             lblConnexion.Name = "lblConnexion";
             lblConnexion.Size = new Size(650, 51);
             lblConnexion.TabIndex = 19;
             lblConnexion.Text = "Tableu de Bord";
             lblConnexion.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // grpClients
+            // 
+            grpClients.Controls.Add(label6);
+            grpClients.Controls.Add(label7);
+            grpClients.Controls.Add(btnClients);
+            grpClients.Controls.Add(btnCommandes);
+            grpClients.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpClients.Location = new Point(601, 365);
+            grpClients.Name = "grpClients";
+            grpClients.Size = new Size(650, 150);
+            grpClients.TabIndex = 13;
+            grpClients.TabStop = false;
+            grpClients.Text = "Clients et Commandes";
+            // 
+            // label6
+            // 
+            label6.Font = new Font("Segoe UI", 9F);
+            label6.Location = new Point(342, 101);
+            label6.Name = "label6";
+            label6.Size = new Size(259, 40);
+            label6.TabIndex = 12;
+            label6.Text = "Gérer les commandes, Gérer les commandes, Gérer les commandes";
+            // 
+            // label7
+            // 
+            label7.Font = new Font("Segoe UI", 9F);
+            label7.Location = new Point(10, 101);
+            label7.Name = "label7";
+            label7.Size = new Size(259, 40);
+            label7.TabIndex = 11;
+            label7.Text = "Gérer les clients, Gérer les clients, Gérer les clients";
+            // 
+            // btnClients
+            // 
+            btnClients.BackColor = Color.FromArgb(0, 85, 70);
+            btnClients.FlatStyle = FlatStyle.Popup;
+            btnClients.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClients.ForeColor = SystemColors.HighlightText;
+            btnClients.Location = new Point(10, 50);
+            btnClients.Name = "btnClients";
+            btnClients.Size = new Size(298, 43);
+            btnClients.TabIndex = 4;
+            btnClients.Text = "Gérer les Clients";
+            btnClients.UseVisualStyleBackColor = false;
+            btnClients.Click += btnClients_Click;
+            // 
+            // btnCommandes
+            // 
+            btnCommandes.BackColor = Color.FromArgb(0, 85, 70);
+            btnCommandes.FlatStyle = FlatStyle.Popup;
+            btnCommandes.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCommandes.ForeColor = SystemColors.HighlightText;
+            btnCommandes.Location = new Point(342, 50);
+            btnCommandes.Name = "btnCommandes";
+            btnCommandes.Size = new Size(298, 43);
+            btnCommandes.TabIndex = 5;
+            btnCommandes.Text = "Gérer les Commandes";
+            btnCommandes.UseVisualStyleBackColor = false;
+            // 
             // FormMenuPharmacien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1262, 673);
+            Controls.Add(grpClients);
             Controls.Add(lblConnexion);
             Controls.Add(grpHistorique);
             Controls.Add(grpAlertes);
@@ -322,6 +388,7 @@
             grpGestion.ResumeLayout(false);
             grpAlertes.ResumeLayout(false);
             grpHistorique.ResumeLayout(false);
+            grpClients.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -348,5 +415,10 @@
         private Label label5;
         private Button btnDeconnexion;
         private Label lblConnexion;
+        private GroupBox grpClients;
+        private Label label6;
+        private Label label7;
+        private Button btnClients;
+        private Button btnCommandes;
     }
 }

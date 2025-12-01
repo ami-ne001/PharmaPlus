@@ -59,5 +59,12 @@ namespace PharmaPlus
             formHistorique.Show();
             this.Hide();
         }
+
+        private void btnClients_Click(object sender, EventArgs e)
+        {
+            FormGestionClients formGestionClients = new FormGestionClients();
+            formGestionClients.Show();
+            this.Hide();
+        }
     }
 }
