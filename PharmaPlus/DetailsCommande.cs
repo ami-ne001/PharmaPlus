@@ -9,26 +9,26 @@ namespace PharmaPlus
 {
     internal class DetailsCommande
     {
-        public int ID_Detail { get; set; }
+        public int ID_DetailsCommande { get; set; }
         public int ID_Commande { get; set; }
-        public int ID_Medicament { get; set; }
+        public int ID_Lot { get; set; }
         public int Quantite { get; set; }
-        public decimal PrixUnitaire { get; set; }
+        public decimal PrixVente { get; set; }
 
         public void InsererDetail()
         {
             using (SqlConnection conn = Connection.GetConnexion())
             {
-                string query = @"INSERT INTO DetailsCommande 
-                                 (ID_Commande, ID_Medicament, Quantite, PrixUnitaire)
-                                 VALUES (@ID_Commande, @ID_Medicament, @Quantite, @PrixUnitaire)";
+                string query = @"INSERT INTO DetailsCommandes 
+                                 (ID_Commande, ID_Lot, Quantite, PrixVente)
+                                 VALUES (@ID_Commande, @ID_Lot, @Quantite, @PrixVente)";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@ID_Commande", ID_Commande);
-                    cmd.Parameters.AddWithValue("@ID_Medicament", ID_Medicament);
+                    cmd.Parameters.AddWithValue("@ID_Lot", ID_Lot);
                     cmd.Parameters.AddWithValue("@Quantite", Quantite);
-                    cmd.Parameters.AddWithValue("@PrixUnitaire", PrixUnitaire);
+                    cmd.Parameters.AddWithValue("@PrixVente", PrixVente);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -39,18 +39,18 @@ namespace PharmaPlus
         {
             using (SqlConnection conn = Connection.GetConnexion())
             {
-                string query = @"UPDATE DetailsCommande SET
-                                 ID_Medicament = @ID_Medicament,
+                string query = @"UPDATE DetailsCommandes SET
+                                 ID_Lot = @ID_Lot,
                                  Quantite = @Quantite,
-                                 PrixUnitaire = @PrixUnitaire
-                                 WHERE ID_Detail = @ID_Detail";
+                                 PrixVente = @PrixVente
+                                 WHERE ID_DetailsCommande = @ID_DetailsCommande";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID_Detail", ID_Detail);
-                    cmd.Parameters.AddWithValue("@ID_Medicament", ID_Medicament);
+                    cmd.Parameters.AddWithValue("@ID_DetailsCommande", ID_DetailsCommande);
+                    cmd.Parameters.AddWithValue("@ID_Lot", ID_Lot);
                     cmd.Parameters.AddWithValue("@Quantite", Quantite);
-                    cmd.Parameters.AddWithValue("@PrixUnitaire", PrixUnitaire);
+                    cmd.Parameters.AddWithValue("@PrixVente", PrixVente);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -61,11 +61,11 @@ namespace PharmaPlus
         {
             using (SqlConnection conn = Connection.GetConnexion())
             {
-                string query = "DELETE FROM DetailsCommande WHERE ID_Detail = @ID_Detail";
+                string query = "DELETE FROM DetailsCommandes WHERE ID_DetailsCommande = @ID_DetailsCommande";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID_Detail", ID_Detail);
+                    cmd.Parameters.AddWithValue("@ID_DetailsCommande", ID_DetailsCommande);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -77,7 +77,7 @@ namespace PharmaPlus
 
             using (SqlConnection conn = Connection.GetConnexion())
             {
-                string query = "SELECT * FROM DetailsCommande WHERE ID_Commande = @ID";
+                string query = "SELECT * FROM DetailsCommandes WHERE ID_Commande = @ID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -89,11 +89,11 @@ namespace PharmaPlus
                         {
                             details.Add(new DetailsCommande
                             {
-                                ID_Detail = Convert.ToInt32(reader["ID_Detail"]),
+                                ID_DetailsCommande = Convert.ToInt32(reader["ID_DetailsCommande"]),
                                 ID_Commande = Convert.ToInt32(reader["ID_Commande"]),
-                                ID_Medicament = Convert.ToInt32(reader["ID_Medicament"]),
+                                ID_Lot = Convert.ToInt32(reader["ID_Lot"]),
                                 Quantite = Convert.ToInt32(reader["Quantite"]),
-                                PrixUnitaire = Convert.ToDecimal(reader["PrixUnitaire"])
+                                PrixVente = Convert.ToDecimal(reader["PrixVente"])
                             });
                         }
                     }

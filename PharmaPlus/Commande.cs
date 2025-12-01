@@ -10,9 +10,10 @@ namespace PharmaPlus
     internal class Commande
     {
         public int ID_Commande { get; set; }
-        public int ID_Utilisateur { get; set; }
+        public int ID_Client { get; set; }
         public DateTime DateCommande { get; set; }
         public decimal MontantTotal { get; set; }
+        public string Statut { get; set; } = "En Attente";
 
         public List<DetailsCommande> Details { get; set; } = new List<DetailsCommande>();
 
@@ -20,15 +21,16 @@ namespace PharmaPlus
         {
             using (SqlConnection conn = Connection.GetConnexion())
             {
-                string query = @"INSERT INTO Commandes (ID_Utilisateur, DateCommande, MontantTotal)
-                                 VALUES (@ID_Utilisateur, @DateCommande, @MontantTotal);
+                string query = @"INSERT INTO Commandes (ID_Client, DateCommande, MontantTotal, Statut)
+                                 VALUES (@ID_Client, @DateCommande, @MontantTotal, @Statut);
                                  SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID_Utilisateur", ID_Utilisateur);
+                    cmd.Parameters.AddWithValue("@ID_Client", ID_Client);
                     cmd.Parameters.AddWithValue("@DateCommande", DateCommande);
                     cmd.Parameters.AddWithValue("@MontantTotal", MontantTotal);
+                    cmd.Parameters.AddWithValue("@Statut", Statut);
 
                     ID_Commande = (int)cmd.ExecuteScalar();
                 }
@@ -47,16 +49,18 @@ namespace PharmaPlus
             using (SqlConnection conn = Connection.GetConnexion())
             {
                 string query = @"UPDATE Commandes SET 
-                                 ID_Utilisateur = @ID_Utilisateur,
+                                 ID_Client = @ID_Client,
                                  DateCommande = @DateCommande,
-                                 MontantTotal = @MontantTotal
+                                 MontantTotal = @MontantTotal,
+                                 Statut = @Statut
                                  WHERE ID_Commande = @ID_Commande";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@ID_Utilisateur", ID_Utilisateur);
+                    cmd.Parameters.AddWithValue("@ID_Client", ID_Client);
                     cmd.Parameters.AddWithValue("@DateCommande", DateCommande);
                     cmd.Parameters.AddWithValue("@MontantTotal", MontantTotal);
+                    cmd.Parameters.AddWithValue("@Statut", Statut);
                     cmd.Parameters.AddWithValue("@ID_Commande", ID_Commande);
 
                     cmd.ExecuteNonQuery();
@@ -68,7 +72,7 @@ namespace PharmaPlus
         {
             using (SqlConnection conn = Connection.GetConnexion())
             {
-                string deleteDetails = "DELETE FROM DetailsCommande WHERE ID_Commande = @ID_Commande";
+                string deleteDetails = "DELETE FROM DetailsCommandes WHERE ID_Commande = @ID_Commande";
                 string deleteCommande = "DELETE FROM Commandes WHERE ID_Commande = @ID_Commande";
 
                 using (SqlCommand cmd1 = new SqlCommand(deleteDetails, conn))
@@ -100,9 +104,10 @@ namespace PharmaPlus
                         liste.Add(new Commande
                         {
                             ID_Commande = Convert.ToInt32(reader["ID_Commande"]),
-                            ID_Utilisateur = Convert.ToInt32(reader["ID_Utilisateur"]),
+                            ID_Client = Convert.ToInt32(reader["ID_Client"]),
                             DateCommande = Convert.ToDateTime(reader["DateCommande"]),
-                            MontantTotal = Convert.ToDecimal(reader["MontantTotal"])
+                            MontantTotal = Convert.ToDecimal(reader["MontantTotal"]),
+                            Statut = reader["Statut"]?.ToString() ?? "En Attente"
                         });
                     }
                 }

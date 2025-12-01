@@ -66,5 +66,12 @@ namespace PharmaPlus
             formGestionClients.Show();
             this.Hide();
         }
+
+        private void btnCommandes_Click(object sender, EventArgs e)
+        {
+            FormAjouterCommande formAjouterCommande = new FormAjouterCommande();
+            formAjouterCommande.Show();
+            this.Hide();
+        }
     }
 }

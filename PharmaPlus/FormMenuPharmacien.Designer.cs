@@ -368,6 +368,7 @@
             btnCommandes.TabIndex = 5;
             btnCommandes.Text = "Gérer les Commandes";
             btnCommandes.UseVisualStyleBackColor = false;
+            btnCommandes.Click += btnCommandes_Click;
             // 
             // FormMenuPharmacien
             // 
