@@ -32,7 +32,6 @@ namespace PharmaPlus
             ViderChamps();
         }
 
-        // ========== CHARGEMENT DES DONNÉES ==========
         private void ChargerClients()
         {
             try
@@ -48,7 +47,6 @@ namespace PharmaPlus
             }
         }
 
-        // ========== RECHERCHE ET FILTRAGE ==========
         private void btnRafraichir_Click(object sender, EventArgs e)
         {
             FiltrerClients();
@@ -111,8 +109,7 @@ namespace PharmaPlus
             }
         }
 
-        // ========== SÉLECTION DANS LE DATAGRIDVIEW ==========
-        private void dgvClients_SelectionChanged(object sender, EventArgs e)
+        private void dgvClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvClients.SelectedRows.Count > 0)
             {
@@ -124,12 +121,6 @@ namespace PharmaPlus
             }
         }
 
-        private void dgvClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // La sélection est gérée par SelectionChanged
-        }
-
-        // ========== GESTION DES CHAMPS ==========
         private bool ValiderChamps()
         {
             if (string.IsNullOrWhiteSpace(textCodeClient.Text))
@@ -189,15 +180,6 @@ namespace PharmaPlus
             }
         }
 
-        // ========== ÉVÉNEMENTS DE CHANGEMENT (optionnels) ==========
-        private void textBox2_TextChanged(object sender, EventArgs e) { }
-        private void textCodeClient_TextChanged(object sender, EventArgs e) { }
-        private void txtNom_TextChanged(object sender, EventArgs e) { }
-        private void txtPrenom_TextChanged(object sender, EventArgs e) { }
-        private void txtTelephone_TextChanged(object sender, EventArgs e) { }
-        private void txtAdresse_TextChanged(object sender, EventArgs e) { }
-
-        // ========== CRUD OPERATIONS ==========
         private void btnAjouter_Click(object sender, EventArgs e)
         {
             try
@@ -205,7 +187,6 @@ namespace PharmaPlus
                 if (!ValiderChamps())
                     return;
 
-                // Vérifier si le code client existe déjà
                 if (Client.CodeClientExiste(textCodeClient.Text.Trim()))
                 {
                     MessageBox.Show($"Un client avec le code '{textCodeClient.Text}' existe déjà.\nVeuillez utiliser un code unique.",
@@ -218,7 +199,6 @@ namespace PharmaPlus
                 Client nouveauClient = RecupererClient();
                 nouveauClient.InsererClient();
 
-                // Enregistrer dans l'historique
                 if (pharmacien != null)
                 {
                     pharmacien.EnregistrerHistorique($"Ajout du client: {nouveauClient.CodeClient} - {nouveauClient.NomComplet()}");
@@ -265,7 +245,6 @@ namespace PharmaPlus
                 if (!ValiderChamps())
                     return;
 
-                // Vérifier si le code client existe déjà (sauf pour le client actuel)
                 Client clientExistant = Client.RechercherParCode(textCodeClient.Text.Trim());
                 if (clientExistant != null && clientExistant.ID_Client != selectedClientId.Value)
                 {
@@ -281,7 +260,6 @@ namespace PharmaPlus
 
                 clientModifie.MettreAJourClient();
 
-                // Enregistrer dans l'historique
                 if (pharmacien != null)
                 {
                     pharmacien.EnregistrerHistorique($"Modification du client ID: {clientModifie.ID_Client} - {clientModifie.CodeClient}");
@@ -325,7 +303,6 @@ namespace PharmaPlus
 
                 clientASupprimer.SupprimerClient();
 
-                // Enregistrer dans l'historique
                 if (pharmacien != null)
                 {
                     pharmacien.EnregistrerHistorique($"Suppression du client ID: {clientASupprimer.ID_Client} - {clientASupprimer.CodeClient}");
@@ -348,7 +325,6 @@ namespace PharmaPlus
             ViderChamps();
         }
 
-        // ========== NAVIGATION ==========
         private void btnRetour_Click(object sender, EventArgs e)
         {
             FormMenuPharmacien form = new FormMenuPharmacien();

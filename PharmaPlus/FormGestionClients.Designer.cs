@@ -52,12 +52,6 @@
             label2 = new Label();
             txtNom = new TextBox();
             label1 = new Label();
-            ID_Client = new DataGridViewTextBoxColumn();
-            CodeClient = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Prenom = new DataGridViewTextBoxColumn();
-            Telephone = new DataGridViewTextBoxColumn();
-            Adresse = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             panel2.SuspendLayout();
@@ -127,7 +121,6 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(412, 30);
             textBox2.TabIndex = 24;
-            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label6
             // 
@@ -152,7 +145,6 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvClients.Columns.AddRange(new DataGridViewColumn[] { ID_Client, CodeClient, Nom, Prenom, Telephone, Adresse });
             dgvClients.EnableHeadersVisualStyles = false;
             dgvClients.Location = new Point(37, 103);
             dgvClients.MultiSelect = false;
@@ -195,7 +187,6 @@
             textCodeClient.Name = "textCodeClient";
             textCodeClient.Size = new Size(273, 32);
             textCodeClient.TabIndex = 37;
-            textCodeClient.TextChanged += textCodeClient_TextChanged;
             // 
             // label0
             // 
@@ -281,7 +272,6 @@
             txtAdresse.Name = "txtAdresse";
             txtAdresse.Size = new Size(273, 32);
             txtAdresse.TabIndex = 16;
-            txtAdresse.TextChanged += txtAdresse_TextChanged;
             // 
             // label4
             // 
@@ -300,7 +290,6 @@
             txtTelephone.Name = "txtTelephone";
             txtTelephone.Size = new Size(273, 32);
             txtTelephone.TabIndex = 14;
-            txtTelephone.TextChanged += txtTelephone_TextChanged;
             // 
             // label3
             // 
@@ -319,7 +308,6 @@
             txtPrenom.Name = "txtPrenom";
             txtPrenom.Size = new Size(273, 32);
             txtPrenom.TabIndex = 12;
-            txtPrenom.TextChanged += txtPrenom_TextChanged;
             // 
             // label2
             // 
@@ -337,7 +325,6 @@
             txtNom.Name = "txtNom";
             txtNom.Size = new Size(273, 32);
             txtNom.TabIndex = 10;
-            txtNom.TextChanged += txtNom_TextChanged;
             // 
             // label1
             // 
@@ -348,54 +335,6 @@
             label1.Size = new Size(48, 23);
             label1.TabIndex = 9;
             label1.Text = "Nom";
-            // 
-            // ID_Client
-            // 
-            ID_Client.HeaderText = "ID";
-            ID_Client.MinimumWidth = 6;
-            ID_Client.Name = "ID_Client";
-            ID_Client.ReadOnly = true;
-            ID_Client.Width = 125;
-            // 
-            // CodeClient
-            // 
-            CodeClient.HeaderText = "Code Client";
-            CodeClient.MinimumWidth = 6;
-            CodeClient.Name = "CodeClient";
-            CodeClient.ReadOnly = true;
-            CodeClient.Width = 125;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.ReadOnly = true;
-            Nom.Width = 125;
-            // 
-            // Prenom
-            // 
-            Prenom.HeaderText = "Prénom";
-            Prenom.MinimumWidth = 6;
-            Prenom.Name = "Prenom";
-            Prenom.ReadOnly = true;
-            Prenom.Width = 125;
-            // 
-            // Telephone
-            // 
-            Telephone.HeaderText = "Téléphone";
-            Telephone.MinimumWidth = 6;
-            Telephone.Name = "Telephone";
-            Telephone.ReadOnly = true;
-            Telephone.Width = 125;
-            // 
-            // Adresse
-            // 
-            Adresse.HeaderText = "Adresse";
-            Adresse.MinimumWidth = 6;
-            Adresse.Name = "Adresse";
-            Adresse.ReadOnly = true;
-            Adresse.Width = 125;
             // 
             // FormGestionClients
             // 
@@ -442,11 +381,5 @@
         private Label label1;
         private TextBox textCodeClient;
         private Label label0;
-        private DataGridViewTextBoxColumn ID_Client;
-        private DataGridViewTextBoxColumn CodeClient;
-        private DataGridViewTextBoxColumn Nom;
-        private DataGridViewTextBoxColumn Prenom;
-        private DataGridViewTextBoxColumn Telephone;
-        private DataGridViewTextBoxColumn Adresse;
     }
 }
