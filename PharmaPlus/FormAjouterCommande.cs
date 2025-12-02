@@ -105,27 +105,22 @@ namespace PharmaPlus
             // Masquer les colonnes techniques après le chargement
             dgvMedicaments.DataBindingComplete += (s, e) =>
             {
+                // Masquer uniquement les colonnes techniques (ID)
                 if (dgvMedicaments.Columns["ID_Medicament"] != null)
                     dgvMedicaments.Columns["ID_Medicament"].Visible = false;
                 if (dgvMedicaments.Columns["ID_Lot"] != null)
                     dgvMedicaments.Columns["ID_Lot"].Visible = false;
-                if (dgvMedicaments.Columns["PrixUnitaire"] != null)
-                    dgvMedicaments.Columns["PrixUnitaire"].Visible = false;
-                if (dgvMedicaments.Columns["PrixTotal"] != null)
-                    dgvMedicaments.Columns["PrixTotal"].Visible = false;
 
-                // Rendre la colonne Quantite éditable
                 if (dgvMedicaments.Columns["Quantite"] != null)
                 {
                     dgvMedicaments.Columns["Quantite"].ReadOnly = false;
-                    dgvMedicaments.Columns["Quantite"].DefaultCellStyle.BackColor = Color.LightYellow;
                 }
 
                 // Configurer les colonnes visibles
                 if (dgvMedicaments.Columns["Reference"] != null)
                 {
                     dgvMedicaments.Columns["Reference"].HeaderText = "Référence";
-                    dgvMedicaments.Columns["Reference"].Width = 125;
+                    dgvMedicaments.Columns["Reference"].Width = 120;
                 }
                 if (dgvMedicaments.Columns["Nom"] != null)
                 {
@@ -135,22 +130,27 @@ namespace PharmaPlus
                 if (dgvMedicaments.Columns["Fabricant"] != null)
                 {
                     dgvMedicaments.Columns["Fabricant"].HeaderText = "Fabricant";
-                    dgvMedicaments.Columns["Fabricant"].Width = 125;
+                    dgvMedicaments.Columns["Fabricant"].Width = 120;
                 }
                 if (dgvMedicaments.Columns["Quantite"] != null)
                 {
                     dgvMedicaments.Columns["Quantite"].HeaderText = "Quantité";
-                    dgvMedicaments.Columns["Quantite"].Width = 125;
+                    dgvMedicaments.Columns["Quantite"].Width = 80;
                 }
                 if (dgvMedicaments.Columns["PrixUnitaire"] != null)
                 {
-                    dgvMedicaments.Columns["PrixUnitaire"].HeaderText = "PrixUnitaire";
-                    dgvMedicaments.Columns["PrixUnitaire"].Width = 125;
+                    dgvMedicaments.Columns["PrixUnitaire"].HeaderText = "Prix Unitaire";
+                    dgvMedicaments.Columns["PrixUnitaire"].Width = 110;
+                    dgvMedicaments.Columns["PrixUnitaire"].DefaultCellStyle.Format = "F2";
+                    dgvMedicaments.Columns["PrixUnitaire"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 }
                 if (dgvMedicaments.Columns["PrixTotal"] != null)
                 {
-                    dgvMedicaments.Columns["PrixTotal"].HeaderText = "PrixTotal";
-                    dgvMedicaments.Columns["PrixTotal"].Width = 125;
+                    dgvMedicaments.Columns["PrixTotal"].HeaderText = "Prix Total";
+                    dgvMedicaments.Columns["PrixTotal"].Width = 110;
+                    dgvMedicaments.Columns["PrixTotal"].DefaultCellStyle.Format = "F2";
+                    dgvMedicaments.Columns["PrixTotal"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    dgvMedicaments.Columns["PrixTotal"].DefaultCellStyle.Font = new Font(dgvMedicaments.Font, FontStyle.Bold);
                 }
             };
         }

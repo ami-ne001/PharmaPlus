@@ -240,8 +240,6 @@
             dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMedicaments.Size = new Size(928, 399);
             dgvMedicaments.TabIndex = 24;
-            dgvMedicaments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            dgvMedicaments.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dgvMedicaments.CellContentClick += dgvMedicaments_CellContentClick;
             dgvMedicaments.SelectionChanged += dgvMedicaments_SelectionChanged;
             // 
@@ -400,7 +398,6 @@
             nudQuantiteLot.Font = new Font("Segoe UI", 11F);
             nudQuantiteLot.Location = new Point(18, 490);
             nudQuantiteLot.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
-            nudQuantiteLot.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudQuantiteLot.Name = "nudQuantiteLot";
             nudQuantiteLot.Size = new Size(289, 32);
             nudQuantiteLot.TabIndex = 27;
