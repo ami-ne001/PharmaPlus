@@ -41,33 +41,9 @@ namespace PharmaPlus
             ChargerMedicaments();
             InitialiserDataGridView();
             MettreAJourTotal();
-            AjouterBoutonAjouterAuPanier();
-            btnRetour.Click += BtnRetour_Click;
         }
 
-        private void BtnRetour_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void AjouterBoutonAjouterAuPanier()
-        {
-            Button btnAjouterAuPanier = new Button
-            {
-                Text = "Ajouter au Panier",
-                BackColor = Color.FromArgb(0, 85, 70),
-                FlatStyle = FlatStyle.Popup,
-                Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold),
-                ForeColor = Color.White,
-                Location = new Point(224, 310),
-                Size = new Size(180, 35),
-                TabIndex = 100
-            };
-            btnAjouterAuPanier.Click += BtnAjouterAuPanier_Click;
-            panel3.Controls.Add(btnAjouterAuPanier);
-        }
-
-        private void BtnAjouterAuPanier_Click(object sender, EventArgs e)
+        private void btnAjouterPanier_Click(object sender, EventArgs e)
         {
             AjouterAuPanier();
         }
@@ -116,11 +92,11 @@ namespace PharmaPlus
         {
             // Supprimer les colonnes prédéfinies pour utiliser celles du DataTable
             dgvMedicaments.Columns.Clear();
-            
+
             dgvMedicaments.DataSource = panier;
             dgvMedicaments.CellValueChanged += dgvMedicaments_CellValueChanged;
             dgvMedicaments.KeyDown += dgvMedicaments_KeyDown;
-            
+
             // Masquer les colonnes techniques après le chargement
             dgvMedicaments.DataBindingComplete += (s, e) =>
             {
@@ -132,14 +108,14 @@ namespace PharmaPlus
                     dgvMedicaments.Columns["PrixUnitaire"].Visible = false;
                 if (dgvMedicaments.Columns["PrixTotal"] != null)
                     dgvMedicaments.Columns["PrixTotal"].Visible = false;
-                
+
                 // Rendre la colonne Quantite éditable
                 if (dgvMedicaments.Columns["Quantite"] != null)
                 {
                     dgvMedicaments.Columns["Quantite"].ReadOnly = false;
                     dgvMedicaments.Columns["Quantite"].DefaultCellStyle.BackColor = Color.LightYellow;
                 }
-                
+
                 // Configurer les colonnes visibles
                 if (dgvMedicaments.Columns["Reference"] != null)
                 {
@@ -160,6 +136,16 @@ namespace PharmaPlus
                 {
                     dgvMedicaments.Columns["Quantite"].HeaderText = "Quantité";
                     dgvMedicaments.Columns["Quantite"].Width = 125;
+                }
+                if (dgvMedicaments.Columns["PrixUnitaire"] != null)
+                {
+                    dgvMedicaments.Columns["PrixUnitaire"].HeaderText = "PrixUnitaire";
+                    dgvMedicaments.Columns["PrixUnitaire"].Width = 125;
+                }
+                if (dgvMedicaments.Columns["PrixTotal"] != null)
+                {
+                    dgvMedicaments.Columns["PrixTotal"].HeaderText = "PrixTotal";
+                    dgvMedicaments.Columns["PrixTotal"].Width = 125;
                 }
             };
         }
@@ -241,7 +227,24 @@ namespace PharmaPlus
 
                     // Charger les lots disponibles pour ce médicament
                     ChargerLotsMedicament();
+
+                    // Mettre à jour le NumericUpDown avec la quantité disponible
+                    if (lotSelectionne != null)
+                    {
+                        nudQuantiteMedPanier.Maximum = lotSelectionne.QuantiteLot;
+                        nudQuantiteMedPanier.Value = Math.Min(1, lotSelectionne.QuantiteLot);
+                        nudQuantiteMedPanier.Enabled = true;
+                    }
+                    else
+                    {
+                        nudQuantiteMedPanier.Enabled = false;
+                        nudQuantiteMedPanier.Value = 1;
+                    }
                 }
+            }
+            else
+            {
+                nudQuantiteMedPanier.Enabled = false;
             }
         }
 
@@ -254,10 +257,22 @@ namespace PharmaPlus
                     lotsDisponibles = LotMedicament.ListerLotsParMedicament(medicamentSelectionne.ID_Medicament);
                     // Filtrer les lots avec quantité > 0
                     lotsDisponibles = lotsDisponibles.Where(l => l.QuantiteLot > 0).ToList();
+
+                    // Sélectionner le lot avec la date de péremption la plus proche
+                    if (lotsDisponibles.Count > 0)
+                    {
+                        lotSelectionne = lotsDisponibles.OrderBy(l => l.DatePeremption).FirstOrDefault();
+                    }
+                    else
+                    {
+                        lotSelectionne = null;
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erreur lors du chargement des lots: {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lotsDisponibles = null;
+                    lotSelectionne = null;
                 }
             }
         }
@@ -321,7 +336,7 @@ namespace PharmaPlus
                         int quantite = Convert.ToInt32(row["Quantite"]);
                         decimal prixUnitaire = Convert.ToDecimal(row["PrixUnitaire"]);
                         row["PrixTotal"] = quantite * prixUnitaire;
-                        
+
                         MettreAJourTotal();
                     }
                     catch (Exception ex)
@@ -353,7 +368,10 @@ namespace PharmaPlus
             }
 
             // Utiliser le premier lot disponible (ou le lot avec la date de péremption la plus proche)
-            lotSelectionne = lotsDisponibles.OrderBy(l => l.DatePeremption).FirstOrDefault();
+            if (lotSelectionne == null)
+            {
+                lotSelectionne = lotsDisponibles.OrderBy(l => l.DatePeremption).FirstOrDefault();
+            }
 
             if (lotSelectionne == null)
             {
@@ -361,46 +379,59 @@ namespace PharmaPlus
                 return;
             }
 
-            // Demander la quantité
-            using (FormQuantite formQuantite = new FormQuantite(lotSelectionne.QuantiteLot))
+            // Récupérer la quantité depuis le NumericUpDown
+            int quantite = (int)nudQuantiteMedPanier.Value;
+
+            if (quantite <= 0)
             {
-                if (formQuantite.ShowDialog() == DialogResult.OK)
-                {
-                    int quantite = formQuantite.Quantite;
-
-                    // Vérifier si le médicament est déjà dans le panier
-                    DataRow[] rowsExistantes = panier.Select($"ID_Medicament = {medicamentSelectionne.ID_Medicament}");
-                    if (rowsExistantes.Length > 0)
-                    {
-                        // Mettre à jour la quantité
-                        int nouvelleQuantite = Convert.ToInt32(rowsExistantes[0]["Quantite"]) + quantite;
-                        if (nouvelleQuantite > lotSelectionne.QuantiteLot)
-                        {
-                            MessageBox.Show($"La quantité demandée dépasse le stock disponible ({lotSelectionne.QuantiteLot}).", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            return;
-                        }
-                        rowsExistantes[0]["Quantite"] = nouvelleQuantite;
-                        rowsExistantes[0]["PrixTotal"] = nouvelleQuantite * lotSelectionne.Prix;
-                    }
-                    else
-                    {
-                        // Ajouter une nouvelle ligne
-                        DataRow row = panier.NewRow();
-                        row["ID_Medicament"] = medicamentSelectionne.ID_Medicament;
-                        row["ID_Lot"] = lotSelectionne.ID_Lot;
-                        row["Reference"] = medicamentSelectionne.Reference;
-                        row["Nom"] = medicamentSelectionne.Nom;
-                        row["Fabricant"] = medicamentSelectionne.Fabricant;
-                        row["Quantite"] = quantite;
-                        row["PrixUnitaire"] = lotSelectionne.Prix;
-                        row["PrixTotal"] = quantite * lotSelectionne.Prix;
-                        panier.Rows.Add(row);
-                    }
-
-                    MettreAJourTotal();
-                    MessageBox.Show("Médicament ajouté au panier avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("La quantité doit être supérieure à 0.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            if (quantite > lotSelectionne.QuantiteLot)
+            {
+                MessageBox.Show($"La quantité demandée dépasse le stock disponible ({lotSelectionne.QuantiteLot}).", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Vérifier si le médicament est déjà dans le panier
+            DataRow[] rowsExistantes = panier.Select($"ID_Medicament = {medicamentSelectionne.ID_Medicament}");
+            if (rowsExistantes.Length > 0)
+            {
+                // Mettre à jour la quantité
+                int nouvelleQuantite = Convert.ToInt32(rowsExistantes[0]["Quantite"]) + quantite;
+
+                // Vérifier le stock total disponible
+                int stockTotalDisponible = lotsDisponibles.Sum(l => l.QuantiteLot);
+                if (nouvelleQuantite > stockTotalDisponible)
+                {
+                    MessageBox.Show($"La quantité totale demandée dépasse le stock disponible ({stockTotalDisponible}).", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                rowsExistantes[0]["Quantite"] = nouvelleQuantite;
+                rowsExistantes[0]["PrixTotal"] = nouvelleQuantite * lotSelectionne.Prix;
+            }
+            else
+            {
+                // Ajouter une nouvelle ligne
+                DataRow row = panier.NewRow();
+                row["ID_Medicament"] = medicamentSelectionne.ID_Medicament;
+                row["ID_Lot"] = lotSelectionne.ID_Lot;
+                row["Reference"] = medicamentSelectionne.Reference;
+                row["Nom"] = medicamentSelectionne.Nom;
+                row["Fabricant"] = medicamentSelectionne.Fabricant;
+                row["Quantite"] = quantite;
+                row["PrixUnitaire"] = lotSelectionne.Prix;
+                row["PrixTotal"] = quantite * lotSelectionne.Prix;
+                panier.Rows.Add(row);
+            }
+
+            MettreAJourTotal();
+            MessageBox.Show("Médicament ajouté au panier avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Réinitialiser la quantité à 1
+            nudQuantiteMedPanier.Value = 1;
         }
 
         private void btnAjouter_Click(object sender, EventArgs e)
@@ -483,7 +514,7 @@ namespace PharmaPlus
                 }
 
                 MessageBox.Show("Commande enregistrée avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+
                 // Réinitialiser le formulaire
                 ReinitialiserFormulaire();
             }
@@ -495,13 +526,11 @@ namespace PharmaPlus
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Réinitialiser tous les champs
             ReinitialiserFormulaire();
         }
 
         private void ReinitialiserFormulaire()
         {
-            // Réinitialiser les champs client
             cmbMedicaments.SelectedIndex = -1;
             txtCodeClient.Clear();
             txtNomClient.Clear();
@@ -510,7 +539,6 @@ namespace PharmaPlus
             txtAdresseClient.Clear();
             clientSelectionne = null;
 
-            // Réinitialiser les champs médicament
             comboBox1.SelectedIndex = -1;
             txtReferenceMed.Clear();
             txtNomMed.Clear();
@@ -518,77 +546,20 @@ namespace PharmaPlus
             txtQuantiteTotaleMed.Clear();
             medicamentSelectionne = null;
             lotsDisponibles = null;
+            lotSelectionne = null;
 
-            // Vider le panier
+            nudQuantiteMedPanier.Value = 1;
+            nudQuantiteMedPanier.Enabled = false;
+
             panier.Clear();
             MettreAJourTotal();
         }
-    }
 
-    // Classe helper pour saisir la quantité
-    public class FormQuantite : Form
-    {
-        private NumericUpDown numericQuantite;
-        private Button btnOK;
-        private Button btnAnnuler;
-        private int stockMax;
-
-        public int Quantite { get; private set; }
-
-        public FormQuantite(int stockMax)
+        private void btnRetour_Click(object sender, EventArgs e)
         {
-            this.stockMax = stockMax;
-            InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            this.Text = "Saisir la quantité";
-            this.Size = new Size(300, 150);
-            this.StartPosition = FormStartPosition.CenterParent;
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-
-            Label lblQuantite = new Label
-            {
-                Text = $"Quantité (max: {stockMax}):",
-                Location = new Point(20, 20),
-                Size = new Size(150, 20)
-            };
-
-            numericQuantite = new NumericUpDown
-            {
-                Location = new Point(180, 18),
-                Size = new Size(80, 20),
-                Minimum = 1,
-                Maximum = stockMax,
-                Value = 1
-            };
-
-            btnOK = new Button
-            {
-                Text = "OK",
-                DialogResult = DialogResult.OK,
-                Location = new Point(50, 60),
-                Size = new Size(80, 30)
-            };
-
-            btnAnnuler = new Button
-            {
-                Text = "Annuler",
-                DialogResult = DialogResult.Cancel,
-                Location = new Point(150, 60),
-                Size = new Size(80, 30)
-            };
-
-            btnOK.Click += (s, e) => { Quantite = (int)numericQuantite.Value; };
-            btnAnnuler.Click += (s, e) => { this.DialogResult = DialogResult.Cancel; };
-
-            this.Controls.Add(lblQuantite);
-            this.Controls.Add(numericQuantite);
-            this.Controls.Add(btnOK);
-            this.Controls.Add(btnAnnuler);
+            FormMenuPharmacien form = new FormMenuPharmacien();
+            form.Show();
+            this.Hide();
         }
     }
 }

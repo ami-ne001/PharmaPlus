@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             btnRetour = new Button();
             panel1 = new Panel();
             label5 = new Label();
@@ -51,6 +51,9 @@
             Fabricant = new DataGridViewTextBoxColumn();
             QuantiteMed = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
+            label13 = new Label();
+            nudQuantiteMedPanier = new NumericUpDown();
+            btnAjouterPanier = new Button();
             label12 = new Label();
             txtFabricantMed = new TextBox();
             label6 = new Label();
@@ -70,6 +73,7 @@
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudQuantiteMedPanier).BeginInit();
             panel4.SuspendLayout();
             SuspendLayout();
             // 
@@ -85,6 +89,7 @@
             btnRetour.TabIndex = 26;
             btnRetour.Text = "< Retour";
             btnRetour.UseVisualStyleBackColor = false;
+            btnRetour.Click += btnRetour_Click;
             // 
             // panel1
             // 
@@ -122,6 +127,7 @@
             txtAdresseClient.Font = new Font("Segoe UI", 10F);
             txtAdresseClient.Location = new Point(224, 285);
             txtAdresseClient.Name = "txtAdresseClient";
+            txtAdresseClient.ReadOnly = true;
             txtAdresseClient.Size = new Size(372, 30);
             txtAdresseClient.TabIndex = 47;
             txtAdresseClient.TextChanged += txtAdresseClient_TextChanged;
@@ -171,6 +177,7 @@
             txtTelephoneClient.Font = new Font("Segoe UI", 10F);
             txtTelephoneClient.Location = new Point(224, 244);
             txtTelephoneClient.Name = "txtTelephoneClient";
+            txtTelephoneClient.ReadOnly = true;
             txtTelephoneClient.Size = new Size(372, 30);
             txtTelephoneClient.TabIndex = 42;
             txtTelephoneClient.TextChanged += txtTelephoneClient_TextChanged;
@@ -180,6 +187,7 @@
             txtPrenomClient.Font = new Font("Segoe UI", 10F);
             txtPrenomClient.Location = new Point(224, 203);
             txtPrenomClient.Name = "txtPrenomClient";
+            txtPrenomClient.ReadOnly = true;
             txtPrenomClient.Size = new Size(372, 30);
             txtPrenomClient.TabIndex = 41;
             txtPrenomClient.TextChanged += txtPrenomClient_TextChanged;
@@ -189,6 +197,7 @@
             txtNomClient.Font = new Font("Segoe UI", 10F);
             txtNomClient.Location = new Point(224, 162);
             txtNomClient.Name = "txtNomClient";
+            txtNomClient.ReadOnly = true;
             txtNomClient.Size = new Size(372, 30);
             txtNomClient.TabIndex = 40;
             txtNomClient.TextChanged += txtNomClient_TextChanged;
@@ -198,6 +207,7 @@
             txtCodeClient.Font = new Font("Segoe UI", 10F);
             txtCodeClient.Location = new Point(224, 121);
             txtCodeClient.Name = "txtCodeClient";
+            txtCodeClient.ReadOnly = true;
             txtCodeClient.Size = new Size(372, 30);
             txtCodeClient.TabIndex = 39;
             txtCodeClient.TextChanged += txtCodeClient_TextChanged;
@@ -246,14 +256,14 @@
             // 
             dgvMedicaments.AllowUserToAddRows = false;
             dgvMedicaments.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Reference, Nom, Fabricant, QuantiteMed });
             dgvMedicaments.EnableHeadersVisualStyles = false;
@@ -302,6 +312,9 @@
             // panel3
             // 
             panel3.BorderStyle = BorderStyle.FixedSingle;
+            panel3.Controls.Add(label13);
+            panel3.Controls.Add(nudQuantiteMedPanier);
+            panel3.Controls.Add(btnAjouterPanier);
             panel3.Controls.Add(label12);
             panel3.Controls.Add(txtFabricantMed);
             panel3.Controls.Add(label6);
@@ -317,11 +330,46 @@
             panel3.Size = new Size(630, 336);
             panel3.TabIndex = 4;
             // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.Location = new Point(30, 281);
+            label13.Name = "label13";
+            label13.Size = new Size(152, 23);
+            label13.TabIndex = 60;
+            label13.Text = "Quantité à Ajouter";
+            // 
+            // nudQuantiteMedPanier
+            // 
+            nudQuantiteMedPanier.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            nudQuantiteMedPanier.Location = new Point(224, 274);
+            nudQuantiteMedPanier.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            nudQuantiteMedPanier.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudQuantiteMedPanier.Name = "nudQuantiteMedPanier";
+            nudQuantiteMedPanier.Size = new Size(168, 34);
+            nudQuantiteMedPanier.TabIndex = 59;
+            nudQuantiteMedPanier.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // btnAjouterPanier
+            // 
+            btnAjouterPanier.BackColor = Color.FromArgb(0, 85, 70);
+            btnAjouterPanier.FlatStyle = FlatStyle.Popup;
+            btnAjouterPanier.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAjouterPanier.ForeColor = SystemColors.HighlightText;
+            btnAjouterPanier.Location = new Point(423, 274);
+            btnAjouterPanier.Name = "btnAjouterPanier";
+            btnAjouterPanier.Size = new Size(173, 35);
+            btnAjouterPanier.TabIndex = 53;
+            btnAjouterPanier.Text = "Ajouter au Panier";
+            btnAjouterPanier.UseVisualStyleBackColor = false;
+            btnAjouterPanier.Click += btnAjouterPanier_Click;
+            // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(35, 231);
+            label12.Location = new Point(35, 185);
             label12.Name = "label12";
             label12.Size = new Size(80, 23);
             label12.TabIndex = 58;
@@ -330,8 +378,9 @@
             // txtFabricantMed
             // 
             txtFabricantMed.Font = new Font("Segoe UI", 10F);
-            txtFabricantMed.Location = new Point(224, 228);
+            txtFabricantMed.Location = new Point(224, 182);
             txtFabricantMed.Name = "txtFabricantMed";
+            txtFabricantMed.ReadOnly = true;
             txtFabricantMed.Size = new Size(372, 30);
             txtFabricantMed.TabIndex = 57;
             txtFabricantMed.TextChanged += txtFabricantMed_TextChanged;
@@ -340,7 +389,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(35, 271);
+            label6.Location = new Point(35, 225);
             label6.Name = "label6";
             label6.Size = new Size(183, 23);
             label6.TabIndex = 56;
@@ -350,7 +399,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(35, 55);
+            label9.Location = new Point(35, 26);
             label9.Name = "label9";
             label9.Size = new Size(230, 23);
             label9.TabIndex = 50;
@@ -360,7 +409,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(35, 190);
+            label7.Location = new Point(35, 144);
             label7.Name = "label7";
             label7.Size = new Size(48, 23);
             label7.TabIndex = 55;
@@ -370,7 +419,7 @@
             // 
             comboBox1.Font = new Font("Segoe UI", 10F);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(35, 81);
+            comboBox1.Location = new Point(35, 52);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(561, 31);
             comboBox1.TabIndex = 49;
@@ -380,7 +429,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(35, 149);
+            label8.Location = new Point(35, 103);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.Yes;
             label8.Size = new Size(87, 23);
@@ -390,8 +439,9 @@
             // txtReferenceMed
             // 
             txtReferenceMed.Font = new Font("Segoe UI", 10F);
-            txtReferenceMed.Location = new Point(224, 146);
+            txtReferenceMed.Location = new Point(224, 100);
             txtReferenceMed.Name = "txtReferenceMed";
+            txtReferenceMed.ReadOnly = true;
             txtReferenceMed.Size = new Size(372, 30);
             txtReferenceMed.TabIndex = 51;
             txtReferenceMed.TextChanged += txtReferenceMed_TextChanged;
@@ -399,8 +449,9 @@
             // txtQuantiteTotaleMed
             // 
             txtQuantiteTotaleMed.Font = new Font("Segoe UI", 10F);
-            txtQuantiteTotaleMed.Location = new Point(224, 268);
+            txtQuantiteTotaleMed.Location = new Point(224, 222);
             txtQuantiteTotaleMed.Name = "txtQuantiteTotaleMed";
+            txtQuantiteTotaleMed.ReadOnly = true;
             txtQuantiteTotaleMed.Size = new Size(372, 30);
             txtQuantiteTotaleMed.TabIndex = 53;
             txtQuantiteTotaleMed.TextChanged += txtQuantiteTotaleMed_TextChanged;
@@ -408,8 +459,9 @@
             // txtNomMed
             // 
             txtNomMed.Font = new Font("Segoe UI", 10F);
-            txtNomMed.Location = new Point(224, 187);
+            txtNomMed.Location = new Point(224, 141);
             txtNomMed.Name = "txtNomMed";
+            txtNomMed.ReadOnly = true;
             txtNomMed.Size = new Size(372, 30);
             txtNomMed.TabIndex = 52;
             txtNomMed.TextChanged += txtNomMed_TextChanged;
@@ -459,6 +511,7 @@
             textBox9.Font = new Font("Segoe UI", 14F);
             textBox9.Location = new Point(207, 73);
             textBox9.Name = "textBox9";
+            textBox9.ReadOnly = true;
             textBox9.Size = new Size(315, 39);
             textBox9.TabIndex = 49;
             textBox9.TextChanged += textBox9_TextChanged;
@@ -494,6 +547,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudQuantiteMedPanier).EndInit();
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             ResumeLayout(false);
@@ -538,5 +592,8 @@
         private DataGridViewTextBoxColumn QuantiteMed;
         private Label label12;
         private TextBox txtFabricantMed;
+        private Button btnAjouterPanier;
+        private NumericUpDown nudQuantiteMedPanier;
+        private Label label13;
     }
 }
