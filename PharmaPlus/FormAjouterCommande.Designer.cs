@@ -46,10 +46,6 @@
             panel2 = new Panel();
             label10 = new Label();
             dgvMedicaments = new DataGridView();
-            Reference = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Fabricant = new DataGridViewTextBoxColumn();
-            QuantiteMed = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
             label13 = new Label();
             nudQuantiteMedPanier = new NumericUpDown();
@@ -69,6 +65,12 @@
             btnAjouter = new Button();
             textBox9 = new TextBox();
             label11 = new Label();
+            Reference = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Fabricant = new DataGridViewTextBoxColumn();
+            QuantiteMed = new DataGridViewTextBoxColumn();
+            PrixUnitaire = new DataGridViewTextBoxColumn();
+            PrixTotal = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
@@ -130,7 +132,6 @@
             txtAdresseClient.ReadOnly = true;
             txtAdresseClient.Size = new Size(372, 30);
             txtAdresseClient.TabIndex = 47;
-            txtAdresseClient.TextChanged += txtAdresseClient_TextChanged;
             // 
             // label4
             // 
@@ -180,7 +181,6 @@
             txtTelephoneClient.ReadOnly = true;
             txtTelephoneClient.Size = new Size(372, 30);
             txtTelephoneClient.TabIndex = 42;
-            txtTelephoneClient.TextChanged += txtTelephoneClient_TextChanged;
             // 
             // txtPrenomClient
             // 
@@ -190,7 +190,6 @@
             txtPrenomClient.ReadOnly = true;
             txtPrenomClient.Size = new Size(372, 30);
             txtPrenomClient.TabIndex = 41;
-            txtPrenomClient.TextChanged += txtPrenomClient_TextChanged;
             // 
             // txtNomClient
             // 
@@ -200,7 +199,6 @@
             txtNomClient.ReadOnly = true;
             txtNomClient.Size = new Size(372, 30);
             txtNomClient.TabIndex = 40;
-            txtNomClient.TextChanged += txtNomClient_TextChanged;
             // 
             // txtCodeClient
             // 
@@ -265,7 +263,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Reference, Nom, Fabricant, QuantiteMed });
+            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Reference, Nom, Fabricant, QuantiteMed, PrixUnitaire, PrixTotal });
             dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(7, 57);
             dgvMedicaments.MultiSelect = false;
@@ -275,39 +273,6 @@
             dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMedicaments.Size = new Size(614, 321);
             dgvMedicaments.TabIndex = 24;
-            dgvMedicaments.CellContentClick += dgvMedicaments_CellContentClick;
-            // 
-            // Reference
-            // 
-            Reference.HeaderText = "Référence";
-            Reference.MinimumWidth = 6;
-            Reference.Name = "Reference";
-            Reference.ReadOnly = true;
-            Reference.Width = 125;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom Médicament";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.ReadOnly = true;
-            Nom.Width = 180;
-            // 
-            // Fabricant
-            // 
-            Fabricant.HeaderText = "Fabricant";
-            Fabricant.MinimumWidth = 6;
-            Fabricant.Name = "Fabricant";
-            Fabricant.ReadOnly = true;
-            Fabricant.Width = 125;
-            // 
-            // QuantiteMed
-            // 
-            QuantiteMed.HeaderText = "Quantité";
-            QuantiteMed.MinimumWidth = 6;
-            QuantiteMed.Name = "QuantiteMed";
-            QuantiteMed.ReadOnly = true;
-            QuantiteMed.Width = 125;
             // 
             // panel3
             // 
@@ -383,7 +348,6 @@
             txtFabricantMed.ReadOnly = true;
             txtFabricantMed.Size = new Size(372, 30);
             txtFabricantMed.TabIndex = 57;
-            txtFabricantMed.TextChanged += txtFabricantMed_TextChanged;
             // 
             // label6
             // 
@@ -444,7 +408,6 @@
             txtReferenceMed.ReadOnly = true;
             txtReferenceMed.Size = new Size(372, 30);
             txtReferenceMed.TabIndex = 51;
-            txtReferenceMed.TextChanged += txtReferenceMed_TextChanged;
             // 
             // txtQuantiteTotaleMed
             // 
@@ -454,7 +417,6 @@
             txtQuantiteTotaleMed.ReadOnly = true;
             txtQuantiteTotaleMed.Size = new Size(372, 30);
             txtQuantiteTotaleMed.TabIndex = 53;
-            txtQuantiteTotaleMed.TextChanged += txtQuantiteTotaleMed_TextChanged;
             // 
             // txtNomMed
             // 
@@ -464,7 +426,6 @@
             txtNomMed.ReadOnly = true;
             txtNomMed.Size = new Size(372, 30);
             txtNomMed.TabIndex = 52;
-            txtNomMed.TextChanged += txtNomMed_TextChanged;
             // 
             // panel4
             // 
@@ -514,7 +475,6 @@
             textBox9.ReadOnly = true;
             textBox9.Size = new Size(315, 39);
             textBox9.TabIndex = 49;
-            textBox9.TextChanged += textBox9_TextChanged;
             // 
             // label11
             // 
@@ -525,6 +485,54 @@
             label11.Size = new Size(84, 28);
             label11.TabIndex = 50;
             label11.Text = "Résumé";
+            // 
+            // Reference
+            // 
+            Reference.HeaderText = "Référence";
+            Reference.MinimumWidth = 6;
+            Reference.Name = "Reference";
+            Reference.ReadOnly = true;
+            Reference.Width = 125;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom Médicament";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            Nom.Width = 180;
+            // 
+            // Fabricant
+            // 
+            Fabricant.HeaderText = "Fabricant";
+            Fabricant.MinimumWidth = 6;
+            Fabricant.Name = "Fabricant";
+            Fabricant.ReadOnly = true;
+            Fabricant.Width = 125;
+            // 
+            // QuantiteMed
+            // 
+            QuantiteMed.HeaderText = "Quantité";
+            QuantiteMed.MinimumWidth = 6;
+            QuantiteMed.Name = "QuantiteMed";
+            QuantiteMed.ReadOnly = true;
+            QuantiteMed.Width = 125;
+            // 
+            // PrixUnitaire
+            // 
+            PrixUnitaire.HeaderText = "Prix Unitaire";
+            PrixUnitaire.MinimumWidth = 6;
+            PrixUnitaire.Name = "PrixUnitaire";
+            PrixUnitaire.ReadOnly = true;
+            PrixUnitaire.Width = 125;
+            // 
+            // PrixTotal
+            // 
+            PrixTotal.HeaderText = "Prix Total";
+            PrixTotal.MinimumWidth = 6;
+            PrixTotal.Name = "PrixTotal";
+            PrixTotal.ReadOnly = true;
+            PrixTotal.Width = 125;
             // 
             // FormAjouterCommande
             // 
@@ -586,14 +594,16 @@
         private TextBox textBox9;
         private Button btnAjouter;
         private Button button1;
-        private DataGridViewTextBoxColumn Reference;
-        private DataGridViewTextBoxColumn Nom;
-        private DataGridViewTextBoxColumn Fabricant;
-        private DataGridViewTextBoxColumn QuantiteMed;
         private Label label12;
         private TextBox txtFabricantMed;
         private Button btnAjouterPanier;
         private NumericUpDown nudQuantiteMedPanier;
         private Label label13;
+        private DataGridViewTextBoxColumn Reference;
+        private DataGridViewTextBoxColumn Nom;
+        private DataGridViewTextBoxColumn Fabricant;
+        private DataGridViewTextBoxColumn QuantiteMed;
+        private DataGridViewTextBoxColumn PrixUnitaire;
+        private DataGridViewTextBoxColumn PrixTotal;
     }
 }

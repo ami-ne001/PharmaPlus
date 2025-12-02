@@ -20,6 +20,7 @@ namespace PharmaPlus
         private List<LotMedicament> lotsDisponibles;
         private LotMedicament lotSelectionne;
         private DataTable panier;
+        private Pharmacien pharmacien;
 
         public FormAjouterCommande()
         {
@@ -37,6 +38,12 @@ namespace PharmaPlus
 
         private void FormAjouterCommande_Load(object sender, EventArgs e)
         {
+            pharmacien = new Pharmacien();
+            if (Utilisateur.UtilisateurConnecte != null)
+            {
+                pharmacien.ID_Utilisateur = Utilisateur.UtilisateurConnecte.ID_Utilisateur;
+            }
+
             ChargerClients();
             ChargerMedicaments();
             InitialiserDataGridView();
@@ -90,12 +97,10 @@ namespace PharmaPlus
 
         private void InitialiserDataGridView()
         {
-            // Supprimer les colonnes prédéfinies pour utiliser celles du DataTable
             dgvMedicaments.Columns.Clear();
 
             dgvMedicaments.DataSource = panier;
             dgvMedicaments.CellValueChanged += dgvMedicaments_CellValueChanged;
-            dgvMedicaments.KeyDown += dgvMedicaments_KeyDown;
 
             // Masquer les colonnes techniques après le chargement
             dgvMedicaments.DataBindingComplete += (s, e) =>
@@ -193,26 +198,6 @@ namespace PharmaPlus
             }
         }
 
-        private void txtNomClient_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
-        private void txtPrenomClient_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
-        private void txtTelephoneClient_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
-        private void txtAdresseClient_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem != null)
@@ -255,10 +240,8 @@ namespace PharmaPlus
                 try
                 {
                     lotsDisponibles = LotMedicament.ListerLotsParMedicament(medicamentSelectionne.ID_Medicament);
-                    // Filtrer les lots avec quantité > 0
                     lotsDisponibles = lotsDisponibles.Where(l => l.QuantiteLot > 0).ToList();
 
-                    // Sélectionner le lot avec la date de péremption la plus proche
                     if (lotsDisponibles.Count > 0)
                     {
                         lotSelectionne = lotsDisponibles.OrderBy(l => l.DatePeremption).FirstOrDefault();
@@ -274,51 +257,6 @@ namespace PharmaPlus
                     lotsDisponibles = null;
                     lotSelectionne = null;
                 }
-            }
-        }
-
-        private void txtReferenceMed_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
-        private void txtNomMed_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
-        private void txtFabricantMed_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
-        private void txtQuantiteTotaleMed_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
-        private void dgvMedicaments_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Permettre la suppression avec la touche Delete
-            if (e.RowIndex >= 0 && dgvMedicaments.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
-            {
-                // Si on ajoute un bouton de suppression plus tard
-            }
-        }
-
-        private void dgvMedicaments_KeyDown(object sender, KeyEventArgs e)
-        {
-            // Permettre la suppression avec la touche Delete
-            if (e.KeyCode == Keys.Delete && dgvMedicaments.SelectedRows.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgvMedicaments.SelectedRows)
-                {
-                    if (!row.IsNewRow)
-                    {
-                        panier.Rows.RemoveAt(row.Index);
-                    }
-                }
-                MettreAJourTotal();
             }
         }
 
@@ -347,14 +285,8 @@ namespace PharmaPlus
             }
         }
 
-        private void textBox9_TextChanged(object sender, EventArgs e)
-        {
-            // Pas d'action nécessaire
-        }
-
         private void AjouterAuPanier()
         {
-            // Ajouter le médicament au panier
             if (medicamentSelectionne == null)
             {
                 MessageBox.Show("Veuillez sélectionner un médicament.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -398,10 +330,8 @@ namespace PharmaPlus
             DataRow[] rowsExistantes = panier.Select($"ID_Medicament = {medicamentSelectionne.ID_Medicament}");
             if (rowsExistantes.Length > 0)
             {
-                // Mettre à jour la quantité
                 int nouvelleQuantite = Convert.ToInt32(rowsExistantes[0]["Quantite"]) + quantite;
 
-                // Vérifier le stock total disponible
                 int stockTotalDisponible = lotsDisponibles.Sum(l => l.QuantiteLot);
                 if (nouvelleQuantite > stockTotalDisponible)
                 {
@@ -414,7 +344,6 @@ namespace PharmaPlus
             }
             else
             {
-                // Ajouter une nouvelle ligne
                 DataRow row = panier.NewRow();
                 row["ID_Medicament"] = medicamentSelectionne.ID_Medicament;
                 row["ID_Lot"] = lotSelectionne.ID_Lot;
@@ -430,7 +359,6 @@ namespace PharmaPlus
             MettreAJourTotal();
             MessageBox.Show("Médicament ajouté au panier avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Réinitialiser la quantité à 1
             nudQuantiteMedPanier.Value = 1;
         }
 
@@ -451,7 +379,6 @@ namespace PharmaPlus
 
         private void EnregistrerCommande()
         {
-            // Enregistrer la commande
             if (clientSelectionne == null)
             {
                 MessageBox.Show("Veuillez sélectionner un client.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -466,7 +393,6 @@ namespace PharmaPlus
 
             try
             {
-                // Créer la commande
                 Commande commande = new Commande
                 {
                     ID_Client = clientSelectionne.ID_Client,
@@ -475,7 +401,6 @@ namespace PharmaPlus
                     Statut = "En Attente"
                 };
 
-                // Ajouter les détails
                 foreach (DataRow row in panier.Rows)
                 {
                     DetailsCommande detail = new DetailsCommande
@@ -489,6 +414,12 @@ namespace PharmaPlus
 
                 // Insérer la commande
                 commande.InsererCommande();
+
+                if (pharmacien != null && pharmacien.ID_Utilisateur > 0)
+                {
+                    string codeClient = clientSelectionne?.CodeClient ?? clientSelectionne?.NomComplet() ?? "Client inconnu";
+                    pharmacien.EnregistrerHistorique($"Enregistrement commande ID: {commande.ID_Commande} pour {codeClient} - Total {commande.MontantTotal:F2} MAD");
+                }
 
                 // Mettre à jour les quantités des lots
                 foreach (DataRow row in panier.Rows)
@@ -515,7 +446,6 @@ namespace PharmaPlus
 
                 MessageBox.Show("Commande enregistrée avec succès!", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Réinitialiser le formulaire
                 ReinitialiserFormulaire();
             }
             catch (Exception ex)
