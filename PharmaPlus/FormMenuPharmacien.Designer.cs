@@ -54,11 +54,19 @@
             label7 = new Label();
             btnClients = new Button();
             btnCommandes = new Button();
+            grpFournisseurs = new GroupBox();
+            label8 = new Label();
+            label9 = new Label();
+            btnFournisseurs = new Button();
+            btnFournisseursMedicaments = new Button();
+            label10 = new Label();
+            button1 = new Button();
             panel1.SuspendLayout();
             grpGestion.SuspendLayout();
             grpAlertes.SuspendLayout();
             grpHistorique.SuspendLayout();
             grpClients.SuspendLayout();
+            grpFournisseurs.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -148,11 +156,11 @@
             // 
             btnGererMedicaments.BackColor = Color.FromArgb(0, 85, 70);
             btnGererMedicaments.FlatStyle = FlatStyle.Popup;
-            btnGererMedicaments.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGererMedicaments.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnGererMedicaments.ForeColor = SystemColors.HighlightText;
-            btnGererMedicaments.Location = new Point(10, 50);
+            btnGererMedicaments.Location = new Point(10, 29);
             btnGererMedicaments.Name = "btnGererMedicaments";
-            btnGererMedicaments.Size = new Size(298, 43);
+            btnGererMedicaments.Size = new Size(298, 38);
             btnGererMedicaments.TabIndex = 2;
             btnGererMedicaments.Text = "Gérer les Médicaments";
             btnGererMedicaments.UseVisualStyleBackColor = false;
@@ -162,11 +170,11 @@
             // 
             btnGererLots.BackColor = Color.FromArgb(0, 85, 70);
             btnGererLots.FlatStyle = FlatStyle.Popup;
-            btnGererLots.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGererLots.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnGererLots.ForeColor = SystemColors.HighlightText;
-            btnGererLots.Location = new Point(342, 50);
+            btnGererLots.Location = new Point(342, 29);
             btnGererLots.Name = "btnGererLots";
-            btnGererLots.Size = new Size(298, 43);
+            btnGererLots.Size = new Size(298, 38);
             btnGererLots.TabIndex = 3;
             btnGererLots.Text = "Gérer les Lots";
             btnGererLots.UseVisualStyleBackColor = false;
@@ -176,11 +184,11 @@
             // 
             btnAlertesPeremption.BackColor = Color.FromArgb(0, 85, 70);
             btnAlertesPeremption.FlatStyle = FlatStyle.Popup;
-            btnAlertesPeremption.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAlertesPeremption.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnAlertesPeremption.ForeColor = SystemColors.HighlightText;
-            btnAlertesPeremption.Location = new Point(342, 50);
+            btnAlertesPeremption.Location = new Point(342, 29);
             btnAlertesPeremption.Name = "btnAlertesPeremption";
-            btnAlertesPeremption.Size = new Size(298, 43);
+            btnAlertesPeremption.Size = new Size(298, 38);
             btnAlertesPeremption.TabIndex = 5;
             btnAlertesPeremption.Text = "Alertes Péremption";
             btnAlertesPeremption.UseVisualStyleBackColor = false;
@@ -190,11 +198,11 @@
             // 
             btnAlertesStockes.BackColor = Color.FromArgb(0, 85, 70);
             btnAlertesStockes.FlatStyle = FlatStyle.Popup;
-            btnAlertesStockes.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAlertesStockes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnAlertesStockes.ForeColor = SystemColors.HighlightText;
-            btnAlertesStockes.Location = new Point(10, 50);
+            btnAlertesStockes.Location = new Point(10, 29);
             btnAlertesStockes.Name = "btnAlertesStockes";
-            btnAlertesStockes.Size = new Size(298, 43);
+            btnAlertesStockes.Size = new Size(298, 38);
             btnAlertesStockes.TabIndex = 4;
             btnAlertesStockes.Text = "Alertes Stockes";
             btnAlertesStockes.UseVisualStyleBackColor = false;
@@ -204,11 +212,11 @@
             // 
             btnHistorique.BackColor = Color.FromArgb(0, 85, 70);
             btnHistorique.FlatStyle = FlatStyle.Popup;
-            btnHistorique.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHistorique.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnHistorique.ForeColor = SystemColors.HighlightText;
-            btnHistorique.Location = new Point(176, 50);
+            btnHistorique.Location = new Point(10, 29);
             btnHistorique.Name = "btnHistorique";
-            btnHistorique.Size = new Size(298, 43);
+            btnHistorique.Size = new Size(298, 38);
             btnHistorique.TabIndex = 6;
             btnHistorique.Text = "Consulter l'Historique";
             btnHistorique.UseVisualStyleBackColor = false;
@@ -220,10 +228,10 @@
             grpGestion.Controls.Add(label1);
             grpGestion.Controls.Add(btnGererLots);
             grpGestion.Controls.Add(btnGererMedicaments);
-            grpGestion.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpGestion.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             grpGestion.Location = new Point(601, 55);
             grpGestion.Name = "grpGestion";
-            grpGestion.Size = new Size(650, 150);
+            grpGestion.Size = new Size(650, 120);
             grpGestion.TabIndex = 7;
             grpGestion.TabStop = false;
             grpGestion.Text = "Gestion des Médicaments";
@@ -231,7 +239,7 @@
             // label2
             // 
             label2.Font = new Font("Segoe UI", 9F);
-            label2.Location = new Point(342, 101);
+            label2.Location = new Point(342, 70);
             label2.Name = "label2";
             label2.Size = new Size(259, 40);
             label2.TabIndex = 11;
@@ -240,7 +248,7 @@
             // label1
             // 
             label1.Font = new Font("Segoe UI", 9F);
-            label1.Location = new Point(10, 101);
+            label1.Location = new Point(10, 70);
             label1.Name = "label1";
             label1.Size = new Size(259, 40);
             label1.TabIndex = 10;
@@ -252,10 +260,10 @@
             grpAlertes.Controls.Add(label3);
             grpAlertes.Controls.Add(btnAlertesStockes);
             grpAlertes.Controls.Add(btnAlertesPeremption);
-            grpAlertes.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpAlertes.Location = new Point(601, 210);
+            grpAlertes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            grpAlertes.Location = new Point(601, 177);
             grpAlertes.Name = "grpAlertes";
-            grpAlertes.Size = new Size(650, 150);
+            grpAlertes.Size = new Size(650, 120);
             grpAlertes.TabIndex = 8;
             grpAlertes.TabStop = false;
             grpAlertes.Text = "Alertes et Notifications";
@@ -263,7 +271,7 @@
             // label4
             // 
             label4.Font = new Font("Segoe UI", 9F);
-            label4.Location = new Point(342, 101);
+            label4.Location = new Point(342, 70);
             label4.Name = "label4";
             label4.Size = new Size(259, 40);
             label4.TabIndex = 12;
@@ -272,7 +280,7 @@
             // label3
             // 
             label3.Font = new Font("Segoe UI", 9F);
-            label3.Location = new Point(10, 101);
+            label3.Location = new Point(10, 70);
             label3.Name = "label3";
             label3.Size = new Size(259, 40);
             label3.TabIndex = 11;
@@ -280,12 +288,14 @@
             // 
             // grpHistorique
             // 
+            grpHistorique.Controls.Add(label10);
+            grpHistorique.Controls.Add(button1);
             grpHistorique.Controls.Add(label5);
             grpHistorique.Controls.Add(btnHistorique);
-            grpHistorique.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpHistorique.Location = new Point(601, 520);
+            grpHistorique.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            grpHistorique.Location = new Point(601, 543);
             grpHistorique.Name = "grpHistorique";
-            grpHistorique.Size = new Size(650, 150);
+            grpHistorique.Size = new Size(650, 120);
             grpHistorique.TabIndex = 9;
             grpHistorique.TabStop = false;
             grpHistorique.Text = "Suivi et Historique";
@@ -293,7 +303,7 @@
             // label5
             // 
             label5.Font = new Font("Segoe UI", 9F);
-            label5.Location = new Point(176, 101);
+            label5.Location = new Point(10, 70);
             label5.Name = "label5";
             label5.Size = new Size(259, 40);
             label5.TabIndex = 12;
@@ -301,9 +311,9 @@
             // 
             // lblConnexion
             // 
-            lblConnexion.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblConnexion.Font = new Font("Segoe UI Black", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblConnexion.ForeColor = Color.FromArgb(0, 85, 70);
-            lblConnexion.Location = new Point(601, 6);
+            lblConnexion.Location = new Point(601, 3);
             lblConnexion.Name = "lblConnexion";
             lblConnexion.Size = new Size(650, 51);
             lblConnexion.TabIndex = 19;
@@ -316,10 +326,10 @@
             grpClients.Controls.Add(label7);
             grpClients.Controls.Add(btnClients);
             grpClients.Controls.Add(btnCommandes);
-            grpClients.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpClients.Location = new Point(601, 365);
+            grpClients.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            grpClients.Location = new Point(601, 299);
             grpClients.Name = "grpClients";
-            grpClients.Size = new Size(650, 150);
+            grpClients.Size = new Size(650, 120);
             grpClients.TabIndex = 13;
             grpClients.TabStop = false;
             grpClients.Text = "Clients et Commandes";
@@ -327,30 +337,30 @@
             // label6
             // 
             label6.Font = new Font("Segoe UI", 9F);
-            label6.Location = new Point(342, 101);
+            label6.Location = new Point(342, 70);
             label6.Name = "label6";
             label6.Size = new Size(259, 40);
             label6.TabIndex = 12;
-            label6.Text = "Gérer les commandes, Gérer les commandes, Gérer les commandes";
+            label6.Text = "Ajouter des nouvelles commandes";
             // 
             // label7
             // 
             label7.Font = new Font("Segoe UI", 9F);
-            label7.Location = new Point(10, 101);
+            label7.Location = new Point(10, 70);
             label7.Name = "label7";
             label7.Size = new Size(259, 40);
             label7.TabIndex = 11;
-            label7.Text = "Gérer les clients, Gérer les clients, Gérer les clients";
+            label7.Text = "Ajouter, modifier ou supprimer des clients au système";
             // 
             // btnClients
             // 
             btnClients.BackColor = Color.FromArgb(0, 85, 70);
             btnClients.FlatStyle = FlatStyle.Popup;
-            btnClients.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnClients.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnClients.ForeColor = SystemColors.HighlightText;
-            btnClients.Location = new Point(10, 50);
+            btnClients.Location = new Point(10, 29);
             btnClients.Name = "btnClients";
-            btnClients.Size = new Size(298, 43);
+            btnClients.Size = new Size(298, 38);
             btnClients.TabIndex = 4;
             btnClients.Text = "Gérer les Clients";
             btnClients.UseVisualStyleBackColor = false;
@@ -360,21 +370,102 @@
             // 
             btnCommandes.BackColor = Color.FromArgb(0, 85, 70);
             btnCommandes.FlatStyle = FlatStyle.Popup;
-            btnCommandes.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCommandes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             btnCommandes.ForeColor = SystemColors.HighlightText;
-            btnCommandes.Location = new Point(342, 50);
+            btnCommandes.Location = new Point(342, 29);
             btnCommandes.Name = "btnCommandes";
-            btnCommandes.Size = new Size(298, 43);
+            btnCommandes.Size = new Size(298, 38);
             btnCommandes.TabIndex = 5;
-            btnCommandes.Text = "Gérer les Commandes";
+            btnCommandes.Text = "Ajouter des Commandes";
             btnCommandes.UseVisualStyleBackColor = false;
             btnCommandes.Click += btnCommandes_Click;
+            // 
+            // grpFournisseurs
+            // 
+            grpFournisseurs.Controls.Add(label8);
+            grpFournisseurs.Controls.Add(label9);
+            grpFournisseurs.Controls.Add(btnFournisseurs);
+            grpFournisseurs.Controls.Add(btnFournisseursMedicaments);
+            grpFournisseurs.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            grpFournisseurs.Location = new Point(601, 421);
+            grpFournisseurs.Name = "grpFournisseurs";
+            grpFournisseurs.Size = new Size(650, 120);
+            grpFournisseurs.TabIndex = 14;
+            grpFournisseurs.TabStop = false;
+            grpFournisseurs.Text = "Fourisseurs";
+            // 
+            // label8
+            // 
+            label8.Font = new Font("Segoe UI", 9F);
+            label8.Location = new Point(342, 70);
+            label8.Name = "label8";
+            label8.Size = new Size(259, 40);
+            label8.TabIndex = 12;
+            label8.Text = "Gérer l’attribution des médicaments aux fournisseurs";
+            // 
+            // label9
+            // 
+            label9.Font = new Font("Segoe UI", 9F);
+            label9.Location = new Point(10, 70);
+            label9.Name = "label9";
+            label9.Size = new Size(259, 40);
+            label9.TabIndex = 11;
+            label9.Text = "Ajouter, modifier ou supprimer des fournisseurs au système";
+            // 
+            // btnFournisseurs
+            // 
+            btnFournisseurs.BackColor = Color.FromArgb(0, 85, 70);
+            btnFournisseurs.FlatStyle = FlatStyle.Popup;
+            btnFournisseurs.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnFournisseurs.ForeColor = SystemColors.HighlightText;
+            btnFournisseurs.Location = new Point(10, 29);
+            btnFournisseurs.Name = "btnFournisseurs";
+            btnFournisseurs.Size = new Size(298, 38);
+            btnFournisseurs.TabIndex = 4;
+            btnFournisseurs.Text = "Gérer les Fournisseurs";
+            btnFournisseurs.UseVisualStyleBackColor = false;
+            // 
+            // btnFournisseursMedicaments
+            // 
+            btnFournisseursMedicaments.BackColor = Color.FromArgb(0, 85, 70);
+            btnFournisseursMedicaments.FlatStyle = FlatStyle.Popup;
+            btnFournisseursMedicaments.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnFournisseursMedicaments.ForeColor = SystemColors.HighlightText;
+            btnFournisseursMedicaments.Location = new Point(342, 29);
+            btnFournisseursMedicaments.Name = "btnFournisseursMedicaments";
+            btnFournisseursMedicaments.Size = new Size(298, 38);
+            btnFournisseursMedicaments.TabIndex = 5;
+            btnFournisseursMedicaments.Text = "Gérer fournisseur–médicament";
+            btnFournisseursMedicaments.UseVisualStyleBackColor = false;
+            // 
+            // label10
+            // 
+            label10.Font = new Font("Segoe UI", 9F);
+            label10.Location = new Point(342, 70);
+            label10.Name = "label10";
+            label10.Size = new Size(259, 40);
+            label10.TabIndex = 14;
+            label10.Text = "Voir toutes les commandes effectuées sur le système";
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(0, 85, 70);
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            button1.ForeColor = SystemColors.HighlightText;
+            button1.Location = new Point(342, 29);
+            button1.Name = "button1";
+            button1.Size = new Size(298, 38);
+            button1.TabIndex = 13;
+            button1.Text = "Consulter les Commandes";
+            button1.UseVisualStyleBackColor = false;
             // 
             // FormMenuPharmacien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1262, 673);
+            Controls.Add(grpFournisseurs);
             Controls.Add(grpClients);
             Controls.Add(lblConnexion);
             Controls.Add(grpHistorique);
@@ -390,6 +481,7 @@
             grpAlertes.ResumeLayout(false);
             grpHistorique.ResumeLayout(false);
             grpClients.ResumeLayout(false);
+            grpFournisseurs.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -421,5 +513,12 @@
         private Label label7;
         private Button btnClients;
         private Button btnCommandes;
+        private GroupBox grpFournisseurs;
+        private Label label8;
+        private Label label9;
+        private Button btnFournisseurs;
+        private Button btnFournisseursMedicaments;
+        private Label label10;
+        private Button button1;
     }
 }
