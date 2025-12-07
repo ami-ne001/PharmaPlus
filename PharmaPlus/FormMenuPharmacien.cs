@@ -73,5 +73,24 @@ namespace PharmaPlus
             formAjouterCommande.Show();
             this.Hide();
         }
+
+        private void btnFournisseurs_Click(object sender, EventArgs e)
+        {
+            FormFournisseurs formFournisseurs = new FormFournisseurs();
+            formFournisseurs.Show();
+            this.Hide();
+        }
+
+        private void btnFournisseursMedicaments_Click(object sender, EventArgs e)
+        {
+            FormFournisseursMedicaments formFournisseursMedicaments = new FormFournisseursMedicaments();
+            formFournisseursMedicaments.Show();
+            this.Hide();
+        }
+
+        private void btnHistoriqueCommandes_Click(object sender, EventArgs e)
+        {
+            // TODO  :p
+        }
     }
 }

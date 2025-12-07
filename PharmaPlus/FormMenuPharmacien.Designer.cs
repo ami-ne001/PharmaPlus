@@ -47,6 +47,8 @@
             label4 = new Label();
             label3 = new Label();
             grpHistorique = new GroupBox();
+            label10 = new Label();
+            btnHistoriqueCommandes = new Button();
             label5 = new Label();
             lblConnexion = new Label();
             grpClients = new GroupBox();
@@ -59,8 +61,6 @@
             label9 = new Label();
             btnFournisseurs = new Button();
             btnFournisseursMedicaments = new Button();
-            label10 = new Label();
-            button1 = new Button();
             panel1.SuspendLayout();
             grpGestion.SuspendLayout();
             grpAlertes.SuspendLayout();
@@ -289,7 +289,7 @@
             // grpHistorique
             // 
             grpHistorique.Controls.Add(label10);
-            grpHistorique.Controls.Add(button1);
+            grpHistorique.Controls.Add(btnHistoriqueCommandes);
             grpHistorique.Controls.Add(label5);
             grpHistorique.Controls.Add(btnHistorique);
             grpHistorique.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
@@ -299,6 +299,29 @@
             grpHistorique.TabIndex = 9;
             grpHistorique.TabStop = false;
             grpHistorique.Text = "Suivi et Historique";
+            // 
+            // label10
+            // 
+            label10.Font = new Font("Segoe UI", 9F);
+            label10.Location = new Point(342, 70);
+            label10.Name = "label10";
+            label10.Size = new Size(259, 40);
+            label10.TabIndex = 14;
+            label10.Text = "Voir toutes les commandes effectuées sur le système";
+            // 
+            // btnHistoriqueCommandes
+            // 
+            btnHistoriqueCommandes.BackColor = Color.FromArgb(0, 85, 70);
+            btnHistoriqueCommandes.FlatStyle = FlatStyle.Popup;
+            btnHistoriqueCommandes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnHistoriqueCommandes.ForeColor = SystemColors.HighlightText;
+            btnHistoriqueCommandes.Location = new Point(342, 29);
+            btnHistoriqueCommandes.Name = "btnHistoriqueCommandes";
+            btnHistoriqueCommandes.Size = new Size(298, 38);
+            btnHistoriqueCommandes.TabIndex = 13;
+            btnHistoriqueCommandes.Text = "Consulter les Commandes";
+            btnHistoriqueCommandes.UseVisualStyleBackColor = false;
+            btnHistoriqueCommandes.Click += btnHistoriqueCommandes_Click;
             // 
             // label5
             // 
@@ -424,6 +447,7 @@
             btnFournisseurs.TabIndex = 4;
             btnFournisseurs.Text = "Gérer les Fournisseurs";
             btnFournisseurs.UseVisualStyleBackColor = false;
+            btnFournisseurs.Click += btnFournisseurs_Click;
             // 
             // btnFournisseursMedicaments
             // 
@@ -437,28 +461,7 @@
             btnFournisseursMedicaments.TabIndex = 5;
             btnFournisseursMedicaments.Text = "Gérer fournisseur–médicament";
             btnFournisseursMedicaments.UseVisualStyleBackColor = false;
-            // 
-            // label10
-            // 
-            label10.Font = new Font("Segoe UI", 9F);
-            label10.Location = new Point(342, 70);
-            label10.Name = "label10";
-            label10.Size = new Size(259, 40);
-            label10.TabIndex = 14;
-            label10.Text = "Voir toutes les commandes effectuées sur le système";
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(0, 85, 70);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            button1.ForeColor = SystemColors.HighlightText;
-            button1.Location = new Point(342, 29);
-            button1.Name = "button1";
-            button1.Size = new Size(298, 38);
-            button1.TabIndex = 13;
-            button1.Text = "Consulter les Commandes";
-            button1.UseVisualStyleBackColor = false;
+            btnFournisseursMedicaments.Click += btnFournisseursMedicaments_Click;
             // 
             // FormMenuPharmacien
             // 
@@ -519,6 +522,6 @@
         private Button btnFournisseurs;
         private Button btnFournisseursMedicaments;
         private Label label10;
-        private Button button1;
+        private Button btnHistoriqueCommandes;
     }
 }
