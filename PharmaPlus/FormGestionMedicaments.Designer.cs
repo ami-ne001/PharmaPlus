@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnRetour = new Button();
             btnReinitialiserRecherche = new Button();
@@ -100,7 +100,7 @@
             btnReinitialiserRecherche.FlatStyle = FlatStyle.Popup;
             btnReinitialiserRecherche.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReinitialiserRecherche.ForeColor = SystemColors.HighlightText;
-            btnReinitialiserRecherche.Location = new Point(848, 52);
+            btnReinitialiserRecherche.Location = new Point(778, 52);
             btnReinitialiserRecherche.Name = "btnReinitialiserRecherche";
             btnReinitialiserRecherche.Size = new Size(120, 29);
             btnReinitialiserRecherche.TabIndex = 27;
@@ -114,7 +114,7 @@
             btnRafraichir.FlatStyle = FlatStyle.Popup;
             btnRafraichir.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRafraichir.ForeColor = SystemColors.HighlightText;
-            btnRafraichir.Location = new Point(722, 52);
+            btnRafraichir.Location = new Point(652, 52);
             btnRafraichir.Name = "btnRafraichir";
             btnRafraichir.Size = new Size(120, 29);
             btnRafraichir.TabIndex = 25;
@@ -125,7 +125,7 @@
             // textBox2
             // 
             textBox2.Font = new Font("Segoe UI", 10F);
-            textBox2.Location = new Point(266, 51);
+            textBox2.Location = new Point(196, 51);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(412, 30);
             textBox2.TabIndex = 24;
@@ -134,7 +134,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(140, 55);
+            label6.Location = new Point(70, 55);
             label6.Name = "label6";
             label6.Size = new Size(96, 23);
             label6.TabIndex = 23;
@@ -144,14 +144,14 @@
             // 
             dgvMedicaments.AllowUserToAddRows = false;
             dgvMedicaments.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, Nom, Reference, Categorie, Fabricant, QuantiteTotale, SeuilAlerteStock });
             dgvMedicaments.EnableHeadersVisualStyles = false;
@@ -249,9 +249,9 @@
             // 
             lblGestionMedicaments.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGestionMedicaments.ForeColor = Color.FromArgb(0, 85, 70);
-            lblGestionMedicaments.Location = new Point(24, 19);
+            lblGestionMedicaments.Location = new Point(24, 13);
             lblGestionMedicaments.Name = "lblGestionMedicaments";
-            lblGestionMedicaments.Size = new Size(273, 78);
+            lblGestionMedicaments.Size = new Size(273, 98);
             lblGestionMedicaments.TabIndex = 35;
             lblGestionMedicaments.Text = "Gestion des Médicaments";
             lblGestionMedicaments.TextAlign = ContentAlignment.MiddleCenter;

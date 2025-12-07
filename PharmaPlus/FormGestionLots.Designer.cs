@@ -410,7 +410,7 @@
             dtpDatePeremption.Format = DateTimePickerFormat.Custom;
             dtpDatePeremption.Location = new Point(18, 322);
             dtpDatePeremption.MaxDate = new DateTime(2999, 12, 31, 0, 0, 0, 0);
-            dtpDatePeremption.MinDate = new DateTime(2025, 11, 1, 0, 0, 0, 0);
+            dtpDatePeremption.MinDate = new DateTime(2023, 1, 1, 0, 0, 0, 0);
             dtpDatePeremption.Name = "dtpDatePeremption";
             dtpDatePeremption.Size = new Size(289, 32);
             dtpDatePeremption.TabIndex = 26;
