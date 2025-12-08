@@ -39,6 +39,7 @@ namespace PharmaPlus
             btnRafraichir = new Button();
             txtRecherche = new TextBox();
             label6 = new Label();
+            lblTotalCommandes = new Label();
             dgvCommandes = new DataGridView();
             panel2 = new Panel();
             dgvDetailsCommande = new DataGridView();
@@ -65,6 +66,7 @@ namespace PharmaPlus
             panel1.Controls.Add(btnRafraichir);
             panel1.Controls.Add(txtRecherche);
             panel1.Controls.Add(label6);
+            panel1.Controls.Add(lblTotalCommandes);
             panel1.Controls.Add(dgvCommandes);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -117,6 +119,17 @@ namespace PharmaPlus
             label6.TabIndex = 23;
             label6.Text = "Rechercher";
             // 
+            // lblTotalCommandes
+            // 
+            lblTotalCommandes.AutoSize = true;
+            lblTotalCommandes.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalCommandes.ForeColor = Color.Black;
+            lblTotalCommandes.Location = new Point(20, 80);
+            lblTotalCommandes.Name = "lblTotalCommandes";
+            lblTotalCommandes.Size = new Size(220, 25);
+            lblTotalCommandes.TabIndex = 27;
+            lblTotalCommandes.Text = "Total de commandes : 0";
+            // 
             // dgvCommandes
             // 
             dgvCommandes.AllowUserToAddRows = false;
@@ -140,7 +153,7 @@ namespace PharmaPlus
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvCommandes.DefaultCellStyle = dataGridViewCellStyle2;
             dgvCommandes.EnableHeadersVisualStyles = false;
-            dgvCommandes.Location = new Point(20, 103);
+            dgvCommandes.Location = new Point(20, 117);
             dgvCommandes.MultiSelect = false;
             dgvCommandes.Name = "dgvCommandes";
             dgvCommandes.ReadOnly = true;
@@ -154,7 +167,7 @@ namespace PharmaPlus
             dgvCommandes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvCommandes.RowHeadersWidth = 51;
             dgvCommandes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCommandes.Size = new Size(600, 557);
+            dgvCommandes.Size = new Size(600, 543);
             dgvCommandes.TabIndex = 23;
             // 
             // panel2
@@ -355,5 +368,6 @@ namespace PharmaPlus
         private Label label4;
         private Label label7;
         private DataGridView dgvDetailsCommande;
+        private Label lblTotalCommandes;
     }
 }

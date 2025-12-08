@@ -37,6 +37,7 @@
             btnRafraichir = new Button();
             textBox2 = new TextBox();
             label6 = new Label();
+            lblTotalMedicaments = new Label();
             dgvMedicaments = new DataGridView();
             ID_Medicament = new DataGridViewTextBoxColumn();
             Nom = new DataGridViewTextBoxColumn();
@@ -75,6 +76,7 @@
             panel1.Controls.Add(btnRafraichir);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label6);
+            panel1.Controls.Add(lblTotalMedicaments);
             panel1.Controls.Add(dgvMedicaments);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -142,6 +144,17 @@
             label6.TabIndex = 23;
             label6.Text = "Rechercher";
             // 
+            // lblTotalMedicaments
+            // 
+            lblTotalMedicaments.AutoSize = true;
+            lblTotalMedicaments.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalMedicaments.ForeColor = Color.Black;
+            lblTotalMedicaments.Location = new Point(3, 88);
+            lblTotalMedicaments.Name = "lblTotalMedicaments";
+            lblTotalMedicaments.Size = new Size(250, 25);
+            lblTotalMedicaments.TabIndex = 28;
+            lblTotalMedicaments.Text = "Total de médicaments : 0";
+            // 
             // dgvMedicaments
             // 
             dgvMedicaments.AllowUserToAddRows = false;
@@ -165,7 +178,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvMedicaments.DefaultCellStyle = dataGridViewCellStyle2;
             dgvMedicaments.EnableHeadersVisualStyles = false;
-            dgvMedicaments.Location = new Point(3, 111);
+            dgvMedicaments.Location = new Point(3, 125);
             dgvMedicaments.MultiSelect = false;
             dgvMedicaments.Name = "dgvMedicaments";
             dgvMedicaments.ReadOnly = true;
@@ -179,7 +192,7 @@
             dgvMedicaments.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvMedicaments.RowHeadersWidth = 51;
             dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMedicaments.Size = new Size(928, 557);
+            dgvMedicaments.Size = new Size(928, 543);
             dgvMedicaments.TabIndex = 23;
             dgvMedicaments.SelectionChanged += dgvMedicaments_SelectionChanged;
             // 
@@ -474,5 +487,6 @@
         private Button btnReinitialiserRecherche;
         private Label lblGestionMedicaments;
         private Button btnRetour;
+        private Label lblTotalMedicaments;
     }
 }

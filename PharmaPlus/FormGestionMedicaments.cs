@@ -40,11 +40,25 @@ namespace PharmaPlus
                 medicamentsList = Medicament.ListerMedicaments();
                 dgvMedicaments.DataSource = null;
                 dgvMedicaments.DataSource = medicamentsList;
+                MettreAJourTotalMedicaments();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors du chargement des médicaments : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MettreAJourTotalMedicaments()
+        {
+            if (medicamentsList != null)
+            {
+                int total = medicamentsList.Count;
+                lblTotalMedicaments.Text = $"Total de médicaments : {total}";
+            }
+            else
+            {
+                lblTotalMedicaments.Text = "Total de médicaments : 0";
             }
         }
 
@@ -85,6 +99,7 @@ namespace PharmaPlus
 
                 dgvMedicaments.DataSource = null;
                 dgvMedicaments.DataSource = medicamentsFiltres;
+                lblTotalMedicaments.Text = $"Total de médicaments : {medicamentsFiltres.Count} (filtrés)";
             }
             catch (Exception ex)
             {

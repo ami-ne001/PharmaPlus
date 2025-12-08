@@ -49,11 +49,25 @@ namespace PharmaPlus
                         f.Adresse ?? ""
                     );
                 }
+                MettreAJourTotalFournisseurs();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors du chargement des fournisseurs : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MettreAJourTotalFournisseurs()
+        {
+            if (fournisseursList != null)
+            {
+                int total = fournisseursList.Count;
+                lblTotalFournisseurs.Text = $"Total de fournisseurs : {total}";
+            }
+            else
+            {
+                lblTotalFournisseurs.Text = "Total de fournisseurs : 0";
             }
         }
 
@@ -106,6 +120,7 @@ namespace PharmaPlus
                         f.Adresse ?? ""
                     );
                 }
+                lblTotalFournisseurs.Text = $"Total de fournisseurs : {fournisseursFiltres.Count} (filtrés)";
             }
             catch (Exception ex)
             {

@@ -37,6 +37,7 @@
             btnRafraichir = new Button();
             textBox2 = new TextBox();
             label6 = new Label();
+            lblTotalClients = new Label();
             dgvClients = new DataGridView();
             panel2 = new Panel();
             textCodeClient = new TextBox();
@@ -67,6 +68,7 @@
             panel1.Controls.Add(btnRafraichir);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label6);
+            panel1.Controls.Add(lblTotalClients);
             panel1.Controls.Add(dgvClients);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -134,6 +136,17 @@
             label6.TabIndex = 23;
             label6.Text = "Rechercher";
             // 
+            // lblTotalClients
+            // 
+            lblTotalClients.AutoSize = true;
+            lblTotalClients.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalClients.ForeColor = Color.Black;
+            lblTotalClients.Location = new Point(37, 80);
+            lblTotalClients.Name = "lblTotalClients";
+            lblTotalClients.Size = new Size(200, 25);
+            lblTotalClients.TabIndex = 28;
+            lblTotalClients.Text = "Total de clients : 0";
+            // 
             // dgvClients
             // 
             dgvClients.AllowUserToAddRows = false;
@@ -156,7 +169,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvClients.DefaultCellStyle = dataGridViewCellStyle2;
             dgvClients.EnableHeadersVisualStyles = false;
-            dgvClients.Location = new Point(37, 103);
+            dgvClients.Location = new Point(37, 117);
             dgvClients.MultiSelect = false;
             dgvClients.Name = "dgvClients";
             dgvClients.ReadOnly = true;
@@ -170,7 +183,7 @@
             dgvClients.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvClients.RowHeadersWidth = 51;
             dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvClients.Size = new Size(873, 557);
+            dgvClients.Size = new Size(873, 543);
             dgvClients.TabIndex = 23;
             dgvClients.CellContentClick += dgvClients_CellContentClick;
             // 
@@ -399,5 +412,6 @@
         private Label label1;
         private TextBox textCodeClient;
         private Label label0;
+        private Label lblTotalClients;
     }
 }

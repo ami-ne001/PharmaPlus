@@ -39,11 +39,25 @@ namespace PharmaPlus
                 clientsList = Client.ListerClients();
                 dgvClients.DataSource = null;
                 dgvClients.DataSource = clientsList;
+                MettreAJourTotalClients();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors du chargement des clients : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MettreAJourTotalClients()
+        {
+            if (clientsList != null)
+            {
+                int total = clientsList.Count;
+                lblTotalClients.Text = $"Total de clients : {total}";
+            }
+            else
+            {
+                lblTotalClients.Text = "Total de clients : 0";
             }
         }
 
@@ -87,6 +101,7 @@ namespace PharmaPlus
 
                 dgvClients.DataSource = null;
                 dgvClients.DataSource = clientsFiltres;
+                lblTotalClients.Text = $"Total de clients : {clientsFiltres.Count} (filtrés)";
             }
             catch (Exception ex)
             {

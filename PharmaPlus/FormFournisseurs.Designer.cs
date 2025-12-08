@@ -37,6 +37,7 @@
             btnRafraichir = new Button();
             textRecherche = new TextBox();
             label6 = new Label();
+            lblTotalFournisseurs = new Label();
             dgvFournisseurs = new DataGridView();
             CodeFournisseur = new DataGridViewTextBoxColumn();
             Nom = new DataGridViewTextBoxColumn();
@@ -86,6 +87,7 @@
             panel1.Controls.Add(btnRafraichir);
             panel1.Controls.Add(textRecherche);
             panel1.Controls.Add(label6);
+            panel1.Controls.Add(lblTotalFournisseurs);
             panel1.Controls.Add(dgvFournisseurs);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
@@ -139,6 +141,17 @@
             label6.TabIndex = 23;
             label6.Text = "Rechercher";
             // 
+            // lblTotalFournisseurs
+            // 
+            lblTotalFournisseurs.AutoSize = true;
+            lblTotalFournisseurs.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTotalFournisseurs.ForeColor = Color.Black;
+            lblTotalFournisseurs.Location = new Point(37, 80);
+            lblTotalFournisseurs.Name = "lblTotalFournisseurs";
+            lblTotalFournisseurs.Size = new Size(230, 25);
+            lblTotalFournisseurs.TabIndex = 28;
+            lblTotalFournisseurs.Text = "Total de fournisseurs : 0";
+            // 
             // dgvFournisseurs
             // 
             dgvFournisseurs.AllowUserToAddRows = false;
@@ -162,7 +175,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvFournisseurs.DefaultCellStyle = dataGridViewCellStyle2;
             dgvFournisseurs.EnableHeadersVisualStyles = false;
-            dgvFournisseurs.Location = new Point(37, 103);
+            dgvFournisseurs.Location = new Point(37, 117);
             dgvFournisseurs.MultiSelect = false;
             dgvFournisseurs.Name = "dgvFournisseurs";
             dgvFournisseurs.ReadOnly = true;
@@ -176,7 +189,7 @@
             dgvFournisseurs.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvFournisseurs.RowHeadersWidth = 51;
             dgvFournisseurs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvFournisseurs.Size = new Size(873, 557);
+            dgvFournisseurs.Size = new Size(873, 543);
             dgvFournisseurs.TabIndex = 23;
             dgvFournisseurs.CellContentClick += dgvFournisseurs_CellContentClick;
             // 
@@ -451,5 +464,6 @@
         private DataGridViewTextBoxColumn Telephone;
         private DataGridViewTextBoxColumn Email;
         private DataGridViewTextBoxColumn Adresse;
+        private Label lblTotalFournisseurs;
     }
 }

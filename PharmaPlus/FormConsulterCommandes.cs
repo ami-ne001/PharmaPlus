@@ -142,6 +142,7 @@ namespace PharmaPlus
                 commandesView = ConstruireCommandesView(commandes);
                 dgvCommandes.DataSource = null;
                 dgvCommandes.DataSource = commandesView;
+                MettreAJourTotalCommandes();
 
                 if (commandes.Count == 0)
                 {
@@ -153,6 +154,19 @@ namespace PharmaPlus
             {
                 MessageBox.Show($"Erreur lors du chargement des commandes : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void MettreAJourTotalCommandes()
+        {
+            if (commandesView != null)
+            {
+                int total = commandesView.Count;
+                lblTotalCommandes.Text = $"Total de commandes : {total}";
+            }
+            else
+            {
+                lblTotalCommandes.Text = "Total de commandes : 0";
             }
         }
 
@@ -285,6 +299,7 @@ namespace PharmaPlus
                 {
                     dgvCommandes.DataSource = null;
                     dgvCommandes.DataSource = commandesView;
+                    MettreAJourTotalCommandes();
                     return;
                 }
 
@@ -304,6 +319,7 @@ namespace PharmaPlus
 
                 dgvCommandes.DataSource = null;
                 dgvCommandes.DataSource = commandesFiltrees;
+                lblTotalCommandes.Text = $"Total de commandes : {commandesFiltrees.Count} (filtrées)";
             }
             catch (Exception ex)
             {
