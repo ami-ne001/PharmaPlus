@@ -42,8 +42,7 @@
             btnReinitialiserReference = new Button();
             txtRechercherReference = new TextBox();
             dgvMedicaments = new DataGridView();
-            ID_Medicament = new DataGridViewTextBoxColumn();
-            ID_Lot = new DataGridViewTextBoxColumn();
+            Reference = new DataGridViewTextBoxColumn();
             NumeroLot = new DataGridViewTextBoxColumn();
             DatePeremption = new DataGridViewTextBoxColumn();
             Prix = new DataGridViewTextBoxColumn();
@@ -228,10 +227,10 @@
             dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, ID_Lot, NumeroLot, DatePeremption, Prix, QuantiteLot });
+            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Reference, NumeroLot, DatePeremption, Prix, QuantiteLot });
             dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(3, 269);
             dgvMedicaments.MultiSelect = false;
@@ -242,22 +241,15 @@
             dgvMedicaments.Size = new Size(928, 399);
             dgvMedicaments.TabIndex = 24;
             dgvMedicaments.CellContentClick += dgvMedicaments_CellContentClick;
+            dgvMedicaments.SelectionChanged += dgvMedicaments_SelectionChanged;
             // 
-            // ID_Medicament
+            // Reference
             // 
-            ID_Medicament.HeaderText = "ID Médicament";
-            ID_Medicament.MinimumWidth = 6;
-            ID_Medicament.Name = "ID_Medicament";
-            ID_Medicament.ReadOnly = true;
-            ID_Medicament.Width = 140;
-            // 
-            // ID_Lot
-            // 
-            ID_Lot.HeaderText = "ID Lot";
-            ID_Lot.MinimumWidth = 6;
-            ID_Lot.Name = "ID_Lot";
-            ID_Lot.ReadOnly = true;
-            ID_Lot.Width = 140;
+            Reference.HeaderText = "Référence";
+            Reference.MinimumWidth = 6;
+            Reference.Name = "Reference";
+            Reference.ReadOnly = true;
+            Reference.Width = 150;
             // 
             // NumeroLot
             // 
@@ -318,11 +310,11 @@
             // 
             // lblGestionLots
             // 
-            lblGestionLots.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGestionLots.Font = new Font("Segoe UI Black", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGestionLots.ForeColor = Color.FromArgb(0, 85, 70);
-            lblGestionLots.Location = new Point(18, 16);
+            lblGestionLots.Location = new Point(3, 15);
             lblGestionLots.Name = "lblGestionLots";
-            lblGestionLots.Size = new Size(289, 78);
+            lblGestionLots.Size = new Size(316, 78);
             lblGestionLots.TabIndex = 34;
             lblGestionLots.Text = "Gestion des Lots de Médicaments";
             lblGestionLots.TextAlign = ContentAlignment.MiddleCenter;
@@ -406,7 +398,6 @@
             nudQuantiteLot.Font = new Font("Segoe UI", 11F);
             nudQuantiteLot.Location = new Point(18, 490);
             nudQuantiteLot.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
-            nudQuantiteLot.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudQuantiteLot.Name = "nudQuantiteLot";
             nudQuantiteLot.Size = new Size(289, 32);
             nudQuantiteLot.TabIndex = 27;
@@ -419,7 +410,7 @@
             dtpDatePeremption.Format = DateTimePickerFormat.Custom;
             dtpDatePeremption.Location = new Point(18, 322);
             dtpDatePeremption.MaxDate = new DateTime(2999, 12, 31, 0, 0, 0, 0);
-            dtpDatePeremption.MinDate = new DateTime(2025, 11, 1, 0, 0, 0, 0);
+            dtpDatePeremption.MinDate = new DateTime(2023, 1, 1, 0, 0, 0, 0);
             dtpDatePeremption.Name = "dtpDatePeremption";
             dtpDatePeremption.Size = new Size(289, 32);
             dtpDatePeremption.TabIndex = 26;
@@ -524,8 +515,7 @@
         private DataGridView dgvMedicaments;
         private TextBox txtNumeroLot;
         private Label lblNumeroLot;
-        private DataGridViewTextBoxColumn ID_Medicament;
-        private DataGridViewTextBoxColumn ID_Lot;
+        private DataGridViewTextBoxColumn Reference;
         private DataGridViewTextBoxColumn NumeroLot;
         private DataGridViewTextBoxColumn DatePeremption;
         private DataGridViewTextBoxColumn Prix;

@@ -1,6 +1,6 @@
 ﻿namespace PharmaPlus
 {
-    partial class FormGestionMedicaments
+    partial class FormGestionClients
     {
         /// <summary>
         /// Required designer variable.
@@ -35,34 +35,26 @@
             btnRafraichir = new Button();
             textBox2 = new TextBox();
             label6 = new Label();
-            dgvMedicaments = new DataGridView();
-            ID_Medicament = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Reference = new DataGridViewTextBoxColumn();
-            Categorie = new DataGridViewTextBoxColumn();
-            Fabricant = new DataGridViewTextBoxColumn();
-            QuantiteTotale = new DataGridViewTextBoxColumn();
-            SeuilAlerteStock = new DataGridViewTextBoxColumn();
+            dgvClients = new DataGridView();
             panel2 = new Panel();
+            textCodeClient = new TextBox();
+            label0 = new Label();
             lblGestionMedicaments = new Label();
             btnEffacer = new Button();
             btnSupprimer = new Button();
             btnModifier = new Button();
             btnAjouter = new Button();
-            nudSeuil = new NumericUpDown();
-            label5 = new Label();
-            txtFabricant = new TextBox();
+            txtAdresse = new TextBox();
             label4 = new Label();
-            txtCategorie = new TextBox();
+            txtTelephone = new TextBox();
             label3 = new Label();
-            txtReference = new TextBox();
+            txtPrenom = new TextBox();
             label2 = new Label();
             txtNom = new TextBox();
             label1 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvClients).BeginInit();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudSeuil).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -73,12 +65,12 @@
             panel1.Controls.Add(btnRafraichir);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(dgvMedicaments);
+            panel1.Controls.Add(dgvClients);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(936, 673);
-            panel1.TabIndex = 0;
+            panel1.TabIndex = 1;
             // 
             // btnRetour
             // 
@@ -100,7 +92,7 @@
             btnReinitialiserRecherche.FlatStyle = FlatStyle.Popup;
             btnReinitialiserRecherche.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReinitialiserRecherche.ForeColor = SystemColors.HighlightText;
-            btnReinitialiserRecherche.Location = new Point(778, 52);
+            btnReinitialiserRecherche.Location = new Point(790, 49);
             btnReinitialiserRecherche.Name = "btnReinitialiserRecherche";
             btnReinitialiserRecherche.Size = new Size(120, 29);
             btnReinitialiserRecherche.TabIndex = 27;
@@ -114,7 +106,7 @@
             btnRafraichir.FlatStyle = FlatStyle.Popup;
             btnRafraichir.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRafraichir.ForeColor = SystemColors.HighlightText;
-            btnRafraichir.Location = new Point(652, 52);
+            btnRafraichir.Location = new Point(664, 49);
             btnRafraichir.Name = "btnRafraichir";
             btnRafraichir.Size = new Size(120, 29);
             btnRafraichir.TabIndex = 25;
@@ -125,7 +117,7 @@
             // textBox2
             // 
             textBox2.Font = new Font("Segoe UI", 10F);
-            textBox2.Location = new Point(196, 51);
+            textBox2.Location = new Point(208, 48);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(412, 30);
             textBox2.TabIndex = 24;
@@ -134,16 +126,16 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(70, 55);
+            label6.Location = new Point(82, 52);
             label6.Name = "label6";
             label6.Size = new Size(96, 23);
             label6.TabIndex = 23;
             label6.Text = "Rechercher";
             // 
-            // dgvMedicaments
+            // dgvClients
             // 
-            dgvMedicaments.AllowUserToAddRows = false;
-            dgvMedicaments.BackgroundColor = SystemColors.Control;
+            dgvClients.AllowUserToAddRows = false;
+            dgvClients.BackgroundColor = SystemColors.Control;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.FromArgb(0, 85, 70);
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -151,91 +143,34 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { ID_Medicament, Nom, Reference, Categorie, Fabricant, QuantiteTotale, SeuilAlerteStock });
-            dgvMedicaments.EnableHeadersVisualStyles = false;
-            dgvMedicaments.Location = new Point(3, 111);
-            dgvMedicaments.MultiSelect = false;
-            dgvMedicaments.Name = "dgvMedicaments";
-            dgvMedicaments.ReadOnly = true;
-            dgvMedicaments.RowHeadersWidth = 51;
-            dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMedicaments.Size = new Size(928, 557);
-            dgvMedicaments.TabIndex = 23;
-            dgvMedicaments.SelectionChanged += dgvMedicaments_SelectionChanged;
-            // 
-            // ID_Medicament
-            // 
-            ID_Medicament.HeaderText = "ID";
-            ID_Medicament.MinimumWidth = 6;
-            ID_Medicament.Name = "ID_Medicament";
-            ID_Medicament.ReadOnly = true;
-            ID_Medicament.Width = 125;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.ReadOnly = true;
-            Nom.Width = 125;
-            // 
-            // Reference
-            // 
-            Reference.HeaderText = "Référence";
-            Reference.MinimumWidth = 6;
-            Reference.Name = "Reference";
-            Reference.ReadOnly = true;
-            Reference.Width = 125;
-            // 
-            // Categorie
-            // 
-            Categorie.HeaderText = "Catégorie";
-            Categorie.MinimumWidth = 6;
-            Categorie.Name = "Categorie";
-            Categorie.ReadOnly = true;
-            Categorie.Width = 125;
-            // 
-            // Fabricant
-            // 
-            Fabricant.HeaderText = "Fabricant";
-            Fabricant.MinimumWidth = 6;
-            Fabricant.Name = "Fabricant";
-            Fabricant.ReadOnly = true;
-            Fabricant.Width = 125;
-            // 
-            // QuantiteTotale
-            // 
-            QuantiteTotale.HeaderText = "Quantité";
-            QuantiteTotale.MinimumWidth = 6;
-            QuantiteTotale.Name = "QuantiteTotale";
-            QuantiteTotale.ReadOnly = true;
-            QuantiteTotale.Width = 125;
-            // 
-            // SeuilAlerteStock
-            // 
-            SeuilAlerteStock.HeaderText = "Seuil";
-            SeuilAlerteStock.MinimumWidth = 6;
-            SeuilAlerteStock.Name = "SeuilAlerteStock";
-            SeuilAlerteStock.ReadOnly = true;
-            SeuilAlerteStock.Width = 125;
+            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvClients.EnableHeadersVisualStyles = false;
+            dgvClients.Location = new Point(37, 103);
+            dgvClients.MultiSelect = false;
+            dgvClients.Name = "dgvClients";
+            dgvClients.ReadOnly = true;
+            dgvClients.RowHeadersWidth = 51;
+            dgvClients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvClients.Size = new Size(873, 557);
+            dgvClients.TabIndex = 23;
+            dgvClients.CellContentClick += dgvClients_CellContentClick;
             // 
             // panel2
             // 
             panel2.BorderStyle = BorderStyle.FixedSingle;
+            panel2.Controls.Add(textCodeClient);
+            panel2.Controls.Add(label0);
             panel2.Controls.Add(lblGestionMedicaments);
             panel2.Controls.Add(btnEffacer);
             panel2.Controls.Add(btnSupprimer);
             panel2.Controls.Add(btnModifier);
             panel2.Controls.Add(btnAjouter);
-            panel2.Controls.Add(nudSeuil);
-            panel2.Controls.Add(label5);
-            panel2.Controls.Add(txtFabricant);
+            panel2.Controls.Add(txtAdresse);
             panel2.Controls.Add(label4);
-            panel2.Controls.Add(txtCategorie);
+            panel2.Controls.Add(txtTelephone);
             panel2.Controls.Add(label3);
-            panel2.Controls.Add(txtReference);
+            panel2.Controls.Add(txtPrenom);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(txtNom);
             panel2.Controls.Add(label1);
@@ -243,17 +178,35 @@
             panel2.Location = new Point(938, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(324, 673);
-            panel2.TabIndex = 1;
+            panel2.TabIndex = 2;
+            // 
+            // textCodeClient
+            // 
+            textCodeClient.Font = new Font("Segoe UI", 11F);
+            textCodeClient.Location = new Point(24, 157);
+            textCodeClient.Name = "textCodeClient";
+            textCodeClient.Size = new Size(273, 32);
+            textCodeClient.TabIndex = 37;
+            // 
+            // label0
+            // 
+            label0.AutoSize = true;
+            label0.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label0.Location = new Point(24, 129);
+            label0.Name = "label0";
+            label0.Size = new Size(99, 23);
+            label0.TabIndex = 36;
+            label0.Text = "Code Client";
             // 
             // lblGestionMedicaments
             // 
             lblGestionMedicaments.Font = new Font("Segoe UI Black", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGestionMedicaments.ForeColor = Color.FromArgb(0, 85, 70);
-            lblGestionMedicaments.Location = new Point(24, 13);
+            lblGestionMedicaments.Location = new Point(24, 20);
             lblGestionMedicaments.Name = "lblGestionMedicaments";
-            lblGestionMedicaments.Size = new Size(273, 98);
+            lblGestionMedicaments.Size = new Size(273, 82);
             lblGestionMedicaments.TabIndex = 35;
-            lblGestionMedicaments.Text = "Gestion des Médicaments";
+            lblGestionMedicaments.Text = "Gestion des Clients";
             lblGestionMedicaments.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnEffacer
@@ -312,83 +265,63 @@
             btnAjouter.UseVisualStyleBackColor = false;
             btnAjouter.Click += btnAjouter_Click;
             // 
-            // nudSeuil
+            // txtAdresse
             // 
-            nudSeuil.Font = new Font("Segoe UI", 11F);
-            nudSeuil.Location = new Point(24, 477);
-            nudSeuil.Name = "nudSeuil";
-            nudSeuil.Size = new Size(273, 32);
-            nudSeuil.TabIndex = 19;
-            nudSeuil.Value = new decimal(new int[] { 5, 0, 0, 0 });
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(24, 449);
-            label5.Name = "label5";
-            label5.Size = new Size(157, 23);
-            label5.TabIndex = 17;
-            label5.Text = "Seuil d'Alerte Stock";
-            // 
-            // txtFabricant
-            // 
-            txtFabricant.Font = new Font("Segoe UI", 11F);
-            txtFabricant.Location = new Point(24, 396);
-            txtFabricant.Name = "txtFabricant";
-            txtFabricant.Size = new Size(273, 32);
-            txtFabricant.TabIndex = 16;
+            txtAdresse.Font = new Font("Segoe UI", 11F);
+            txtAdresse.Location = new Point(24, 468);
+            txtAdresse.Name = "txtAdresse";
+            txtAdresse.Size = new Size(273, 32);
+            txtAdresse.TabIndex = 16;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(24, 368);
+            label4.Location = new Point(24, 440);
             label4.Name = "label4";
-            label4.Size = new Size(80, 23);
+            label4.Size = new Size(69, 23);
             label4.TabIndex = 15;
-            label4.Text = "Fabricant";
+            label4.Text = "Adresse";
             // 
-            // txtCategorie
+            // txtTelephone
             // 
-            txtCategorie.Font = new Font("Segoe UI", 11F);
-            txtCategorie.Location = new Point(24, 320);
-            txtCategorie.Name = "txtCategorie";
-            txtCategorie.Size = new Size(273, 32);
-            txtCategorie.TabIndex = 14;
+            txtTelephone.Font = new Font("Segoe UI", 11F);
+            txtTelephone.Location = new Point(24, 392);
+            txtTelephone.Name = "txtTelephone";
+            txtTelephone.Size = new Size(273, 32);
+            txtTelephone.TabIndex = 14;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(24, 292);
+            label3.Location = new Point(24, 364);
             label3.Name = "label3";
-            label3.Size = new Size(84, 23);
+            label3.Size = new Size(88, 23);
             label3.TabIndex = 13;
-            label3.Text = "Catégorie";
+            label3.Text = "Téléphone";
             // 
-            // txtReference
+            // txtPrenom
             // 
-            txtReference.Font = new Font("Segoe UI", 11F);
-            txtReference.Location = new Point(24, 237);
-            txtReference.Name = "txtReference";
-            txtReference.Size = new Size(273, 32);
-            txtReference.TabIndex = 12;
+            txtPrenom.Font = new Font("Segoe UI", 11F);
+            txtPrenom.Location = new Point(24, 309);
+            txtPrenom.Name = "txtPrenom";
+            txtPrenom.Size = new Size(273, 32);
+            txtPrenom.TabIndex = 12;
             // 
             // label2
             // 
-            label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(24, 209);
+            label2.Location = new Point(24, 281);
             label2.Name = "label2";
-            label2.Size = new Size(87, 23);
+            label2.Size = new Size(70, 23);
             label2.TabIndex = 11;
-            label2.Text = "Référence";
+            label2.Text = "Prénom";
             // 
             // txtNom
             // 
             txtNom.Font = new Font("Segoe UI", 11F);
-            txtNom.Location = new Point(24, 161);
+            txtNom.Location = new Point(24, 233);
             txtNom.Name = "txtNom";
             txtNom.Size = new Size(273, 32);
             txtNom.TabIndex = 10;
@@ -397,13 +330,13 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(24, 133);
+            label1.Location = new Point(24, 205);
             label1.Name = "label1";
             label1.Size = new Size(48, 23);
             label1.TabIndex = 9;
             label1.Text = "Nom";
             // 
-            // FormGestionMedicaments
+            // FormGestionClients
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -412,49 +345,41 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
-            Name = "FormGestionMedicaments";
-            Text = "PharmaPlus - Gestion des Lots de Médicaments";
-            Load += FormGestionMedicaments_Load;
+            Name = "FormGestionClients";
+            Text = "PharmaPlus - Gestion des Clients";
+            Load += FormGestionClients_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvMedicaments).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvClients).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudSeuil).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
+        private Button btnRetour;
+        private Button btnReinitialiserRecherche;
+        private Button btnRafraichir;
+        private TextBox textBox2;
+        private Label label6;
+        private DataGridView dgvClients;
         private Panel panel2;
-        private NumericUpDown nudSeuil;
-        private Label label5;
-        private TextBox txtFabricant;
-        private Label label4;
-        private TextBox txtCategorie;
-        private Label label3;
-        private TextBox txtReference;
-        private Label label2;
-        private TextBox txtNom;
-        private Label label1;
+        private Label lblGestionMedicaments;
         private Button btnEffacer;
         private Button btnSupprimer;
         private Button btnModifier;
         private Button btnAjouter;
-        private DataGridView dgvMedicaments;
-        private DataGridViewTextBoxColumn ID_Medicament;
-        private DataGridViewTextBoxColumn Nom;
-        private DataGridViewTextBoxColumn Reference;
-        private DataGridViewTextBoxColumn Categorie;
-        private DataGridViewTextBoxColumn Fabricant;
-        private DataGridViewTextBoxColumn QuantiteTotale;
-        private DataGridViewTextBoxColumn SeuilAlerteStock;
-        private Label label6;
-        private TextBox textBox2;
-        private Button btnRafraichir;
-        private Button btnReinitialiserRecherche;
-        private Label lblGestionMedicaments;
-        private Button btnRetour;
+        private TextBox txtAdresse;
+        private Label label4;
+        private TextBox txtTelephone;
+        private Label label3;
+        private TextBox txtPrenom;
+        private Label label2;
+        private TextBox txtNom;
+        private Label label1;
+        private TextBox textCodeClient;
+        private Label label0;
     }
 }

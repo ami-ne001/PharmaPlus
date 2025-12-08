@@ -1,0 +1,439 @@
+﻿namespace PharmaPlus
+{
+    partial class FormFournisseursMedicaments
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            label10 = new Label();
+            btnAjouterMedAuFournisseur = new Button();
+            label12 = new Label();
+            label5 = new Label();
+            comboBox1 = new ComboBox();
+            txtAdresseFournisseur = new TextBox();
+            txtFabricantMed = new TextBox();
+            label4 = new Label();
+            txtNomMed = new TextBox();
+            label3 = new Label();
+            label9 = new Label();
+            label2 = new Label();
+            txtReferenceMed = new TextBox();
+            label1 = new Label();
+            label7 = new Label();
+            txtEmailFournisseur = new TextBox();
+            label8 = new Label();
+            txtTelephoneFournisseur = new TextBox();
+            btnRetour = new Button();
+            txtNomFournisseur = new TextBox();
+            cmbFournisseurs = new ComboBox();
+            txtCodeFournisseur = new TextBox();
+            lblSelectionnerFournisseur = new Label();
+            dataGridView1 = new DataGridView();
+            Supprimer = new DataGridViewButtonColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Reference = new DataGridViewTextBoxColumn();
+            Categorie = new DataGridViewTextBoxColumn();
+            Fabricant = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            SuspendLayout();
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label10.Location = new Point(500, 23);
+            label10.Name = "label10";
+            label10.Size = new Size(383, 21);
+            label10.TabIndex = 94;
+            label10.Text = "Médicaments fournis par le fournisseur séléctionné";
+            // 
+            // btnAjouterMedAuFournisseur
+            // 
+            btnAjouterMedAuFournisseur.BackColor = Color.FromArgb(0, 85, 70);
+            btnAjouterMedAuFournisseur.FlatStyle = FlatStyle.Popup;
+            btnAjouterMedAuFournisseur.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnAjouterMedAuFournisseur.ForeColor = SystemColors.HighlightText;
+            btnAjouterMedAuFournisseur.Location = new Point(238, 468);
+            btnAjouterMedAuFournisseur.Margin = new Padding(3, 2, 3, 2);
+            btnAjouterMedAuFournisseur.Name = "btnAjouterMedAuFournisseur";
+            btnAjouterMedAuFournisseur.Size = new Size(226, 26);
+            btnAjouterMedAuFournisseur.TabIndex = 110;
+            btnAjouterMedAuFournisseur.Text = "Ajouter au Fournisseur";
+            btnAjouterMedAuFournisseur.UseVisualStyleBackColor = false;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label12.Location = new Point(32, 437);
+            label12.Name = "label12";
+            label12.Size = new Size(67, 19);
+            label12.TabIndex = 108;
+            label12.Text = "Fabricant";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(35, 237);
+            label5.Name = "label5";
+            label5.Size = new Size(57, 19);
+            label5.TabIndex = 116;
+            label5.Text = "Adresse";
+            // 
+            // comboBox1
+            // 
+            comboBox1.Font = new Font("Segoe UI", 10F);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(32, 338);
+            comboBox1.Margin = new Padding(3, 2, 3, 2);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(432, 25);
+            comboBox1.TabIndex = 95;
+            // 
+            // txtAdresseFournisseur
+            // 
+            txtAdresseFournisseur.Font = new Font("Segoe UI", 10F);
+            txtAdresseFournisseur.Location = new Point(179, 235);
+            txtAdresseFournisseur.Margin = new Padding(3, 2, 3, 2);
+            txtAdresseFournisseur.Name = "txtAdresseFournisseur";
+            txtAdresseFournisseur.ReadOnly = true;
+            txtAdresseFournisseur.Size = new Size(288, 25);
+            txtAdresseFournisseur.TabIndex = 115;
+            // 
+            // txtFabricantMed
+            // 
+            txtFabricantMed.Font = new Font("Segoe UI", 10F);
+            txtFabricantMed.Location = new Point(177, 435);
+            txtFabricantMed.Margin = new Padding(3, 2, 3, 2);
+            txtFabricantMed.Name = "txtFabricantMed";
+            txtFabricantMed.ReadOnly = true;
+            txtFabricantMed.Size = new Size(288, 25);
+            txtFabricantMed.TabIndex = 106;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.Location = new Point(35, 206);
+            label4.Name = "label4";
+            label4.Size = new Size(43, 19);
+            label4.TabIndex = 114;
+            label4.Text = "Email";
+            // 
+            // txtNomMed
+            // 
+            txtNomMed.Font = new Font("Segoe UI", 10F);
+            txtNomMed.Location = new Point(177, 404);
+            txtNomMed.Margin = new Padding(3, 2, 3, 2);
+            txtNomMed.Name = "txtNomMed";
+            txtNomMed.ReadOnly = true;
+            txtNomMed.Size = new Size(288, 25);
+            txtNomMed.TabIndex = 101;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(35, 176);
+            label3.Name = "label3";
+            label3.Size = new Size(73, 19);
+            label3.TabIndex = 113;
+            label3.Text = "Téléphone";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(32, 318);
+            label9.Name = "label9";
+            label9.Size = new Size(189, 19);
+            label9.TabIndex = 97;
+            label9.Text = "Sélectionner un Médicament";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(35, 145);
+            label2.Name = "label2";
+            label2.Size = new Size(40, 19);
+            label2.TabIndex = 112;
+            label2.Text = "Nom";
+            // 
+            // txtReferenceMed
+            // 
+            txtReferenceMed.Font = new Font("Segoe UI", 10F);
+            txtReferenceMed.Location = new Point(177, 374);
+            txtReferenceMed.Margin = new Padding(3, 2, 3, 2);
+            txtReferenceMed.Name = "txtReferenceMed";
+            txtReferenceMed.ReadOnly = true;
+            txtReferenceMed.Size = new Size(288, 25);
+            txtReferenceMed.TabIndex = 99;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(35, 114);
+            label1.Name = "label1";
+            label1.Size = new Size(112, 19);
+            label1.TabIndex = 111;
+            label1.Text = "Code Founisseur";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(32, 406);
+            label7.Name = "label7";
+            label7.Size = new Size(40, 19);
+            label7.TabIndex = 105;
+            label7.Text = "Nom";
+            // 
+            // txtEmailFournisseur
+            // 
+            txtEmailFournisseur.Font = new Font("Segoe UI", 10F);
+            txtEmailFournisseur.Location = new Point(179, 204);
+            txtEmailFournisseur.Margin = new Padding(3, 2, 3, 2);
+            txtEmailFournisseur.Name = "txtEmailFournisseur";
+            txtEmailFournisseur.ReadOnly = true;
+            txtEmailFournisseur.Size = new Size(288, 25);
+            txtEmailFournisseur.TabIndex = 109;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.Location = new Point(32, 376);
+            label8.Name = "label8";
+            label8.RightToLeft = RightToLeft.Yes;
+            label8.Size = new Size(71, 19);
+            label8.TabIndex = 103;
+            label8.Text = "Référence";
+            // 
+            // txtTelephoneFournisseur
+            // 
+            txtTelephoneFournisseur.Font = new Font("Segoe UI", 10F);
+            txtTelephoneFournisseur.Location = new Point(179, 173);
+            txtTelephoneFournisseur.Margin = new Padding(3, 2, 3, 2);
+            txtTelephoneFournisseur.Name = "txtTelephoneFournisseur";
+            txtTelephoneFournisseur.ReadOnly = true;
+            txtTelephoneFournisseur.Size = new Size(288, 25);
+            txtTelephoneFournisseur.TabIndex = 107;
+            // 
+            // btnRetour
+            // 
+            btnRetour.BackColor = Color.FromArgb(0, 85, 70);
+            btnRetour.FlatStyle = FlatStyle.Popup;
+            btnRetour.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRetour.ForeColor = SystemColors.HighlightText;
+            btnRetour.Location = new Point(4, 4);
+            btnRetour.Margin = new Padding(3, 2, 3, 2);
+            btnRetour.Name = "btnRetour";
+            btnRetour.Size = new Size(92, 22);
+            btnRetour.TabIndex = 96;
+            btnRetour.Text = "< Retour";
+            btnRetour.UseVisualStyleBackColor = false;
+            btnRetour.Click += BtnRetour_Click;
+            // 
+            // txtNomFournisseur
+            // 
+            txtNomFournisseur.Font = new Font("Segoe UI", 10F);
+            txtNomFournisseur.Location = new Point(179, 142);
+            txtNomFournisseur.Margin = new Padding(3, 2, 3, 2);
+            txtNomFournisseur.Name = "txtNomFournisseur";
+            txtNomFournisseur.ReadOnly = true;
+            txtNomFournisseur.Size = new Size(288, 25);
+            txtNomFournisseur.TabIndex = 104;
+            // 
+            // cmbFournisseurs
+            // 
+            cmbFournisseurs.Font = new Font("Segoe UI", 10F);
+            cmbFournisseurs.FormattingEnabled = true;
+            cmbFournisseurs.Location = new Point(35, 76);
+            cmbFournisseurs.Margin = new Padding(3, 2, 3, 2);
+            cmbFournisseurs.Name = "cmbFournisseurs";
+            cmbFournisseurs.Size = new Size(432, 25);
+            cmbFournisseurs.TabIndex = 98;
+            // 
+            // txtCodeFournisseur
+            // 
+            txtCodeFournisseur.Font = new Font("Segoe UI", 10F);
+            txtCodeFournisseur.Location = new Point(179, 112);
+            txtCodeFournisseur.Margin = new Padding(3, 2, 3, 2);
+            txtCodeFournisseur.Name = "txtCodeFournisseur";
+            txtCodeFournisseur.ReadOnly = true;
+            txtCodeFournisseur.Size = new Size(288, 25);
+            txtCodeFournisseur.TabIndex = 102;
+            // 
+            // lblSelectionnerFournisseur
+            // 
+            lblSelectionnerFournisseur.AutoSize = true;
+            lblSelectionnerFournisseur.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSelectionnerFournisseur.Location = new Point(35, 57);
+            lblSelectionnerFournisseur.Name = "lblSelectionnerFournisseur";
+            lblSelectionnerFournisseur.Size = new Size(183, 19);
+            lblSelectionnerFournisseur.TabIndex = 100;
+            lblSelectionnerFournisseur.Text = "Sélectionner un Fournisseur";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Supprimer, Nom, Reference, Categorie, Fabricant });
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.Location = new Point(500, 57);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
+            dataGridView1.MultiSelect = false;
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(593, 437);
+            dataGridView1.TabIndex = 117;
+            // 
+            // Supprimer
+            // 
+            Supprimer.HeaderText = "Supprimer";
+            Supprimer.MinimumWidth = 6;
+            Supprimer.Name = "Supprimer";
+            Supprimer.ReadOnly = true;
+            Supprimer.Width = 125;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            Nom.Width = 125;
+            // 
+            // Reference
+            // 
+            Reference.HeaderText = "Référence";
+            Reference.MinimumWidth = 6;
+            Reference.Name = "Reference";
+            Reference.ReadOnly = true;
+            Reference.Width = 125;
+            // 
+            // Categorie
+            // 
+            Categorie.HeaderText = "Catégorie";
+            Categorie.MinimumWidth = 6;
+            Categorie.Name = "Categorie";
+            Categorie.ReadOnly = true;
+            Categorie.Width = 150;
+            // 
+            // Fabricant
+            // 
+            Fabricant.HeaderText = "Fabricant";
+            Fabricant.MinimumWidth = 6;
+            Fabricant.Name = "Fabricant";
+            Fabricant.ReadOnly = true;
+            Fabricant.Width = 125;
+            // 
+            // FormFournisseursMedicaments
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1104, 505);
+            Controls.Add(dataGridView1);
+            Controls.Add(btnAjouterMedAuFournisseur);
+            Controls.Add(label12);
+            Controls.Add(label5);
+            Controls.Add(comboBox1);
+            Controls.Add(txtAdresseFournisseur);
+            Controls.Add(txtFabricantMed);
+            Controls.Add(label4);
+            Controls.Add(txtNomMed);
+            Controls.Add(label3);
+            Controls.Add(label9);
+            Controls.Add(label2);
+            Controls.Add(txtReferenceMed);
+            Controls.Add(label1);
+            Controls.Add(label7);
+            Controls.Add(txtEmailFournisseur);
+            Controls.Add(label8);
+            Controls.Add(txtTelephoneFournisseur);
+            Controls.Add(btnRetour);
+            Controls.Add(txtNomFournisseur);
+            Controls.Add(cmbFournisseurs);
+            Controls.Add(txtCodeFournisseur);
+            Controls.Add(lblSelectionnerFournisseur);
+            Controls.Add(label10);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
+            Name = "FormFournisseursMedicaments";
+            Text = "PharmaPlus - Gestion des Fournisseurs/Médicaments";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+        private Label label10;
+        private Button btnAjouterMedAuFournisseur;
+        private Label label12;
+        private Label label5;
+        private ComboBox comboBox1;
+        private TextBox txtAdresseFournisseur;
+        private TextBox txtFabricantMed;
+        private Label label4;
+        private TextBox txtNomMed;
+        private Label label3;
+        private Label label9;
+        private Label label2;
+        private TextBox txtReferenceMed;
+        private Label label1;
+        private Label label7;
+        private TextBox txtEmailFournisseur;
+        private Label label8;
+        private TextBox txtTelephoneFournisseur;
+        private Button btnRetour;
+        private TextBox txtNomFournisseur;
+        private ComboBox cmbFournisseurs;
+        private TextBox txtCodeFournisseur;
+        private Label lblSelectionnerFournisseur;
+        private DataGridView dataGridView1;
+        private DataGridViewButtonColumn Supprimer;
+        private DataGridViewTextBoxColumn Nom;
+        private DataGridViewTextBoxColumn Reference;
+        private DataGridViewTextBoxColumn Categorie;
+        private DataGridViewTextBoxColumn Fabricant;
+    }
+}
