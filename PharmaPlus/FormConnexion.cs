@@ -45,6 +45,8 @@ namespace PharmaPlus
                     Utilisateur.UtilisateurConnecte = utilisateur;
                     
                     FormMenuPharmacien menuPharmacien = new FormMenuPharmacien();
+                    menuPharmacien.StartPosition = FormStartPosition.Manual;
+                    menuPharmacien.Location = this.Location;
                     menuPharmacien.Show();
                     this.Hide();
                 }

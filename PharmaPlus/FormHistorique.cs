@@ -85,6 +85,8 @@ namespace PharmaPlus
         private void btnRetour_Click(object sender, EventArgs e)
         {
             FormMenuPharmacien formMenuPharmacien = new FormMenuPharmacien();
+            formMenuPharmacien.StartPosition = FormStartPosition.Manual;
+            formMenuPharmacien.Location = this.Location;
             formMenuPharmacien.Show();
             this.Hide();
         }
