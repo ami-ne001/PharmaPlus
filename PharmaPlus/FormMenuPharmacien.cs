@@ -15,6 +15,16 @@ namespace PharmaPlus
         public FormMenuPharmacien()
         {
             InitializeComponent();
+            MettreAJourBienvenue();
+        }
+
+        private void MettreAJourBienvenue()
+        {
+            var user = Utilisateur.UtilisateurConnecte;
+            if (user != null && !string.IsNullOrWhiteSpace(user.Nom))
+            {
+                lblBienvenue.Text = $"Bienvenue Dr. {user.Nom}";
+            }
         }
 
         private void btnDeconnexion_Click(object sender, EventArgs e)
@@ -83,14 +93,16 @@ namespace PharmaPlus
 
         private void btnFournisseursMedicaments_Click(object sender, EventArgs e)
         {
-            FormFournisseursMedicaments formFournisseursMedicaments = new FormFournisseursMedicaments();
+            FormFournisseursMedicaments formFournisseursMedicaments = new FormFournisseursMedicaments(this);
             formFournisseursMedicaments.Show();
             this.Hide();
         }
 
         private void btnHistoriqueCommandes_Click(object sender, EventArgs e)
         {
-            // TODO  :p
+            FormConsulterCommandes formConsulterCommandes = new FormConsulterCommandes(this);
+            formConsulterCommandes.Show();
+            this.Hide();
         }
     }
 }

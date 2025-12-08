@@ -65,9 +65,9 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
-            label10.Location = new Point(571, 31);
+            label10.Location = new Point(500, 23);
             label10.Name = "label10";
-            label10.Size = new Size(480, 28);
+            label10.Size = new Size(383, 21);
             label10.TabIndex = 94;
             label10.Text = "Médicaments fournis par le fournisseur séléctionné";
             // 
@@ -77,9 +77,10 @@
             btnAjouterMedAuFournisseur.FlatStyle = FlatStyle.Popup;
             btnAjouterMedAuFournisseur.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAjouterMedAuFournisseur.ForeColor = SystemColors.HighlightText;
-            btnAjouterMedAuFournisseur.Location = new Point(272, 624);
+            btnAjouterMedAuFournisseur.Location = new Point(238, 468);
+            btnAjouterMedAuFournisseur.Margin = new Padding(3, 2, 3, 2);
             btnAjouterMedAuFournisseur.Name = "btnAjouterMedAuFournisseur";
-            btnAjouterMedAuFournisseur.Size = new Size(258, 35);
+            btnAjouterMedAuFournisseur.Size = new Size(226, 26);
             btnAjouterMedAuFournisseur.TabIndex = 110;
             btnAjouterMedAuFournisseur.Text = "Ajouter au Fournisseur";
             btnAjouterMedAuFournisseur.UseVisualStyleBackColor = false;
@@ -88,9 +89,9 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label12.Location = new Point(37, 583);
+            label12.Location = new Point(32, 437);
             label12.Name = "label12";
-            label12.Size = new Size(80, 23);
+            label12.Size = new Size(67, 19);
             label12.TabIndex = 108;
             label12.Text = "Fabricant";
             // 
@@ -98,9 +99,9 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(40, 316);
+            label5.Location = new Point(35, 237);
             label5.Name = "label5";
-            label5.Size = new Size(69, 23);
+            label5.Size = new Size(57, 19);
             label5.TabIndex = 116;
             label5.Text = "Adresse";
             // 
@@ -108,55 +109,59 @@
             // 
             comboBox1.Font = new Font("Segoe UI", 10F);
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(37, 450);
+            comboBox1.Location = new Point(32, 338);
+            comboBox1.Margin = new Padding(3, 2, 3, 2);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(493, 31);
+            comboBox1.Size = new Size(432, 25);
             comboBox1.TabIndex = 95;
             // 
             // txtAdresseFournisseur
             // 
             txtAdresseFournisseur.Font = new Font("Segoe UI", 10F);
-            txtAdresseFournisseur.Location = new Point(205, 313);
+            txtAdresseFournisseur.Location = new Point(179, 235);
+            txtAdresseFournisseur.Margin = new Padding(3, 2, 3, 2);
             txtAdresseFournisseur.Name = "txtAdresseFournisseur";
             txtAdresseFournisseur.ReadOnly = true;
-            txtAdresseFournisseur.Size = new Size(328, 30);
+            txtAdresseFournisseur.Size = new Size(288, 25);
             txtAdresseFournisseur.TabIndex = 115;
             // 
             // txtFabricantMed
             // 
             txtFabricantMed.Font = new Font("Segoe UI", 10F);
-            txtFabricantMed.Location = new Point(202, 580);
+            txtFabricantMed.Location = new Point(177, 435);
+            txtFabricantMed.Margin = new Padding(3, 2, 3, 2);
             txtFabricantMed.Name = "txtFabricantMed";
             txtFabricantMed.ReadOnly = true;
-            txtFabricantMed.Size = new Size(328, 30);
+            txtFabricantMed.Size = new Size(288, 25);
             txtFabricantMed.TabIndex = 106;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(40, 275);
+            label4.Location = new Point(35, 206);
             label4.Name = "label4";
-            label4.Size = new Size(51, 23);
+            label4.Size = new Size(43, 19);
             label4.TabIndex = 114;
             label4.Text = "Email";
             // 
             // txtNomMed
             // 
             txtNomMed.Font = new Font("Segoe UI", 10F);
-            txtNomMed.Location = new Point(202, 539);
+            txtNomMed.Location = new Point(177, 404);
+            txtNomMed.Margin = new Padding(3, 2, 3, 2);
             txtNomMed.Name = "txtNomMed";
             txtNomMed.ReadOnly = true;
-            txtNomMed.Size = new Size(328, 30);
+            txtNomMed.Size = new Size(288, 25);
             txtNomMed.TabIndex = 101;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(40, 234);
+            label3.Location = new Point(35, 176);
             label3.Name = "label3";
-            label3.Size = new Size(88, 23);
+            label3.Size = new Size(73, 19);
             label3.TabIndex = 113;
             label3.Text = "Téléphone";
             // 
@@ -164,9 +169,9 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(37, 424);
+            label9.Location = new Point(32, 318);
             label9.Name = "label9";
-            label9.Size = new Size(230, 23);
+            label9.Size = new Size(189, 19);
             label9.TabIndex = 97;
             label9.Text = "Sélectionner un Médicament";
             // 
@@ -174,28 +179,29 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(40, 193);
+            label2.Location = new Point(35, 145);
             label2.Name = "label2";
-            label2.Size = new Size(48, 23);
+            label2.Size = new Size(40, 19);
             label2.TabIndex = 112;
             label2.Text = "Nom";
             // 
             // txtReferenceMed
             // 
             txtReferenceMed.Font = new Font("Segoe UI", 10F);
-            txtReferenceMed.Location = new Point(202, 498);
+            txtReferenceMed.Location = new Point(177, 374);
+            txtReferenceMed.Margin = new Padding(3, 2, 3, 2);
             txtReferenceMed.Name = "txtReferenceMed";
             txtReferenceMed.ReadOnly = true;
-            txtReferenceMed.Size = new Size(328, 30);
+            txtReferenceMed.Size = new Size(288, 25);
             txtReferenceMed.TabIndex = 99;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(40, 152);
+            label1.Location = new Point(35, 114);
             label1.Name = "label1";
-            label1.Size = new Size(137, 23);
+            label1.Size = new Size(112, 19);
             label1.TabIndex = 111;
             label1.Text = "Code Founisseur";
             // 
@@ -203,39 +209,41 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(37, 542);
+            label7.Location = new Point(32, 406);
             label7.Name = "label7";
-            label7.Size = new Size(48, 23);
+            label7.Size = new Size(40, 19);
             label7.TabIndex = 105;
             label7.Text = "Nom";
             // 
             // txtEmailFournisseur
             // 
             txtEmailFournisseur.Font = new Font("Segoe UI", 10F);
-            txtEmailFournisseur.Location = new Point(205, 272);
+            txtEmailFournisseur.Location = new Point(179, 204);
+            txtEmailFournisseur.Margin = new Padding(3, 2, 3, 2);
             txtEmailFournisseur.Name = "txtEmailFournisseur";
             txtEmailFournisseur.ReadOnly = true;
-            txtEmailFournisseur.Size = new Size(328, 30);
+            txtEmailFournisseur.Size = new Size(288, 25);
             txtEmailFournisseur.TabIndex = 109;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(37, 501);
+            label8.Location = new Point(32, 376);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.Yes;
-            label8.Size = new Size(87, 23);
+            label8.Size = new Size(71, 19);
             label8.TabIndex = 103;
             label8.Text = "Référence";
             // 
             // txtTelephoneFournisseur
             // 
             txtTelephoneFournisseur.Font = new Font("Segoe UI", 10F);
-            txtTelephoneFournisseur.Location = new Point(205, 231);
+            txtTelephoneFournisseur.Location = new Point(179, 173);
+            txtTelephoneFournisseur.Margin = new Padding(3, 2, 3, 2);
             txtTelephoneFournisseur.Name = "txtTelephoneFournisseur";
             txtTelephoneFournisseur.ReadOnly = true;
-            txtTelephoneFournisseur.Size = new Size(328, 30);
+            txtTelephoneFournisseur.Size = new Size(288, 25);
             txtTelephoneFournisseur.TabIndex = 107;
             // 
             // btnRetour
@@ -244,47 +252,52 @@
             btnRetour.FlatStyle = FlatStyle.Popup;
             btnRetour.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRetour.ForeColor = SystemColors.HighlightText;
-            btnRetour.Location = new Point(5, 5);
+            btnRetour.Location = new Point(4, 4);
+            btnRetour.Margin = new Padding(3, 2, 3, 2);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(105, 29);
+            btnRetour.Size = new Size(92, 22);
             btnRetour.TabIndex = 96;
             btnRetour.Text = "< Retour";
             btnRetour.UseVisualStyleBackColor = false;
+            btnRetour.Click += BtnRetour_Click;
             // 
             // txtNomFournisseur
             // 
             txtNomFournisseur.Font = new Font("Segoe UI", 10F);
-            txtNomFournisseur.Location = new Point(205, 190);
+            txtNomFournisseur.Location = new Point(179, 142);
+            txtNomFournisseur.Margin = new Padding(3, 2, 3, 2);
             txtNomFournisseur.Name = "txtNomFournisseur";
             txtNomFournisseur.ReadOnly = true;
-            txtNomFournisseur.Size = new Size(328, 30);
+            txtNomFournisseur.Size = new Size(288, 25);
             txtNomFournisseur.TabIndex = 104;
             // 
             // cmbFournisseurs
             // 
             cmbFournisseurs.Font = new Font("Segoe UI", 10F);
             cmbFournisseurs.FormattingEnabled = true;
-            cmbFournisseurs.Location = new Point(40, 102);
+            cmbFournisseurs.Location = new Point(35, 76);
+            cmbFournisseurs.Margin = new Padding(3, 2, 3, 2);
             cmbFournisseurs.Name = "cmbFournisseurs";
-            cmbFournisseurs.Size = new Size(493, 31);
+            cmbFournisseurs.Size = new Size(432, 25);
             cmbFournisseurs.TabIndex = 98;
             // 
             // txtCodeFournisseur
             // 
             txtCodeFournisseur.Font = new Font("Segoe UI", 10F);
-            txtCodeFournisseur.Location = new Point(205, 149);
+            txtCodeFournisseur.Location = new Point(179, 112);
+            txtCodeFournisseur.Margin = new Padding(3, 2, 3, 2);
             txtCodeFournisseur.Name = "txtCodeFournisseur";
             txtCodeFournisseur.ReadOnly = true;
-            txtCodeFournisseur.Size = new Size(328, 30);
+            txtCodeFournisseur.Size = new Size(288, 25);
             txtCodeFournisseur.TabIndex = 102;
             // 
             // lblSelectionnerFournisseur
             // 
             lblSelectionnerFournisseur.AutoSize = true;
             lblSelectionnerFournisseur.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSelectionnerFournisseur.Location = new Point(40, 76);
+            lblSelectionnerFournisseur.Location = new Point(35, 57);
             lblSelectionnerFournisseur.Name = "lblSelectionnerFournisseur";
-            lblSelectionnerFournisseur.Size = new Size(222, 23);
+            lblSelectionnerFournisseur.Size = new Size(183, 19);
             lblSelectionnerFournisseur.TabIndex = 100;
             lblSelectionnerFournisseur.Text = "Sélectionner un Fournisseur";
             // 
@@ -303,13 +316,14 @@
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Supprimer, Nom, Reference, Categorie, Fabricant });
             dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(571, 76);
+            dataGridView1.Location = new Point(500, 57);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.Size = new Size(678, 583);
+            dataGridView1.Size = new Size(593, 437);
             dataGridView1.TabIndex = 117;
             // 
             // Supprimer
@@ -354,9 +368,9 @@
             // 
             // FormFournisseursMedicaments
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1262, 673);
+            ClientSize = new Size(1104, 505);
             Controls.Add(dataGridView1);
             Controls.Add(btnAjouterMedAuFournisseur);
             Controls.Add(label12);
@@ -382,6 +396,7 @@
             Controls.Add(lblSelectionnerFournisseur);
             Controls.Add(label10);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "FormFournisseursMedicaments";
             Text = "PharmaPlus - Gestion des Fournisseurs/Médicaments";

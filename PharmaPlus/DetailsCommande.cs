@@ -15,6 +15,36 @@ namespace PharmaPlus
         public int Quantite { get; set; }
         public decimal PrixVente { get; set; }
 
+        // Propriétés calculées pour l'affichage
+        public int ID_Medicament
+        {
+            get
+            {
+                // Récupérer l'ID du médicament à partir du lot
+                try
+                {
+                    using (SqlConnection conn = Connection.GetConnexion())
+                    {
+                        string query = "SELECT ID_Medicament FROM LotsMedicaments WHERE ID_Lot = @ID_Lot";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@ID_Lot", ID_Lot);
+                            object result = cmd.ExecuteScalar();
+                            return result != null ? Convert.ToInt32(result) : 0;
+                        }
+                    }
+                }
+                catch
+                {
+                    return 0;
+                }
+            }
+        }
+
+        public decimal PrixUnitaire => PrixVente;
+        public decimal SousTotal => Quantite * PrixVente;
+
+
         public void InsererDetail()
         {
             using (SqlConnection conn = Connection.GetConnexion())
