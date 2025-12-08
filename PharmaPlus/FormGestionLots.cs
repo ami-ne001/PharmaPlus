@@ -12,6 +12,7 @@ namespace PharmaPlus
 {
     public partial class FormGestionLots : Form
     {
+        private Pharmacien pharmacien;
         private List<Medicament> listeMedicaments;
         private List<LotMedicament> listeLots;
         private int lotSelectionneID = -1;
@@ -23,6 +24,11 @@ namespace PharmaPlus
 
         private void FormGestionLots_Load(object sender, EventArgs e)
         {
+            pharmacien = new Pharmacien();
+            if (Utilisateur.UtilisateurConnecte != null)
+            {
+                pharmacien.ID_Utilisateur = Utilisateur.UtilisateurConnecte.ID_Utilisateur;
+            }
             ChargerMedicaments();
             ChargerTousLesLots();
             ConfigurerDataGridView();
@@ -346,7 +352,7 @@ namespace PharmaPlus
                     QuantiteLot = (int)nudQuantiteLot.Value
                 };
 
-                nouveauLot.InsererLot();
+                pharmacien.AjouterLot(nouveauLot);
 
                 Medicament med = new Medicament { ID_Medicament = nouveauLot.ID_Medicament };
                 med.MettreAJourQuantiteTotale();
@@ -414,7 +420,7 @@ namespace PharmaPlus
                     QuantiteLot = (int)nudQuantiteLot.Value
                 };
 
-                lotModifie.MettreAJourLot();
+                pharmacien.ModifierLot(lotModifie);
 
                 Medicament med = new Medicament { ID_Medicament = lotModifie.ID_Medicament };
                 med.MettreAJourQuantiteTotale();
@@ -452,10 +458,11 @@ namespace PharmaPlus
                 LotMedicament lotASupprimer = new LotMedicament
                 {
                     ID_Lot = lotSelectionneID,
-                    ID_Medicament = int.Parse(txtID_Medicament.Text)
+                    ID_Medicament = int.Parse(txtID_Medicament.Text),
+                    NumeroLot = txtNumeroLot.Text.Trim()
                 };
 
-                lotASupprimer.SupprimerLot();
+                pharmacien.SupprimerLot(lotASupprimer);
 
                 ChargerTousLesLots();
                 EffacerChamps();

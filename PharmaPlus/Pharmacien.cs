@@ -58,6 +58,15 @@ namespace PharmaPlus
             }
         }
 
+        public void SupprimerLot(LotMedicament lot)
+        {
+            lot.SupprimerLot();
+            if (ID_Utilisateur > 0)
+            {
+                EnregistrerHistorique($"Suppression du lot ID: {lot.ID_Lot} - Numéro: {lot.NumeroLot}");
+            }
+        }
+
         public List<Medicament> ConsulterStockAlerte()
         {
             List<Medicament> medicaments = Medicament.ListerMedicaments();
