@@ -92,7 +92,7 @@ namespace PharmaPlus
             lblNombreAlertes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             lblNombreAlertes.Location = new Point(47, 25);
             lblNombreAlertes.Name = "lblNombreAlertes";
-            lblNombreAlertes.Size = new Size(320, 25);
+            lblNombreAlertes.Size = new Size(336, 25);
             lblNombreAlertes.TabIndex = 48;
             lblNombreAlertes.Text = "Nombre de médicaments en alerte : 0";
             // 
@@ -117,7 +117,7 @@ namespace PharmaPlus
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.Location = new Point(260, 98);
             label1.Name = "label1";
-            label1.Size = new Size(553, 20);
+            label1.Size = new Size(566, 20);
             label1.TabIndex = 47;
             label1.Text = "Cette recherche affiche les médicaments avec un stock inférieur ou égal au seuil d'alerte";
             // 
@@ -163,7 +163,7 @@ namespace PharmaPlus
             lblRechercherReference.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             lblRechercherReference.Location = new Point(260, 32);
             lblRechercherReference.Name = "lblRechercherReference";
-            lblRechercherReference.Size = new Size(200, 25);
+            lblRechercherReference.Size = new Size(226, 25);
             lblRechercherReference.TabIndex = 47;
             lblRechercherReference.Text = "Rechercher par référence";
             // 
@@ -227,7 +227,7 @@ namespace PharmaPlus
             SeuilAlerteStock.MinimumWidth = 6;
             SeuilAlerteStock.Name = "SeuilAlerteStock";
             SeuilAlerteStock.ReadOnly = true;
-            SeuilAlerteStock.Width = 120;
+            SeuilAlerteStock.Width = 150;
             // 
             // Statut
             // 

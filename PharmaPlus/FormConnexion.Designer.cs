@@ -128,7 +128,7 @@
             // 
             // lblConnexion
             // 
-            lblConnexion.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblConnexion.Font = new Font("Segoe UI Black", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblConnexion.ForeColor = Color.FromArgb(0, 85, 70);
             lblConnexion.Location = new Point(145, 92);
             lblConnexion.Name = "lblConnexion";

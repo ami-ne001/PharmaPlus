@@ -229,7 +229,7 @@
             grpGestion.Controls.Add(btnGererLots);
             grpGestion.Controls.Add(btnGererMedicaments);
             grpGestion.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            grpGestion.Location = new Point(601, 55);
+            grpGestion.Location = new Point(601, 58);
             grpGestion.Name = "grpGestion";
             grpGestion.Size = new Size(650, 120);
             grpGestion.TabIndex = 7;
@@ -261,7 +261,7 @@
             grpAlertes.Controls.Add(btnAlertesStockes);
             grpAlertes.Controls.Add(btnAlertesPeremption);
             grpAlertes.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            grpAlertes.Location = new Point(601, 177);
+            grpAlertes.Location = new Point(601, 180);
             grpAlertes.Name = "grpAlertes";
             grpAlertes.Size = new Size(650, 120);
             grpAlertes.TabIndex = 8;
@@ -293,7 +293,7 @@
             grpHistorique.Controls.Add(label5);
             grpHistorique.Controls.Add(btnHistorique);
             grpHistorique.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            grpHistorique.Location = new Point(601, 543);
+            grpHistorique.Location = new Point(601, 546);
             grpHistorique.Name = "grpHistorique";
             grpHistorique.Size = new Size(650, 120);
             grpHistorique.TabIndex = 9;
@@ -350,7 +350,7 @@
             grpClients.Controls.Add(btnClients);
             grpClients.Controls.Add(btnCommandes);
             grpClients.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            grpClients.Location = new Point(601, 299);
+            grpClients.Location = new Point(601, 302);
             grpClients.Name = "grpClients";
             grpClients.Size = new Size(650, 120);
             grpClients.TabIndex = 13;
@@ -410,7 +410,7 @@
             grpFournisseurs.Controls.Add(btnFournisseurs);
             grpFournisseurs.Controls.Add(btnFournisseursMedicaments);
             grpFournisseurs.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            grpFournisseurs.Location = new Point(601, 421);
+            grpFournisseurs.Location = new Point(601, 424);
             grpFournisseurs.Name = "grpFournisseurs";
             grpFournisseurs.Size = new Size(650, 120);
             grpFournisseurs.TabIndex = 14;

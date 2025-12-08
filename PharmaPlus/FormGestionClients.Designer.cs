@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             btnRetour = new Button();
             btnReinitialiserRecherche = new Button();
@@ -136,14 +136,14 @@
             // 
             dgvClients.AllowUserToAddRows = false;
             dgvClients.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvClients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvClients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClients.EnableHeadersVisualStyles = false;
             dgvClients.Location = new Point(37, 103);
@@ -200,11 +200,11 @@
             // 
             // lblGestionMedicaments
             // 
-            lblGestionMedicaments.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGestionMedicaments.Font = new Font("Segoe UI Black", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGestionMedicaments.ForeColor = Color.FromArgb(0, 85, 70);
-            lblGestionMedicaments.Location = new Point(24, 19);
+            lblGestionMedicaments.Location = new Point(24, 20);
             lblGestionMedicaments.Name = "lblGestionMedicaments";
-            lblGestionMedicaments.Size = new Size(273, 78);
+            lblGestionMedicaments.Size = new Size(273, 82);
             lblGestionMedicaments.TabIndex = 35;
             lblGestionMedicaments.Text = "Gestion des Clients";
             lblGestionMedicaments.TextAlign = ContentAlignment.MiddleCenter;

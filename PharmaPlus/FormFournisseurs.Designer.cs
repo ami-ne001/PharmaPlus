@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             btnRetour = new Button();
             panel1 = new Panel();
             btnReinitialiserRecherche = new Button();
@@ -52,6 +52,11 @@
             txtNom = new TextBox();
             label1 = new Label();
             panel2 = new Panel();
+            CodeFournisseur = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Telephone = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            Adresse = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFournisseurs).BeginInit();
             panel2.SuspendLayout();
@@ -133,15 +138,16 @@
             // 
             dgvFournisseurs.AllowUserToAddRows = false;
             dgvFournisseurs.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgvFournisseurs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvFournisseurs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvFournisseurs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvFournisseurs.Columns.AddRange(new DataGridViewColumn[] { CodeFournisseur, Nom, Telephone, Email, Adresse });
             dgvFournisseurs.EnableHeadersVisualStyles = false;
             dgvFournisseurs.Location = new Point(37, 103);
             dgvFournisseurs.MultiSelect = false;
@@ -172,7 +178,7 @@
             // 
             // lblGestionFournisseurs
             // 
-            lblGestionFournisseurs.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGestionFournisseurs.Font = new Font("Segoe UI Black", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGestionFournisseurs.ForeColor = Color.FromArgb(0, 85, 70);
             lblGestionFournisseurs.Location = new Point(24, 19);
             lblGestionFournisseurs.Name = "lblGestionFournisseurs";
@@ -329,6 +335,46 @@
             panel2.Size = new Size(324, 673);
             panel2.TabIndex = 4;
             // 
+            // CodeFournisseur
+            // 
+            CodeFournisseur.HeaderText = "Code Fournisseur";
+            CodeFournisseur.MinimumWidth = 6;
+            CodeFournisseur.Name = "CodeFournisseur";
+            CodeFournisseur.ReadOnly = true;
+            CodeFournisseur.Width = 160;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            Nom.Width = 160;
+            // 
+            // Telephone
+            // 
+            Telephone.HeaderText = "Téléphone";
+            Telephone.MinimumWidth = 6;
+            Telephone.Name = "Telephone";
+            Telephone.ReadOnly = true;
+            Telephone.Width = 160;
+            // 
+            // Email
+            // 
+            Email.HeaderText = "Email";
+            Email.MinimumWidth = 6;
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            Email.Width = 180;
+            // 
+            // Adresse
+            // 
+            Adresse.HeaderText = "Adresse";
+            Adresse.MinimumWidth = 6;
+            Adresse.Name = "Adresse";
+            Adresse.ReadOnly = true;
+            Adresse.Width = 160;
+            // 
             // FormFournisseurs
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -373,5 +419,10 @@
         private TextBox txtNom;
         private Label label1;
         private Panel panel2;
+        private DataGridViewTextBoxColumn CodeFournisseur;
+        private DataGridViewTextBoxColumn Nom;
+        private DataGridViewTextBoxColumn Telephone;
+        private DataGridViewTextBoxColumn Email;
+        private DataGridViewTextBoxColumn Adresse;
     }
 }

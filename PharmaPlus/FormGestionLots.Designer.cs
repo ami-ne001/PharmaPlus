@@ -310,11 +310,11 @@
             // 
             // lblGestionLots
             // 
-            lblGestionLots.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGestionLots.Font = new Font("Segoe UI Black", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGestionLots.ForeColor = Color.FromArgb(0, 85, 70);
-            lblGestionLots.Location = new Point(18, 16);
+            lblGestionLots.Location = new Point(3, 15);
             lblGestionLots.Name = "lblGestionLots";
-            lblGestionLots.Size = new Size(289, 78);
+            lblGestionLots.Size = new Size(316, 78);
             lblGestionLots.TabIndex = 34;
             lblGestionLots.Text = "Gestion des Lots de Médicaments";
             lblGestionLots.TextAlign = ContentAlignment.MiddleCenter;
