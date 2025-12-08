@@ -28,14 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             btnRetour = new Button();
             panel1 = new Panel();
             btnReinitialiserRecherche = new Button();
             btnRafraichir = new Button();
-            textBox2 = new TextBox();
+            textRecherche = new TextBox();
             label6 = new Label();
             dgvFournisseurs = new DataGridView();
+            CodeFournisseur = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Telephone = new DataGridViewTextBoxColumn();
+            Email = new DataGridViewTextBoxColumn();
+            Adresse = new DataGridViewTextBoxColumn();
             txtCodeFournisseur = new TextBox();
             label0 = new Label();
             lblGestionFournisseurs = new Label();
@@ -52,11 +57,6 @@
             txtNom = new TextBox();
             label1 = new Label();
             panel2 = new Panel();
-            CodeFournisseur = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Telephone = new DataGridViewTextBoxColumn();
-            Email = new DataGridViewTextBoxColumn();
-            Adresse = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFournisseurs).BeginInit();
             panel2.SuspendLayout();
@@ -74,6 +74,7 @@
             btnRetour.TabIndex = 26;
             btnRetour.Text = "< Retour";
             btnRetour.UseVisualStyleBackColor = false;
+            btnRetour.Click += btnRetour_Click;
             // 
             // panel1
             // 
@@ -81,7 +82,7 @@
             panel1.Controls.Add(btnRetour);
             panel1.Controls.Add(btnReinitialiserRecherche);
             panel1.Controls.Add(btnRafraichir);
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(textRecherche);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(dgvFournisseurs);
             panel1.Dock = DockStyle.Left;
@@ -102,6 +103,7 @@
             btnReinitialiserRecherche.TabIndex = 27;
             btnReinitialiserRecherche.Text = "Réinitialiser";
             btnReinitialiserRecherche.UseVisualStyleBackColor = false;
+            btnReinitialiserRecherche.Click += btnReinitialiserRecherche_Click;
             // 
             // btnRafraichir
             // 
@@ -115,14 +117,15 @@
             btnRafraichir.TabIndex = 25;
             btnRafraichir.Text = "Rafraîchir";
             btnRafraichir.UseVisualStyleBackColor = false;
+            btnRafraichir.Click += btnRafraichir_Click;
             // 
-            // textBox2
+            // textRecherche
             // 
-            textBox2.Font = new Font("Segoe UI", 10F);
-            textBox2.Location = new Point(208, 48);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(412, 30);
-            textBox2.TabIndex = 24;
+            textRecherche.Font = new Font("Segoe UI", 10F);
+            textRecherche.Location = new Point(208, 48);
+            textRecherche.Name = "textRecherche";
+            textRecherche.Size = new Size(412, 30);
+            textRecherche.TabIndex = 24;
             // 
             // label6
             // 
@@ -138,14 +141,14 @@
             // 
             dgvFournisseurs.AllowUserToAddRows = false;
             dgvFournisseurs.BackgroundColor = SystemColors.Control;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgvFournisseurs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(0, 85, 70);
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dgvFournisseurs.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dgvFournisseurs.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvFournisseurs.Columns.AddRange(new DataGridViewColumn[] { CodeFournisseur, Nom, Telephone, Email, Adresse });
             dgvFournisseurs.EnableHeadersVisualStyles = false;
@@ -157,6 +160,47 @@
             dgvFournisseurs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvFournisseurs.Size = new Size(873, 557);
             dgvFournisseurs.TabIndex = 23;
+            dgvFournisseurs.CellContentClick += dgvFournisseurs_CellContentClick;
+            // 
+            // CodeFournisseur
+            // 
+            CodeFournisseur.HeaderText = "Code Fournisseur";
+            CodeFournisseur.MinimumWidth = 6;
+            CodeFournisseur.Name = "CodeFournisseur";
+            CodeFournisseur.ReadOnly = true;
+            CodeFournisseur.Width = 160;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            Nom.Width = 160;
+            // 
+            // Telephone
+            // 
+            Telephone.HeaderText = "Téléphone";
+            Telephone.MinimumWidth = 6;
+            Telephone.Name = "Telephone";
+            Telephone.ReadOnly = true;
+            Telephone.Width = 160;
+            // 
+            // Email
+            // 
+            Email.HeaderText = "Email";
+            Email.MinimumWidth = 6;
+            Email.Name = "Email";
+            Email.ReadOnly = true;
+            Email.Width = 180;
+            // 
+            // Adresse
+            // 
+            Adresse.HeaderText = "Adresse";
+            Adresse.MinimumWidth = 6;
+            Adresse.Name = "Adresse";
+            Adresse.ReadOnly = true;
+            Adresse.Width = 160;
             // 
             // txtCodeFournisseur
             // 
@@ -199,6 +243,7 @@
             btnEffacer.TabIndex = 22;
             btnEffacer.Text = "Effacer";
             btnEffacer.UseVisualStyleBackColor = false;
+            btnEffacer.Click += btnEffacer_Click;
             // 
             // btnSupprimer
             // 
@@ -212,6 +257,7 @@
             btnSupprimer.TabIndex = 21;
             btnSupprimer.Text = "Supprimer";
             btnSupprimer.UseVisualStyleBackColor = false;
+            btnSupprimer.Click += btnSupprimer_Click;
             // 
             // btnModifier
             // 
@@ -225,6 +271,7 @@
             btnModifier.TabIndex = 20;
             btnModifier.Text = "Modifier";
             btnModifier.UseVisualStyleBackColor = false;
+            btnModifier.Click += btnModifier_Click;
             // 
             // btnAjouter
             // 
@@ -238,6 +285,7 @@
             btnAjouter.TabIndex = 2;
             btnAjouter.Text = "Ajouter";
             btnAjouter.UseVisualStyleBackColor = false;
+            btnAjouter.Click += btnAjouter_Click;
             // 
             // txtAdresse
             // 
@@ -335,46 +383,6 @@
             panel2.Size = new Size(324, 673);
             panel2.TabIndex = 4;
             // 
-            // CodeFournisseur
-            // 
-            CodeFournisseur.HeaderText = "Code Fournisseur";
-            CodeFournisseur.MinimumWidth = 6;
-            CodeFournisseur.Name = "CodeFournisseur";
-            CodeFournisseur.ReadOnly = true;
-            CodeFournisseur.Width = 160;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.ReadOnly = true;
-            Nom.Width = 160;
-            // 
-            // Telephone
-            // 
-            Telephone.HeaderText = "Téléphone";
-            Telephone.MinimumWidth = 6;
-            Telephone.Name = "Telephone";
-            Telephone.ReadOnly = true;
-            Telephone.Width = 160;
-            // 
-            // Email
-            // 
-            Email.HeaderText = "Email";
-            Email.MinimumWidth = 6;
-            Email.Name = "Email";
-            Email.ReadOnly = true;
-            Email.Width = 180;
-            // 
-            // Adresse
-            // 
-            Adresse.HeaderText = "Adresse";
-            Adresse.MinimumWidth = 6;
-            Adresse.Name = "Adresse";
-            Adresse.ReadOnly = true;
-            Adresse.Width = 160;
-            // 
             // FormFournisseurs
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -386,6 +394,7 @@
             MaximizeBox = false;
             Name = "FormFournisseurs";
             Text = "PharmaPlus - Gestion des Fournisseurs";
+            Load += FormFournisseurs_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvFournisseurs).EndInit();
@@ -400,7 +409,7 @@
         private Panel panel1;
         private Button btnReinitialiserRecherche;
         private Button btnRafraichir;
-        private TextBox textBox2;
+        private TextBox textRecherche;
         private Label label6;
         private DataGridView dgvFournisseurs;
         private TextBox txtCodeFournisseur;
