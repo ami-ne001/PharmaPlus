@@ -29,7 +29,16 @@ namespace PharmaPlus
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             dgvMedicaments = new DataGridView();
+            Nom = new DataGridViewTextBoxColumn();
+            Reference = new DataGridViewTextBoxColumn();
+            Categorie = new DataGridViewTextBoxColumn();
+            Fabricant = new DataGridViewTextBoxColumn();
+            QuantiteTotale = new DataGridViewTextBoxColumn();
+            SeuilAlerteStock = new DataGridViewTextBoxColumn();
+            Statut = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             lblNombreAlertes = new Label();
             panel2 = new Panel();
@@ -39,13 +48,6 @@ namespace PharmaPlus
             txtRechercherReference = new TextBox();
             lblRechercherReference = new Label();
             btnRechercher = new Button();
-            Nom = new DataGridViewTextBoxColumn();
-            Reference = new DataGridViewTextBoxColumn();
-            Categorie = new DataGridViewTextBoxColumn();
-            Fabricant = new DataGridViewTextBoxColumn();
-            QuantiteTotale = new DataGridViewTextBoxColumn();
-            SeuilAlerteStock = new DataGridViewTextBoxColumn();
-            Statut = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -53,27 +55,97 @@ namespace PharmaPlus
             // 
             // dgvMedicaments
             // 
-            dgvMedicaments.AllowUserToAddRows = false;
             dgvMedicaments.BackgroundColor = SystemColors.Control;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 160, 120);
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Nom, Reference, Categorie, Fabricant, QuantiteTotale, SeuilAlerteStock, Statut });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 160, 120);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvMedicaments.DefaultCellStyle = dataGridViewCellStyle2;
             dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(21, 66);
-            dgvMedicaments.MultiSelect = false;
             dgvMedicaments.Name = "dgvMedicaments";
             dgvMedicaments.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 160, 120);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvMedicaments.RowHeadersWidth = 51;
-            dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvMedicaments.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgvMedicaments.Size = new Size(1220, 407);
             dgvMedicaments.TabIndex = 25;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom Médicament";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            Nom.Width = 200;
+            // 
+            // Reference
+            // 
+            Reference.HeaderText = "Référence";
+            Reference.MinimumWidth = 6;
+            Reference.Name = "Reference";
+            Reference.ReadOnly = true;
+            Reference.Width = 150;
+            // 
+            // Categorie
+            // 
+            Categorie.HeaderText = "Catégorie";
+            Categorie.MinimumWidth = 6;
+            Categorie.Name = "Categorie";
+            Categorie.ReadOnly = true;
+            Categorie.Width = 150;
+            // 
+            // Fabricant
+            // 
+            Fabricant.HeaderText = "Fabricant";
+            Fabricant.MinimumWidth = 6;
+            Fabricant.Name = "Fabricant";
+            Fabricant.ReadOnly = true;
+            Fabricant.Width = 150;
+            // 
+            // QuantiteTotale
+            // 
+            QuantiteTotale.HeaderText = "Quantité";
+            QuantiteTotale.MinimumWidth = 6;
+            QuantiteTotale.Name = "QuantiteTotale";
+            QuantiteTotale.ReadOnly = true;
+            QuantiteTotale.Width = 120;
+            // 
+            // SeuilAlerteStock
+            // 
+            SeuilAlerteStock.HeaderText = "Seuil d'Alerte";
+            SeuilAlerteStock.MinimumWidth = 6;
+            SeuilAlerteStock.Name = "SeuilAlerteStock";
+            SeuilAlerteStock.ReadOnly = true;
+            SeuilAlerteStock.Width = 150;
+            // 
+            // Statut
+            // 
+            Statut.HeaderText = "Statut";
+            Statut.MinimumWidth = 6;
+            Statut.Name = "Statut";
+            Statut.ReadOnly = true;
+            Statut.Width = 220;
             // 
             // panel1
             // 
@@ -141,7 +213,7 @@ namespace PharmaPlus
             btnReinitialiser.FlatStyle = FlatStyle.Popup;
             btnReinitialiser.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReinitialiser.ForeColor = SystemColors.HighlightText;
-            btnReinitialiser.Location = new Point(530, 60);
+            btnReinitialiser.Location = new Point(615, 60);
             btnReinitialiser.Name = "btnReinitialiser";
             btnReinitialiser.Size = new Size(120, 32);
             btnReinitialiser.TabIndex = 49;
@@ -154,7 +226,7 @@ namespace PharmaPlus
             txtRechercherReference.Font = new Font("Segoe UI", 10F);
             txtRechercherReference.Location = new Point(260, 60);
             txtRechercherReference.Name = "txtRechercherReference";
-            txtRechercherReference.Size = new Size(200, 30);
+            txtRechercherReference.Size = new Size(285, 30);
             txtRechercherReference.TabIndex = 48;
             // 
             // lblRechercherReference
@@ -173,69 +245,13 @@ namespace PharmaPlus
             btnRechercher.FlatStyle = FlatStyle.Popup;
             btnRechercher.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnRechercher.ForeColor = SystemColors.HighlightText;
-            btnRechercher.Location = new Point(466, 60);
+            btnRechercher.Location = new Point(551, 60);
             btnRechercher.Name = "btnRechercher";
             btnRechercher.Size = new Size(58, 32);
             btnRechercher.TabIndex = 44;
             btnRechercher.Text = "OK";
             btnRechercher.UseVisualStyleBackColor = false;
             btnRechercher.Click += btnRechercher_Click;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom Médicament";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.ReadOnly = true;
-            Nom.Width = 200;
-            // 
-            // Reference
-            // 
-            Reference.HeaderText = "Référence";
-            Reference.MinimumWidth = 6;
-            Reference.Name = "Reference";
-            Reference.ReadOnly = true;
-            Reference.Width = 150;
-            // 
-            // Categorie
-            // 
-            Categorie.HeaderText = "Catégorie";
-            Categorie.MinimumWidth = 6;
-            Categorie.Name = "Categorie";
-            Categorie.ReadOnly = true;
-            Categorie.Width = 150;
-            // 
-            // Fabricant
-            // 
-            Fabricant.HeaderText = "Fabricant";
-            Fabricant.MinimumWidth = 6;
-            Fabricant.Name = "Fabricant";
-            Fabricant.ReadOnly = true;
-            Fabricant.Width = 150;
-            // 
-            // QuantiteTotale
-            // 
-            QuantiteTotale.HeaderText = "Quantité";
-            QuantiteTotale.MinimumWidth = 6;
-            QuantiteTotale.Name = "QuantiteTotale";
-            QuantiteTotale.ReadOnly = true;
-            QuantiteTotale.Width = 120;
-            // 
-            // SeuilAlerteStock
-            // 
-            SeuilAlerteStock.HeaderText = "Seuil d'Alerte";
-            SeuilAlerteStock.MinimumWidth = 6;
-            SeuilAlerteStock.Name = "SeuilAlerteStock";
-            SeuilAlerteStock.ReadOnly = true;
-            SeuilAlerteStock.Width = 150;
-            // 
-            // Statut
-            // 
-            Statut.HeaderText = "Statut";
-            Statut.MinimumWidth = 6;
-            Statut.Name = "Statut";
-            Statut.ReadOnly = true;
-            Statut.Width = 220;
             // 
             // FormAlerteStockes
             // 

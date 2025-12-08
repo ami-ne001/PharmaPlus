@@ -29,7 +29,16 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             dgvMedicaments = new DataGridView();
+            Nom = new DataGridViewTextBoxColumn();
+            Reference = new DataGridViewTextBoxColumn();
+            NumeroLot = new DataGridViewTextBoxColumn();
+            DatePeremption = new DataGridViewTextBoxColumn();
+            QuantiteLot = new DataGridViewTextBoxColumn();
+            JoursRestants = new DataGridViewTextBoxColumn();
+            Statut = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             lblNombreAlertes = new Label();
             panel2 = new Panel();
@@ -38,13 +47,6 @@
             nudJoursAvance = new NumericUpDown();
             btnRechercher = new Button();
             lblJoursAvance = new Label();
-            Nom = new DataGridViewTextBoxColumn();
-            Reference = new DataGridViewTextBoxColumn();
-            NumeroLot = new DataGridViewTextBoxColumn();
-            DatePeremption = new DataGridViewTextBoxColumn();
-            QuantiteLot = new DataGridViewTextBoxColumn();
-            JoursRestants = new DataGridViewTextBoxColumn();
-            Statut = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -58,18 +60,92 @@
             dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 160, 120);
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Nom, Reference, NumeroLot, DatePeremption, QuantiteLot, JoursRestants, Statut });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 160, 120);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvMedicaments.DefaultCellStyle = dataGridViewCellStyle2;
             dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(21, 66);
             dgvMedicaments.Name = "dgvMedicaments";
+            dgvMedicaments.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 160, 120);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvMedicaments.RowHeadersWidth = 51;
+            dgvMedicaments.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgvMedicaments.Size = new Size(1220, 407);
             dgvMedicaments.TabIndex = 25;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom Médicament";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            Nom.Width = 160;
+            // 
+            // Reference
+            // 
+            Reference.HeaderText = "Réference";
+            Reference.MinimumWidth = 6;
+            Reference.Name = "Reference";
+            Reference.ReadOnly = true;
+            Reference.Width = 152;
+            // 
+            // NumeroLot
+            // 
+            NumeroLot.HeaderText = "Numéro de Lot";
+            NumeroLot.MinimumWidth = 6;
+            NumeroLot.Name = "NumeroLot";
+            NumeroLot.ReadOnly = true;
+            NumeroLot.Width = 140;
+            // 
+            // DatePeremption
+            // 
+            DatePeremption.HeaderText = "Date de Péremption";
+            DatePeremption.MinimumWidth = 6;
+            DatePeremption.Name = "DatePeremption";
+            DatePeremption.ReadOnly = true;
+            DatePeremption.Width = 175;
+            // 
+            // QuantiteLot
+            // 
+            QuantiteLot.HeaderText = "Quantité";
+            QuantiteLot.MinimumWidth = 6;
+            QuantiteLot.Name = "QuantiteLot";
+            QuantiteLot.ReadOnly = true;
+            QuantiteLot.Width = 110;
+            // 
+            // JoursRestants
+            // 
+            JoursRestants.HeaderText = "Jours Restants";
+            JoursRestants.MinimumWidth = 6;
+            JoursRestants.Name = "JoursRestants";
+            JoursRestants.ReadOnly = true;
+            JoursRestants.Width = 130;
+            // 
+            // Statut
+            // 
+            Statut.HeaderText = "Statut";
+            Statut.MinimumWidth = 6;
+            Statut.Name = "Statut";
+            Statut.ReadOnly = true;
+            Statut.Width = 220;
             // 
             // panel1
             // 
@@ -164,55 +240,6 @@
             lblJoursAvance.Size = new Size(226, 25);
             lblJoursAvance.TabIndex = 43;
             lblJoursAvance.Text = "Alerter X jours à l'avance";
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom Médicament";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.Width = 160;
-            // 
-            // Reference
-            // 
-            Reference.HeaderText = "Réference";
-            Reference.MinimumWidth = 6;
-            Reference.Name = "Reference";
-            Reference.Width = 152;
-            // 
-            // NumeroLot
-            // 
-            NumeroLot.HeaderText = "Numéro de Lot";
-            NumeroLot.MinimumWidth = 6;
-            NumeroLot.Name = "NumeroLot";
-            NumeroLot.Width = 140;
-            // 
-            // DatePeremption
-            // 
-            DatePeremption.HeaderText = "Date de Péremption";
-            DatePeremption.MinimumWidth = 6;
-            DatePeremption.Name = "DatePeremption";
-            DatePeremption.Width = 175;
-            // 
-            // QuantiteLot
-            // 
-            QuantiteLot.HeaderText = "Quantité";
-            QuantiteLot.MinimumWidth = 6;
-            QuantiteLot.Name = "QuantiteLot";
-            QuantiteLot.Width = 110;
-            // 
-            // JoursRestants
-            // 
-            JoursRestants.HeaderText = "Jours Restants";
-            JoursRestants.MinimumWidth = 6;
-            JoursRestants.Name = "JoursRestants";
-            JoursRestants.Width = 130;
-            // 
-            // Statut
-            // 
-            Statut.HeaderText = "Statut";
-            Statut.MinimumWidth = 6;
-            Statut.Name = "Statut";
-            Statut.Width = 220;
             // 
             // FormAlertePeremption
             // 

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             btnRetour = new Button();
             panel1 = new Panel();
             label5 = new Label();
@@ -46,6 +48,12 @@
             panel2 = new Panel();
             label10 = new Label();
             dgvMedicaments = new DataGridView();
+            Reference = new DataGridViewTextBoxColumn();
+            Nom = new DataGridViewTextBoxColumn();
+            Fabricant = new DataGridViewTextBoxColumn();
+            QuantiteMed = new DataGridViewTextBoxColumn();
+            PrixUnitaire = new DataGridViewTextBoxColumn();
+            PrixTotal = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
             label13 = new Label();
             nudQuantiteMedPanier = new NumericUpDown();
@@ -65,12 +73,6 @@
             btnAjouter = new Button();
             textBox9 = new TextBox();
             label11 = new Label();
-            Reference = new DataGridViewTextBoxColumn();
-            Nom = new DataGridViewTextBoxColumn();
-            Fabricant = new DataGridViewTextBoxColumn();
-            QuantiteMed = new DataGridViewTextBoxColumn();
-            PrixUnitaire = new DataGridViewTextBoxColumn();
-            PrixTotal = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMedicaments).BeginInit();
@@ -258,21 +260,85 @@
             dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 160, 120);
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvMedicaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvMedicaments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvMedicaments.Columns.AddRange(new DataGridViewColumn[] { Reference, Nom, Fabricant, QuantiteMed, PrixUnitaire, PrixTotal });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 160, 120);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvMedicaments.DefaultCellStyle = dataGridViewCellStyle2;
             dgvMedicaments.EnableHeadersVisualStyles = false;
             dgvMedicaments.Location = new Point(7, 57);
             dgvMedicaments.MultiSelect = false;
             dgvMedicaments.Name = "dgvMedicaments";
             dgvMedicaments.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 160, 120);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvMedicaments.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvMedicaments.RowHeadersWidth = 51;
             dgvMedicaments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvMedicaments.Size = new Size(614, 321);
             dgvMedicaments.TabIndex = 24;
+            // 
+            // Reference
+            // 
+            Reference.HeaderText = "Référence";
+            Reference.MinimumWidth = 6;
+            Reference.Name = "Reference";
+            Reference.ReadOnly = true;
+            Reference.Width = 125;
+            // 
+            // Nom
+            // 
+            Nom.HeaderText = "Nom Médicament";
+            Nom.MinimumWidth = 6;
+            Nom.Name = "Nom";
+            Nom.ReadOnly = true;
+            Nom.Width = 180;
+            // 
+            // Fabricant
+            // 
+            Fabricant.HeaderText = "Fabricant";
+            Fabricant.MinimumWidth = 6;
+            Fabricant.Name = "Fabricant";
+            Fabricant.ReadOnly = true;
+            Fabricant.Width = 125;
+            // 
+            // QuantiteMed
+            // 
+            QuantiteMed.HeaderText = "Quantité";
+            QuantiteMed.MinimumWidth = 6;
+            QuantiteMed.Name = "QuantiteMed";
+            QuantiteMed.ReadOnly = true;
+            QuantiteMed.Width = 125;
+            // 
+            // PrixUnitaire
+            // 
+            PrixUnitaire.HeaderText = "Prix Unitaire";
+            PrixUnitaire.MinimumWidth = 6;
+            PrixUnitaire.Name = "PrixUnitaire";
+            PrixUnitaire.ReadOnly = true;
+            PrixUnitaire.Width = 125;
+            // 
+            // PrixTotal
+            // 
+            PrixTotal.HeaderText = "Prix Total";
+            PrixTotal.MinimumWidth = 6;
+            PrixTotal.Name = "PrixTotal";
+            PrixTotal.ReadOnly = true;
+            PrixTotal.Width = 125;
             // 
             // panel3
             // 
@@ -485,54 +551,6 @@
             label11.Size = new Size(84, 28);
             label11.TabIndex = 50;
             label11.Text = "Résumé";
-            // 
-            // Reference
-            // 
-            Reference.HeaderText = "Référence";
-            Reference.MinimumWidth = 6;
-            Reference.Name = "Reference";
-            Reference.ReadOnly = true;
-            Reference.Width = 125;
-            // 
-            // Nom
-            // 
-            Nom.HeaderText = "Nom Médicament";
-            Nom.MinimumWidth = 6;
-            Nom.Name = "Nom";
-            Nom.ReadOnly = true;
-            Nom.Width = 180;
-            // 
-            // Fabricant
-            // 
-            Fabricant.HeaderText = "Fabricant";
-            Fabricant.MinimumWidth = 6;
-            Fabricant.Name = "Fabricant";
-            Fabricant.ReadOnly = true;
-            Fabricant.Width = 125;
-            // 
-            // QuantiteMed
-            // 
-            QuantiteMed.HeaderText = "Quantité";
-            QuantiteMed.MinimumWidth = 6;
-            QuantiteMed.Name = "QuantiteMed";
-            QuantiteMed.ReadOnly = true;
-            QuantiteMed.Width = 125;
-            // 
-            // PrixUnitaire
-            // 
-            PrixUnitaire.HeaderText = "Prix Unitaire";
-            PrixUnitaire.MinimumWidth = 6;
-            PrixUnitaire.Name = "PrixUnitaire";
-            PrixUnitaire.ReadOnly = true;
-            PrixUnitaire.Width = 125;
-            // 
-            // PrixTotal
-            // 
-            PrixTotal.HeaderText = "Prix Total";
-            PrixTotal.MinimumWidth = 6;
-            PrixTotal.Name = "PrixTotal";
-            PrixTotal.ReadOnly = true;
-            PrixTotal.Width = 125;
             // 
             // FormAjouterCommande
             // 

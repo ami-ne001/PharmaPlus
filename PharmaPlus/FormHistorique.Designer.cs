@@ -29,15 +29,17 @@ namespace PharmaPlus
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             dgvHistorique = new DataGridView();
+            DateHeure = new DataGridViewTextBoxColumn();
+            Action = new DataGridViewTextBoxColumn();
             panel1 = new Panel();
             lblNombreActions = new Label();
             panel2 = new Panel();
             label1 = new Label();
             btnRetour = new Button();
             btnRafraichir = new Button();
-            DateHeure = new DataGridViewTextBoxColumn();
-            Action = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvHistorique).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -51,22 +53,53 @@ namespace PharmaPlus
             dataGridViewCellStyle1.BackColor = Color.FromArgb(0, 85, 70);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle1.ForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(0, 160, 120);
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dgvHistorique.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvHistorique.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvHistorique.Columns.AddRange(new DataGridViewColumn[] { DateHeure, Action });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(0, 160, 120);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvHistorique.DefaultCellStyle = dataGridViewCellStyle2;
             dgvHistorique.EnableHeadersVisualStyles = false;
             dgvHistorique.Location = new Point(21, 66);
             dgvHistorique.MultiSelect = false;
             dgvHistorique.Name = "dgvHistorique";
             dgvHistorique.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(0, 160, 120);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvHistorique.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvHistorique.RowHeadersWidth = 51;
             dgvHistorique.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvHistorique.Size = new Size(1220, 407);
             dgvHistorique.TabIndex = 25;
-            dgvHistorique.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            // 
+            // DateHeure
+            // 
+            DateHeure.HeaderText = "Date et Heure";
+            DateHeure.MinimumWidth = 6;
+            DateHeure.Name = "DateHeure";
+            DateHeure.ReadOnly = true;
+            DateHeure.Width = 180;
+            // 
+            // Action
+            // 
+            Action.HeaderText = "Action";
+            Action.MinimumWidth = 6;
+            Action.Name = "Action";
+            Action.ReadOnly = true;
+            Action.Width = 1040;
             // 
             // panel1
             // 
@@ -85,7 +118,7 @@ namespace PharmaPlus
             lblNombreActions.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
             lblNombreActions.Location = new Point(47, 25);
             lblNombreActions.Name = "lblNombreActions";
-            lblNombreActions.Size = new Size(250, 25);
+            lblNombreActions.Size = new Size(236, 25);
             lblNombreActions.TabIndex = 48;
             lblNombreActions.Text = "Nombre total d'actions : 0";
             // 
@@ -107,7 +140,7 @@ namespace PharmaPlus
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.Location = new Point(260, 98);
             label1.Name = "label1";
-            label1.Size = new Size(553, 20);
+            label1.Size = new Size(423, 20);
             label1.TabIndex = 47;
             label1.Text = "Historique complet de toutes les actions effectuées sur le système";
             // 
@@ -138,22 +171,6 @@ namespace PharmaPlus
             btnRafraichir.Text = "Rafraîchir";
             btnRafraichir.UseVisualStyleBackColor = false;
             btnRafraichir.Click += btnRafraichir_Click;
-            // 
-            // DateHeure
-            // 
-            DateHeure.HeaderText = "Date et Heure";
-            DateHeure.MinimumWidth = 6;
-            DateHeure.Name = "DateHeure";
-            DateHeure.ReadOnly = true;
-            DateHeure.Width = 180;
-            // 
-            // Action
-            // 
-            Action.HeaderText = "Action";
-            Action.MinimumWidth = 6;
-            Action.Name = "Action";
-            Action.ReadOnly = true;
-            Action.Width = 1040;
             // 
             // FormHistorique
             // 

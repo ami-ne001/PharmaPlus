@@ -43,7 +43,7 @@ namespace PharmaPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors du chargement des médicaments : {ex.Message}", 
+                MessageBox.Show($"Erreur lors du chargement des médicaments : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -67,7 +67,7 @@ namespace PharmaPlus
 
                 if (medicamentsList == null || medicamentsList.Count == 0)
                 {
-                    MessageBox.Show("Aucun médicament à rechercher.", 
+                    MessageBox.Show("Aucun médicament à rechercher.",
                         "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
@@ -79,7 +79,7 @@ namespace PharmaPlus
 
                 if (medicamentsFiltres.Count == 0)
                 {
-                    MessageBox.Show($"Aucun médicament trouvé avec '{textBox2.Text}'.", 
+                    MessageBox.Show($"Aucun médicament trouvé avec '{textBox2.Text}'.",
                         "Recherche", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
@@ -88,7 +88,7 @@ namespace PharmaPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de la recherche : {ex.Message}", 
+                MessageBox.Show($"Erreur lors de la recherche : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -107,7 +107,7 @@ namespace PharmaPlus
 
         private bool ValiderChamps()
         {
-            if (string.IsNullOrWhiteSpace(txtNom.Text) || string.IsNullOrWhiteSpace(txtReference.Text)) 
+            if (string.IsNullOrWhiteSpace(txtNom.Text) || string.IsNullOrWhiteSpace(txtReference.Text))
                 return false;
 
             return true;
@@ -213,7 +213,7 @@ namespace PharmaPlus
             {
                 if (!ValiderChamps())
                 {
-                    MessageBox.Show("Veuillez remplir au moins le nom et la référence du médicament.", 
+                    MessageBox.Show("Veuillez remplir au moins le nom et la référence du médicament.",
                         "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -222,7 +222,7 @@ namespace PharmaPlus
                 pharmacien.AjouterMedicament(nouveauMedicament);
                 ChargerMedicaments();
                 ViderChamps();
-                MessageBox.Show("Médicament ajouté avec succès.", 
+                MessageBox.Show("Médicament ajouté avec succès.",
                     "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Microsoft.Data.SqlClient.SqlException sqlEx)
@@ -230,20 +230,20 @@ namespace PharmaPlus
                 // Check for unique constraint violation (duplicate reference)
                 if (sqlEx.Number == 2627 || sqlEx.Number == 2601)
                 {
-                    MessageBox.Show($"Un médicament avec la référence '{txtReference.Text}' existe déjà dans la base de données.\nVeuillez utiliser une référence unique.", 
+                    MessageBox.Show($"Un médicament avec la référence '{txtReference.Text}' existe déjà dans la base de données.\nVeuillez utiliser une référence unique.",
                         "Référence dupliquée", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtReference.Focus();
                     txtReference.SelectAll();
                 }
                 else
                 {
-                    MessageBox.Show($"Erreur lors de l'ajout : {sqlEx.Message}", 
+                    MessageBox.Show($"Erreur lors de l'ajout : {sqlEx.Message}",
                         "Erreur base de données", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de l'ajout : {ex.Message}", 
+                MessageBox.Show($"Erreur lors de l'ajout : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -254,14 +254,14 @@ namespace PharmaPlus
             {
                 if (!selectedMedicamentId.HasValue)
                 {
-                    MessageBox.Show("Veuillez sélectionner un médicament à modifier.", 
+                    MessageBox.Show("Veuillez sélectionner un médicament à modifier.",
                         "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (!ValiderChamps())
                 {
-                    MessageBox.Show("Veuillez remplir au moins le nom et la référence du médicament.", 
+                    MessageBox.Show("Veuillez remplir au moins le nom et la référence du médicament.",
                         "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -272,12 +272,12 @@ namespace PharmaPlus
                 pharmacien.ModifierMedicament(medicamentModifie);
                 ChargerMedicaments();
                 ViderChamps();
-                MessageBox.Show("Médicament modifié avec succès.", 
+                MessageBox.Show("Médicament modifié avec succès.",
                     "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de la modification : {ex.Message}", 
+                MessageBox.Show($"Erreur lors de la modification : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -288,13 +288,13 @@ namespace PharmaPlus
             {
                 if (!selectedMedicamentId.HasValue)
                 {
-                    MessageBox.Show("Veuillez sélectionner un médicament à supprimer.", 
+                    MessageBox.Show("Veuillez sélectionner un médicament à supprimer.",
                         "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 DialogResult result = MessageBox.Show(
-                    "Êtes-vous sûr de vouloir supprimer ce médicament ?", 
+                    "Êtes-vous sûr de vouloir supprimer ce médicament ?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.No)
@@ -308,12 +308,12 @@ namespace PharmaPlus
                 pharmacien.SupprimerMedicament(medicamentASupprimer);
                 ChargerMedicaments();
                 ViderChamps();
-                MessageBox.Show("Médicament supprimé avec succès.", 
+                MessageBox.Show("Médicament supprimé avec succès.",
                     "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de la suppression : {ex.Message}", 
+                MessageBox.Show($"Erreur lors de la suppression : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -332,7 +332,7 @@ namespace PharmaPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erreur lors de la réinitialisation : {ex.Message}", 
+                MessageBox.Show($"Erreur lors de la réinitialisation : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
