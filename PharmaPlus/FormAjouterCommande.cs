@@ -213,11 +213,18 @@ namespace PharmaPlus
                     // Charger les lots disponibles pour ce médicament
                     ChargerLotsMedicament();
 
-                    // Mettre à jour le NumericUpDown avec la quantité disponible
-                    if (lotSelectionne != null)
+                    // Mettre à jour le NumericUpDown avec la quantité restante disponible (tous lots - déjà réservés)
+                    int stockTotal = lotsDisponibles?.Sum(l => l.QuantiteLot) ?? 0;
+                    int dejaReserve = panier.AsEnumerable()
+                        .Where(r => Convert.ToInt32(r["ID_Medicament"]) == medicamentSelectionne.ID_Medicament)
+                        .Sum(r => Convert.ToInt32(r["Quantite"]));
+
+                    int stockRestant = stockTotal - dejaReserve;
+
+                    if (stockRestant > 0)
                     {
-                        nudQuantiteMedPanier.Maximum = lotSelectionne.QuantiteLot;
-                        nudQuantiteMedPanier.Value = Math.Min(1, lotSelectionne.QuantiteLot);
+                        nudQuantiteMedPanier.Maximum = stockRestant;
+                        nudQuantiteMedPanier.Value = Math.Min(1, stockRestant);
                         nudQuantiteMedPanier.Enabled = true;
                     }
                     else
@@ -299,61 +306,84 @@ namespace PharmaPlus
                 return;
             }
 
-            // Utiliser le premier lot disponible (ou le lot avec la date de péremption la plus proche)
-            if (lotSelectionne == null)
-            {
-                lotSelectionne = lotsDisponibles.OrderBy(l => l.DatePeremption).FirstOrDefault();
-            }
-
-            if (lotSelectionne == null)
-            {
-                MessageBox.Show("Aucun lot disponible pour ce médicament.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             // Récupérer la quantité depuis le NumericUpDown
-            int quantite = (int)nudQuantiteMedPanier.Value;
+            int quantiteDemandee = (int)nudQuantiteMedPanier.Value;
 
-            if (quantite <= 0)
+            if (quantiteDemandee <= 0)
             {
                 MessageBox.Show("La quantité doit être supérieure à 0.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (quantite > lotSelectionne.QuantiteLot)
+            // Calculer le stock total disponible sur tous les lots (moins ce qui est déjà dans le panier)
+            int stockTotalDisponible = lotsDisponibles.Sum(l => l.QuantiteLot);
+            int dejaReserve = panier.AsEnumerable()
+                .Where(r => Convert.ToInt32(r["ID_Medicament"]) == medicamentSelectionne.ID_Medicament)
+                .Sum(r => Convert.ToInt32(r["Quantite"]));
+
+            int stockRestant = stockTotalDisponible - dejaReserve;
+
+            if (quantiteDemandee > stockRestant)
             {
-                MessageBox.Show($"La quantité demandée dépasse le stock disponible ({lotSelectionne.QuantiteLot}).", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    $"La quantité demandée ({quantiteDemandee}) dépasse le stock disponible pour ce médicament ({stockRestant} sur {stockTotalDisponible}).",
+                    "Quantité insuffisante",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
-            // Vérifier si le médicament est déjà dans le panier
-            DataRow[] rowsExistantes = panier.Select($"ID_Medicament = {medicamentSelectionne.ID_Medicament}");
-            if (rowsExistantes.Length > 0)
-            {
-                int nouvelleQuantite = Convert.ToInt32(rowsExistantes[0]["Quantite"]) + quantite;
+            // Répartir la quantité demandée sur les lots par ordre de péremption
+            int quantiteRestante = quantiteDemandee;
+            var lotsOrdonnes = lotsDisponibles.OrderBy(l => l.DatePeremption).ToList();
 
-                int stockTotalDisponible = lotsDisponibles.Sum(l => l.QuantiteLot);
-                if (nouvelleQuantite > stockTotalDisponible)
+            foreach (var lot in lotsOrdonnes)
+            {
+                if (quantiteRestante <= 0)
+                    break;
+
+                // Tenir compte de ce qui est déjà réservé dans le panier pour ce lot
+                int dejaReserveLot = panier.AsEnumerable()
+                    .Where(r => Convert.ToInt32(r["ID_Lot"]) == lot.ID_Lot)
+                    .Sum(r => Convert.ToInt32(r["Quantite"]));
+
+                int disponibleLot = lot.QuantiteLot - dejaReserveLot;
+                if (disponibleLot <= 0)
+                    continue;
+
+                int aPrendre = Math.Min(quantiteRestante, disponibleLot);
+
+                // Chercher une ligne existante pour ce même lot dans le panier
+                DataRow rowExistanteLot = panier.AsEnumerable()
+                    .FirstOrDefault(r => Convert.ToInt32(r["ID_Lot"]) == lot.ID_Lot);
+
+                if (rowExistanteLot != null)
                 {
-                    MessageBox.Show($"La quantité totale demandée dépasse le stock disponible ({stockTotalDisponible}).", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    int nouvelleQuantite = Convert.ToInt32(rowExistanteLot["Quantite"]) + aPrendre;
+                    rowExistanteLot["Quantite"] = nouvelleQuantite;
+                    rowExistanteLot["PrixTotal"] = nouvelleQuantite * lot.Prix;
+                }
+                else
+                {
+                    DataRow row = panier.NewRow();
+                    row["ID_Medicament"] = medicamentSelectionne.ID_Medicament;
+                    row["ID_Lot"] = lot.ID_Lot;
+                    row["Reference"] = medicamentSelectionne.Reference;
+                    row["Nom"] = medicamentSelectionne.Nom;
+                    row["Fabricant"] = medicamentSelectionne.Fabricant;
+                    row["Quantite"] = aPrendre;
+                    row["PrixUnitaire"] = lot.Prix;
+                    row["PrixTotal"] = aPrendre * lot.Prix;
+                    panier.Rows.Add(row);
                 }
 
-                rowsExistantes[0]["Quantite"] = nouvelleQuantite;
-                rowsExistantes[0]["PrixTotal"] = nouvelleQuantite * lotSelectionne.Prix;
+                quantiteRestante -= aPrendre;
             }
-            else
+
+            if (quantiteRestante > 0)
             {
-                DataRow row = panier.NewRow();
-                row["ID_Medicament"] = medicamentSelectionne.ID_Medicament;
-                row["ID_Lot"] = lotSelectionne.ID_Lot;
-                row["Reference"] = medicamentSelectionne.Reference;
-                row["Nom"] = medicamentSelectionne.Nom;
-                row["Fabricant"] = medicamentSelectionne.Fabricant;
-                row["Quantite"] = quantite;
-                row["PrixUnitaire"] = lotSelectionne.Prix;
-                row["PrixTotal"] = quantite * lotSelectionne.Prix;
-                panier.Rows.Add(row);
+                MessageBox.Show("Impossible d'affecter toute la quantité demandée aux lots disponibles.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
             MettreAJourTotal();
